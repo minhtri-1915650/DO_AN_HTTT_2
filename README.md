@@ -32,7 +32,7 @@ git checkout @name
 --Di toi branch--
 
 
-git remote add origin https://github.com/minhtri-1915650/Do_an_HTTH.git 
+git remote add origin https://github.com/minhtri-1915650/Do_an_HTTT_2.git 
 
 git push -u origin master
 
