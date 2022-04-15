@@ -5,7 +5,7 @@
                 <div class="list-menu pull-left col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <?php $this->load->view('frontend/modules/category'); ?>
                 </div>
-                <div id="sort-by" class="hidden-xs">
+                <!-- <div id="sort-by" class="hidden-xs">
                       <label class="left hidden-xs" for="sort-select">Sắp xếp theo: </label>
                       <form class="form-inline form-viewpro">
                         <div class="form-group">
@@ -65,7 +65,10 @@
                             ?>
                         </div>
                     </form>
-                </div>
+                </div> -->
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 list-menu pull-left">
+				<img src="https://scontent.fhan3-5.fna.fbcdn.net/v/t1.6435-9/73205509_2826737650671383_3082421998828126208_n.png?_nc_cat=109&ccb=1-5&_nc_sid=730e14&_nc_ohc=NJ7UY00QbTwAX_qAcrF&_nc_ht=scontent.fhan3-5.fna&oh=00_AT_UnNLYx-CFOjwDx5S-1Mo39R4zbUmIV87pNX8t2cdlfQ&oe=6276E65B" style="height:793px; width:380px">
+			    </div> 
             </div>
             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 product-content">
                <div class="product-wrap">

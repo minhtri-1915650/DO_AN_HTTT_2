@@ -78,11 +78,11 @@
 								<br>
 								<span>Nguyên hộp. Đầy đủ phụ kiện từ nhà sản xuất.</span>
 							</div>
-							<div style="margin-top: 20px;">
+							<!-- <div style="margin-top: 20px;">
 								<b>Bảo hành</b>
 								<br>
 								<span>Bảo hành 12 tháng tại trung tâm bảo hành Chính hãng. 1 đổi 1 trong 30 ngày nếu có lỗi nhà sản xuất.
-							</div>
+							</div> -->
 						</div>
 					</div>
 					<div class="product-v-desc col-md-10 col-12 col-xs-12">

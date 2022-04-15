@@ -178,7 +178,7 @@ for ($i=1; $i <= 12 ; $i++)
     ]);
 
     var options = {
-      title: 'Số lượng bán ra từ 01/2019 - 12/2019',
+      title: 'Số lượng đơn hàng trong năm 2022',
       seriesType: 'bars'
     };
 
