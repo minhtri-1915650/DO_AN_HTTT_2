@@ -5,9 +5,14 @@ class Dangnhap extends CI_Controller {
 	// Hàm khởi tạo
     function __construct() {
         parent::__construct();
-        
+        $this->load->model('frontend/Mcategory');
+        $this->load->model('frontend/Mcustomer');
+        $this->load->model('frontend/Mcoupon');
+        $this->load->model("frontend/Mproduct");
+        $this->data['com']='dangnhap';
     }
-public function dangnhap(){
+
+    public function dangnhap(){
         $this->load->library('form_validation');
         $this->form_validation->set_rules('username', 'Tài khoản', 'required|min_length[6]|max_length[32]');
         $this->form_validation->set_rules('password', 'Mật khẩu', 'required|min_length[6]|max_length[32]');
@@ -29,15 +34,16 @@ public function dangnhap(){
                 $this->data['error']='Tài khoản hoặc mật khẩu không chính xác';
                 $this->data['title']='Đăng nhập tài khoản';
                 $this->data['view']='dangnhap';
-                $this->load->view('layout',$this->data);
+                $this->load->view('frontend/layout',$this->data);
             }
         }else{
             $this->data['title']='BKED - Đăng nhập tài khoản';
             $this->data['view']='dangnhap';
-            $this->load->view('layout',$this->data);
+            $this->load->view('frontend/layout',$this->data);
         }     
     }
-public function dangxuat(){
+
+    public function dangxuat(){
         $array_items = array( 'email','fullname', 'id','sessionKhachHang','sessionKhachHang_name','coupon_price','id_coupon_price');
         $this->session->unset_userdata($array_items);
         redirect('trang-chu','refresh');
@@ -88,7 +94,8 @@ public function dangxuat(){
                 'trash' => 1,
                 'status' => 1,
             );
-  //Lưu tt mã và ngày giới hạn để gửi mail
+
+            //Lưu tt mã và ngày giới hạn để gửi mail
             $tempcoupon = $newcoupon['code'];
             $tempdatelimit = $newcoupon['expiration_date'];
             // tao mã giảm giá random
@@ -103,7 +110,7 @@ public function dangxuat(){
             $config['smtp_host']    = 'ssl://smtp.gmail.com';
             $config['smtp_port']    = '465';
             $config['smtp_timeout'] = '7';
-            $config['smtp_user']    = 'sale.smart.store.2019@gmail.com';
+            $config['smtp_user']    = 'sale.smart.store.2022@gmail.com';
             $config['smtp_pass']    = 'cqfmfmrtudhcmahw';
             $config['charset']    = 'utf-8';
             $config['newline']    = "\r\n";
@@ -111,16 +118,16 @@ public function dangxuat(){
             $config['mailtype'] = 'html';
             $config['validation'] = TRUE;   
             $this->email->initialize($config);
-            $this->email->from('sale.smart.store.2019@gmail.com', 'ShopBK');
+            $this->email->from('sale.smart.store.2022@gmail.com', 'BKED');
             $this->email->to($email);
-            $this->email->subject('Hệ thống ShopBK - Quà thành viên mới');
-            $this->email->message('Bạn đã trở thành thành viên mới của cửa hàng ShopBK, Cửa hàng tặng bạn 1 mã giảm giá giảm 100.000 đ : '.$tempcoupon.' , Mã này có giá trị tới ngày '.$tempdatelimit.'
+            $this->email->subject('Hệ thống BKED - Quà thành viên mới');
+            $this->email->message('Bạn đã trở thành thành viên mới của cửa hàng BKED, Cửa hàng tặng bạn 1 mã giảm giá giảm 100.000 đ : '.$tempcoupon.' , Mã này có giá trị tới ngày '.$tempdatelimit.'
                 Hãy sử dụng tài khoản để mua hàng để tích lũy nhận thêm nhiều ưu đãi !!!!');
             $this->email->send();
             $this->data['success']='Đăng ký thành công! Hãy đăng nhập để mua hàng';
 
         }  
-        $this->data['title']='ShopBK - Đăng ký tài khoản';   
+        $this->data['title']='BKED - Đăng ký tài khoản';   
         $this->data['view']='dangky';
         $this->load->view('frontend/layout',$this->data);  
     }
@@ -142,7 +149,8 @@ public function dangxuat(){
         }
         return TRUE;
     }
- public function forget_password(){
+
+    public function forget_password(){
         $this->form_validation->set_rules('email', 'Email', 'required|callback_check_mail_forget');
         if($this->form_validation->run() ==TRUE){
 
@@ -156,7 +164,7 @@ public function dangxuat(){
             $config['smtp_host']    = 'ssl://smtp.gmail.com';
             $config['smtp_port']    = '465';
             $config['smtp_timeout'] = '7';
-            $config['smtp_user']    = 'sale.smart.store.2019@gmail.com';
+            $config['smtp_user']    = 'sale.smart.store.2022@gmail.com';
             $config['smtp_pass']    = 'cqfmfmrtudhcmahw';
             $config['charset']    = 'utf-8';
             $config['newline']    = "\r\n";
@@ -164,14 +172,14 @@ public function dangxuat(){
             $config['mailtype'] = 'html';
             $config['validation'] = TRUE;   
             $this->email->initialize($config);
-            $this->email->from('sale.smart.store.2019@gmail.com', 'ShopBK');
+            $this->email->from('sale.smart.store.2022@gmail.com', 'BKED');
             $this->email->to($list['email']);
-            $this->email->subject('Hệ thống ShopBK - Lấy lại mật khẩu');
+            $this->email->subject('Hệ thống BKED - Lấy lại mật khẩu');
             $this->email->message('Vui lòng truy cập đường dẫn để lấy lại mật khẩu <button class="btn"><a href="'.base_url().'dangnhap/reset_password_new/'.$list['id'].'">Lấy lại mật khẩu</a></button>'); 
             $this->email->send();
             $this->data['success']='Bạn vui lòng kiểm tra mail để lấy lại mật khẩu!';   
         }  
-        $this->data['title']='ShopBK - Quên mật khẩu';   
+        $this->data['title']='BKED - Quên mật khẩu';   
         $this->data['view']='forget_password';
         $this->load->view('frontend/layout',$this->data);  
     }
@@ -209,13 +217,13 @@ public function dangxuat(){
            }
            else{
             $this->data['error']='Email không đúng, vui lòng nhập đúng email cần lấy lại mật khẩu !';
-            $this->data['title']='ShopBK - Cập nhật mật khẩu mới';
+            $this->data['title']='BKED - Cập nhật mật khẩu mới';
             $this->data['view']='reset_password_new';
             $this->load->view('frontend/layout',$this->data);
         }
 
     }
-    $this->data['title']='ShopBK - Cập nhật mật khẩu mới';
+    $this->data['title']='BKED - Cập nhật mật khẩu mới';
     $this->data['view']='reset_password_new';
     $this->load->view('frontend/layout',$this->data);
 }
