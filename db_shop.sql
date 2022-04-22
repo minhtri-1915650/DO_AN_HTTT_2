@@ -1,8 +1,17 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 22, 2022 at 10:29 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.28
 
--- Thời gian đã tạo: 20-03-2022 
-
+create database db_shop;
+use db_shop;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -12,16 +21,14 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `db_shop`
+-- Database: `db_shop`
 --
-create database db_shop;
-use db_shop;
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng  `db_category`
+-- Table structure for table `db_category`
 --
-
 
 CREATE TABLE `db_category` (
   `id` int(11) NOT NULL,
@@ -34,12 +41,12 @@ CREATE TABLE `db_category` (
   `created_by` varchar(255) CHARACTER SET utf8 NOT NULL,
   `updated_at` datetime NOT NULL,
   `updated_by` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `trash` tinyint(1) NOT NULL DEFAULT '1',
-  `status` tinyint(1) NOT NULL DEFAULT '1'
+  `trash` tinyint(1) NOT NULL DEFAULT 1,
+  `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- dữ liệu bảng `db_category`
+-- Dumping data for table `db_category`
 --
 
 INSERT INTO `db_category` (`id`, `name`, `link`, `level`, `parentid`, `orders`, `created_at`, `created_by`, `updated_at`, `updated_by`, `trash`, `status`) VALUES
@@ -59,7 +66,7 @@ INSERT INTO `db_category` (`id`, `name`, `link`, `level`, `parentid`, `orders`, 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng `db_config`
+-- Table structure for table `db_config`
 --
 
 CREATE TABLE `db_config` (
@@ -73,7 +80,7 @@ CREATE TABLE `db_config` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- dữ liệu cho bảng `db_config`
+-- Dumping data for table `db_config`
 --
 
 INSERT INTO `db_config` (`id`, `mail_smtp`, `mail_smtp_password`, `mail_noreply`, `priceShip`, `title`, `description`) VALUES
@@ -82,7 +89,7 @@ INSERT INTO `db_config` (`id`, `mail_smtp`, `mail_smtp_password`, `mail_noreply`
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `db_contact`
+-- Table structure for table `db_contact`
 --
 
 CREATE TABLE `db_contact` (
@@ -92,13 +99,13 @@ CREATE TABLE `db_contact` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `content` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` text COLLATE utf8_unicode_ci NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '0',
-  `trash` int(11) NOT NULL DEFAULT '1',
+  `status` int(11) NOT NULL DEFAULT 0,
+  `trash` int(11) NOT NULL DEFAULT 1,
   `fullname` varchar(80) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `db_contact`
+-- Dumping data for table `db_contact`
 --
 
 INSERT INTO `db_contact` (`id`, `title`, `phone`, `email`, `content`, `created_at`, `status`, `trash`, `fullname`) VALUES
@@ -114,7 +121,7 @@ INSERT INTO `db_contact` (`id`, `title`, `phone`, `email`, `content`, `created_a
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `db_content`
+-- Table structure for table `db_content`
 --
 
 CREATE TABLE `db_content` (
@@ -128,93 +135,25 @@ CREATE TABLE `db_content` (
   `created_by` varchar(50) CHARACTER SET utf8 NOT NULL,
   `modified` datetime NOT NULL,
   `modified_by` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `trash` int(1) NOT NULL DEFAULT '1',
-  `status` int(1) NOT NULL DEFAULT '1'
+  `trash` int(1) NOT NULL DEFAULT 1,
+  `status` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- dữ liệu cho bảng `db_content`
+-- Dumping data for table `db_content`
 --
 
 INSERT INTO `db_content` (`id`, `title`, `alias`, `introtext`, `fulltext`, `img`, `created`, `created_by`, `modified`, `modified_by`, `trash`, `status`) VALUES
-(4, 'Khám phá 5 hãng tủ lạnh có công nghệ bảo quản thực phẩm hiện đại nhất', 'kham-pha-hang-tu-lanh-co-cong-nghe-bao-quan-thuc-p-1421541', 'Các hãng tủ lạnh hiện nay ngày càng đầu tư trang bị nhiều công nghệ hiện đại hỗ trợ tốt việc bảo quản thực phẩm. Cùng Điện máy XANH khám phá 5 hãng tủ lạnh có công nghệ bảo quản thực phẩm hiện đại nhất nhé!', 
-'
-<p>
-    <strong>Công nghệ bảo quản thực phẩm trên tủ lạnh Samsung</strong>\r\n\r\n
-    <p>Samsung là thương hiệu đến từ Hàn Quốc, được thành lập từ năm 1938. Samsung đã khẳng định vị thế của mình trong những năm 1990 khi trở thành tập đoàn kinh doanh hàng đầu của Hàn Quốc và mở rộng hoạt động ra toàn cầu. Thương hiệu Samsung đã nổi tiếng ở hầu hết các quốc gia trên thế giới, trong đó có Việt Nam - nơi đặt nhà máy sản xuất lớn thứ hai thế giới của Samsung. Các sản phẩm của Samsung được người tiêu dùng Việt Nam ưa chuộng: điện thoại, máy tính bảng, loa thanh, máy lạnh, máy giặt,...  </p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Files/2022/03/21/1421541/kham-pha-hang-tu-lanh-co-cong-nghe-bao-quan-thuc-p.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Công nghệ bảo quản thực phẩm trên tủ lạnh Panasonic</strong>\r\n\r\n
-    <p>Tiền thân của Panasonic là công ty Panasonic Electric Industrial Co., Ltd., được thành lập vào năm 1918 và có trụ sở chính tại tỉnh Osaka, Nhật Bản, chuyên kinh doanh các sản phẩm công nghệ điện tử. Thương hiệu đến từ Nhật Bản này luôn giữ được chỗ đứng nhất định trong lòng người tiêu dùng Việt Nam với các sản phẩm như: tủ lạnh, máy giặt, máy lạnh, nồi cơm điện, lò vi sóng, máy xay sinh tố...</p>
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/209334/Slider/-primefresh+-2-ngan.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Công nghệ bảo quản thực phẩm trên tủ lạnh Toshiba</strong>\r\n\r\n
-    <p>Tập đoàn Toshiba được thành lập năm 1873 và có trụ sở chính tại Tokyo, Nhật Bản. Đây là một trong những thương hiệu hàng đầu thế giới về các sản phẩm điện và điện tử gia dụng. Thương hiệu Toshiba đang ngày càng tạo dựng được niềm tin mạnh mẽ về thương hiệu Toshiba trong lòng khách hàng Việt Nam thông qua hàng loạt sản phẩm gia dụng mang công nghệ tiên tiến như dòng sản phẩm: tủ lạnh, máy giặt, điều hòa,...</p>
-    <img alt="" src="https://cdn.tgdd.vn/Files/2022/03/21/1421541/kham-pha-hang-tu-lanh-co-cong-nghe-bao-quan-thuc-p.png" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Công nghệ bảo quản thực phẩm trên tủ lạnh Aqua</strong>\r\n\r\n
-    <p>Aqua là thương hiệu của Sanyo, một công ty điện lạnh nổi tiếng của Nhật Bản được thành lập vào năm 1905. Năm 1996, nhà máy đầu tiên của Sanyo tại Việt Nam được thành lập. Năm 2012, Tập đoàn Haier Trung Quốc mua lại Sanyo. Ngoài dòng sản phẩm tủ lạnh Aqua đình đám, Aqua còn có các sản phẩm máy giặt, tủ lạnh, máy lạnh,... nổi tiếng không kém, đều được sản xuất tại Việt Nam với công nghệ Nhật Bản.</p>
-    <img alt="" src="https://cdn.tgdd.vn/Files/2022/03/21/1421541/kham-pha-hang-tu-lanh-co-cong-nghe-bao-quan-thuc-p-1.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Công nghệ bảo quản thực phẩm trên tủ lạnh LG</strong>\r\n\r\n
-    <p>LG Electronics Corporation là một thương hiệu của Hàn Quốc được thành lập vào năm 1958. Có thể nói đây là tập đoàn tiên phong trong lĩnh vực công nghệ. Sự nỗ lực và phát triển không ngừng của LG đã cho ra đời nhiều sản phẩm hiện đại nổi tiếng như: điều hòa, máy giặt, laptop, tivi và các sản phẩm âm thanh khác.</p>
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/271982/lg-inverter-635-lit-gr-d257wb-220322-123459.png" style="height:600px; width:950px" />\r\n\r\n
-    
-</p>
-'
-,'kham-pha-hang-tu-lanh-co-cong-nghe-bao-quan-thuc-p-2-318x154.jpg','2022-03-23 23:18:02', '1', '2022-03-24 18:03:27', '1', 1, 1),
-(5, 'Mừng hè cực đã – Nhận quà cực to: Mua máy lạnh Midea có cơ hội trúng xe hơi, xe máy cực giá trị', 'mung-he-cuc-da-nhan-qua-cuc-to-1424704', 'Bạn đã sẵn sàng đốt cháy mùa hè cùng Midea chưa? Một chương trình khuyến mãi hoành tráng "Mừng hè cực đã – Nhận quà cực to" với giải thưởng lên đến 1 tỷ đồng khi mua máy lạnh Midea và tham gia chương trình quay số trúng thưởng. Tham gia ngay vận may sẽ tới!', 
-'
-<p>
-    <img alt="" src="https://cdn.tgdd.vn/Files/2022/04/08/1424704/mung-he-cuc-da-nhan-qua-cuc-to-1.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>1. Thời gian khuyến mãi: 08/04 - 30/07/2022</strong>\r\n\r\n
-    <strong>2. Nội dung chương trình</strong>\r\n\r\n
-    <p>Trong thời gian khuyến mãi, khách hàng mua sản phẩm điều hòa/máy lạnh treo tường Midea bất kì tại Điện máy XANH sẽ được tham gia chương trình quay số trúng thưởng với tổng trị giá đến 1 tỷ đồng..</p>     
-</p>
-'
-,'mung-he-cuc-da-nhan-qua-cuc-to-1-318x154.jpg','2022-03-23 23:18:02', '1', '2022-03-24 18:03:27', '1', 1, 1),
-(6, 'Mừng Giỗ Tổ - Xe đạp năng nổ: Giảm SỐC 25% cùng quà cực XỊN. Mua ngay!', 'xe-dap-giam-soc-den-25-them-qua-hot-mung-gio-to-1424574', 'Khuyến mãi tưng bừng - Mừng ngày Giỗ Tổ, Điện máy XANH mở bán ưu đãi cực “hời” cho Xe đạp đến 25% cùng quà tặng siêu xịn khi mua kèm. Cơ hội cực hấp dẫn để sở hữu xe đạp chất lượng với giá cả phải chăng. Nhanh tay đặt mua ngay bạn nhé!', 
-'
-<p>
-    <img alt="" src="https://cdn.tgdd.vn/Files/2022/04/07/1424574/xe-dap-giam-soc-den-25-them-qua-hot-mung-gio-to.png" style="height:600px; width:950px" />\r\n\r\n
-    <strong>1. Thời gian khuyến mãi: Từ 08/04 - 10/04/2022</strong>\r\n\r\n
-    <strong>2. Nội dung chương trình</strong>\r\n\r\n
-    <p>- Trong thời gian khuyến mãi, nhiều thương hiệu xe đạp hàng đầu như Totem, Pacific, Merida, Phoenix, Twitter, Stitch, Gammax, Txed,... được giảm đến 25% tại Điện máy XANH. (theo danh sách bên dưới hoặc chi tiết TẠI ĐÂY!)
-- Áp dụng trả góp 0%.
-
-- Đặc biệt, khi mua online bạn sẽ được tặng thêm Nón bảo hiểm (khi mua xe người lớn) hoặc đồng hồ trẻ em (khi mua xe trẻ em) mẫu ngẫu nhiên cực xịn.
-
-- Ngoài ra còn được giảm đến 30% khi mua kèm các sản phẩm điện máy từ 3 triệu trở lên. Xem chi tiết TẠI ĐÂY!</p>     
-</p>
-'
-,'xe-dap-giam-soc-den-25-them-qua-hot-mung-gio-to-318x154.png','2022-03-23 23:18:02', '1', '2022-03-24 18:03:27', '1', 1, 1),
-(7, 'SĂN SALE CUỐI TUẦN - Nhận ngay mã giảm từ 50 NGÀN ĐẾN 200 NGÀN', 'san-sale-cuoi-tuan-nhan-ngay-ma-giam-tu-50-ngan-1424570', 'Nhân dịp cuối tuần, Điện máy XANH tổ chức chương trình mini game săn sale để bạn có cơ hội nhận mã giảm từ 50 ngàn đến 200 ngàn cực hấp dẫn để mua hàng online tại Điện máy XANH và Thế giới Di Động. Tham gia ngay, nhận quà liền tay.', 
-'
-<p>
-    <img alt="" src="https://cdn.tgdd.vn/Files/2022/04/07/1424570/san-sale-cuoi-tuan-nhan-ngay-ma-giam-tu-50-ngan.png" style="height:600px; width:950px" />\r\n\r\n
-    <strong>1. Thời gian chương trình: 08 - 10/04/2022</strong>\r\n\r\n
-    <strong>2. Nội dung chương trình</strong>\r\n\r\n
-    <p>Trong thời gian diễn ra chương trình "Săn sale cuối tuần" khách hàng sẽ có cơ hội nhận mã giảm ngẫu nhiên từ 200 ngàn đến 500 ngàn cực hấp dẫn khi tham gia chơi mini game tại Điện máy XANH và Thế Giới Di Động.</p>     
-</p>
-'
-,'san-sale-cuoi-tuan-nhan-ngay-ma-giam-tu-50-ngan-318x154.png','2022-03-23 23:18:02', '1', '2022-03-24 18:03:27', '1', 1, 1),
-(8, 'Tư vấn chọn mua đồng hồ cho người cổ tay nhỏ phù hợp, sang trọng nhất', 'xe-dap-giam-soc-den-25-them-qua-hot-mung-gio-to-1424574', 'Khuyến mãi tưng bừng - Mừng ngày Giỗ Tổ, Điện máy XANH mở bán ưu đãi cực “hời” cho Xe đạp đến 25% cùng quà tặng siêu xịn khi mua kèm. Cơ hội cực hấp dẫn để sở hữu xe đạp chất lượng với giá cả phải chăng. Nhanh tay đặt mua ngay bạn nhé!', 
-'
-<p>
-    <img alt="" src="https://cdn.tgdd.vn/Files/2019/07/09/1178467/dongho-318x154.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>1. Thời gian khuyến mãi: Từ 08/04 - 10/04/2022</strong>\r\n\r\n
-    <strong>2. Nội dung chương trình</strong>\r\n\r\n
-    <p>- Trong thời gian khuyến mãi, nhiều thương hiệu xe đạp hàng đầu như Totem, Pacific, Merida, Phoenix, Twitter, Stitch, Gammax, Txed,... được giảm đến 25% tại Điện máy XANH. (theo danh sách bên dưới hoặc chi tiết TẠI ĐÂY!)
-- Áp dụng trả góp 0%.
-
-- Đặc biệt, khi mua online bạn sẽ được tặng thêm Nón bảo hiểm (khi mua xe người lớn) hoặc đồng hồ trẻ em (khi mua xe trẻ em) mẫu ngẫu nhiên cực xịn.
-
-- Ngoài ra còn được giảm đến 30% khi mua kèm các sản phẩm điện máy từ 3 triệu trở lên. Xem chi tiết TẠI ĐÂY!</p>     
-</p>
-'
-,'dongho-318x154.jpg','2022-03-23 23:18:02', '1', '2022-03-24 18:03:27', '1', 1, 1);
-
+(4, 'Khám phá 5 hãng tủ lạnh có công nghệ bảo quản thực phẩm hiện đại nhất', 'kham-pha-hang-tu-lanh-co-cong-nghe-bao-quan-thuc-p-1421541', 'Các hãng tủ lạnh hiện nay ngày càng đầu tư trang bị nhiều công nghệ hiện đại hỗ trợ tốt việc bảo quản thực phẩm. Cùng Điện máy XANH khám phá 5 hãng tủ lạnh có công nghệ bảo quản thực phẩm hiện đại nhất nhé!', '\r\n<p>\r\n    <strong>Công nghệ bảo quản thực phẩm trên tủ lạnh Samsung</strong>\r\n\r\n\r\n    <p>Samsung là thương hiệu đến từ Hàn Quốc, được thành lập từ năm 1938. Samsung đã khẳng định vị thế của mình trong những năm 1990 khi trở thành tập đoàn kinh doanh hàng đầu của Hàn Quốc và mở rộng hoạt động ra toàn cầu. Thương hiệu Samsung đã nổi tiếng ở hầu hết các quốc gia trên thế giới, trong đó có Việt Nam - nơi đặt nhà máy sản xuất lớn thứ hai thế giới của Samsung. Các sản phẩm của Samsung được người tiêu dùng Việt Nam ưa chuộng: điện thoại, máy tính bảng, loa thanh, máy lạnh, máy giặt,...  </p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Files/2022/03/21/1421541/kham-pha-hang-tu-lanh-co-cong-nghe-bao-quan-thuc-p.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Công nghệ bảo quản thực phẩm trên tủ lạnh Panasonic</strong>\r\n\r\n\r\n    <p>Tiền thân của Panasonic là công ty Panasonic Electric Industrial Co., Ltd., được thành lập vào năm 1918 và có trụ sở chính tại tỉnh Osaka, Nhật Bản, chuyên kinh doanh các sản phẩm công nghệ điện tử. Thương hiệu đến từ Nhật Bản này luôn giữ được chỗ đứng nhất định trong lòng người tiêu dùng Việt Nam với các sản phẩm như: tủ lạnh, máy giặt, máy lạnh, nồi cơm điện, lò vi sóng, máy xay sinh tố...</p>\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/209334/Slider/-primefresh+-2-ngan.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Công nghệ bảo quản thực phẩm trên tủ lạnh Toshiba</strong>\r\n\r\n\r\n    <p>Tập đoàn Toshiba được thành lập năm 1873 và có trụ sở chính tại Tokyo, Nhật Bản. Đây là một trong những thương hiệu hàng đầu thế giới về các sản phẩm điện và điện tử gia dụng. Thương hiệu Toshiba đang ngày càng tạo dựng được niềm tin mạnh mẽ về thương hiệu Toshiba trong lòng khách hàng Việt Nam thông qua hàng loạt sản phẩm gia dụng mang công nghệ tiên tiến như dòng sản phẩm: tủ lạnh, máy giặt, điều hòa,...</p>\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Files/2022/03/21/1421541/kham-pha-hang-tu-lanh-co-cong-nghe-bao-quan-thuc-p.png\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Công nghệ bảo quản thực phẩm trên tủ lạnh Aqua</strong>\r\n\r\n\r\n    <p>Aqua là thương hiệu của Sanyo, một công ty điện lạnh nổi tiếng của Nhật Bản được thành lập vào năm 1905. Năm 1996, nhà máy đầu tiên của Sanyo tại Việt Nam được thành lập. Năm 2012, Tập đoàn Haier Trung Quốc mua lại Sanyo. Ngoài dòng sản phẩm tủ lạnh Aqua đình đám, Aqua còn có các sản phẩm máy giặt, tủ lạnh, máy lạnh,... nổi tiếng không kém, đều được sản xuất tại Việt Nam với công nghệ Nhật Bản.</p>\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Files/2022/03/21/1421541/kham-pha-hang-tu-lanh-co-cong-nghe-bao-quan-thuc-p-1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Công nghệ bảo quản thực phẩm trên tủ lạnh LG</strong>\r\n\r\n\r\n    <p>LG Electronics Corporation là một thương hiệu của Hàn Quốc được thành lập vào năm 1958. Có thể nói đây là tập đoàn tiên phong trong lĩnh vực công nghệ. Sự nỗ lực và phát triển không ngừng của LG đã cho ra đời nhiều sản phẩm hiện đại nổi tiếng như: điều hòa, máy giặt, laptop, tivi và các sản phẩm âm thanh khác.</p>\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/271982/lg-inverter-635-lit-gr-d257wb-220322-123459.png\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    \r\n</p>\r\n', 'kham-pha-hang-tu-lanh-co-cong-nghe-bao-quan-thuc-p-2-318x154.jpg', '2022-03-23 23:18:02', '1', '2022-03-24 18:03:27', '1', 1, 1),
+(5, 'Mừng hè cực đã – Nhận quà cực to: Mua máy lạnh Midea có cơ hội trúng xe hơi, xe máy cực giá trị', 'mung-he-cuc-da-nhan-qua-cuc-to-1424704', 'Bạn đã sẵn sàng đốt cháy mùa hè cùng Midea chưa? Một chương trình khuyến mãi hoành tráng \"Mừng hè cực đã – Nhận quà cực to\" với giải thưởng lên đến 1 tỷ đồng khi mua máy lạnh Midea và tham gia chương trình quay số trúng thưởng. Tham gia ngay vận may sẽ tới!', '\r\n<p>\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Files/2022/04/08/1424704/mung-he-cuc-da-nhan-qua-cuc-to-1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>1. Thời gian khuyến mãi: 08/04 - 30/07/2022</strong>\r\n\r\n\r\n    <strong>2. Nội dung chương trình</strong>\r\n\r\n\r\n    <p>Trong thời gian khuyến mãi, khách hàng mua sản phẩm điều hòa/máy lạnh treo tường Midea bất kì tại Điện máy XANH sẽ được tham gia chương trình quay số trúng thưởng với tổng trị giá đến 1 tỷ đồng..</p>     \r\n</p>\r\n', 'mung-he-cuc-da-nhan-qua-cuc-to-1-318x154.jpg', '2022-03-23 23:18:02', '1', '2022-03-24 18:03:27', '1', 1, 1),
+(6, 'Mừng Giỗ Tổ - Xe đạp năng nổ: Giảm SỐC 25% cùng quà cực XỊN. Mua ngay!', 'xe-dap-giam-soc-den-25-them-qua-hot-mung-gio-to-1424574', 'Khuyến mãi tưng bừng - Mừng ngày Giỗ Tổ, Điện máy XANH mở bán ưu đãi cực “hời” cho Xe đạp đến 25% cùng quà tặng siêu xịn khi mua kèm. Cơ hội cực hấp dẫn để sở hữu xe đạp chất lượng với giá cả phải chăng. Nhanh tay đặt mua ngay bạn nhé!', '\r\n<p>\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Files/2022/04/07/1424574/xe-dap-giam-soc-den-25-them-qua-hot-mung-gio-to.png\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>1. Thời gian khuyến mãi: Từ 08/04 - 10/04/2022</strong>\r\n\r\n\r\n    <strong>2. Nội dung chương trình</strong>\r\n\r\n\r\n    <p>- Trong thời gian khuyến mãi, nhiều thương hiệu xe đạp hàng đầu như Totem, Pacific, Merida, Phoenix, Twitter, Stitch, Gammax, Txed,... được giảm đến 25% tại Điện máy XANH. (theo danh sách bên dưới hoặc chi tiết TẠI ĐÂY!)\r\n- Áp dụng trả góp 0%.\r\n\r\n- Đặc biệt, khi mua online bạn sẽ được tặng thêm Nón bảo hiểm (khi mua xe người lớn) hoặc đồng hồ trẻ em (khi mua xe trẻ em) mẫu ngẫu nhiên cực xịn.\r\n\r\n- Ngoài ra còn được giảm đến 30% khi mua kèm các sản phẩm điện máy từ 3 triệu trở lên. Xem chi tiết TẠI ĐÂY!</p>     \r\n</p>\r\n', 'xe-dap-giam-soc-den-25-them-qua-hot-mung-gio-to-318x154.png', '2022-03-23 23:18:02', '1', '2022-03-24 18:03:27', '1', 1, 1),
+(7, 'SĂN SALE CUỐI TUẦN - Nhận ngay mã giảm từ 50 NGÀN ĐẾN 200 NGÀN', 'san-sale-cuoi-tuan-nhan-ngay-ma-giam-tu-50-ngan-1424570', 'Nhân dịp cuối tuần, Điện máy XANH tổ chức chương trình mini game săn sale để bạn có cơ hội nhận mã giảm từ 50 ngàn đến 200 ngàn cực hấp dẫn để mua hàng online tại Điện máy XANH và Thế giới Di Động. Tham gia ngay, nhận quà liền tay.', '\r\n<p>\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Files/2022/04/07/1424570/san-sale-cuoi-tuan-nhan-ngay-ma-giam-tu-50-ngan.png\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>1. Thời gian chương trình: 08 - 10/04/2022</strong>\r\n\r\n\r\n    <strong>2. Nội dung chương trình</strong>\r\n\r\n\r\n    <p>Trong thời gian diễn ra chương trình \"Săn sale cuối tuần\" khách hàng sẽ có cơ hội nhận mã giảm ngẫu nhiên từ 200 ngàn đến 500 ngàn cực hấp dẫn khi tham gia chơi mini game tại Điện máy XANH và Thế Giới Di Động.</p>     \r\n</p>\r\n', 'san-sale-cuoi-tuan-nhan-ngay-ma-giam-tu-50-ngan-318x154.png', '2022-03-23 23:18:02', '1', '2022-03-24 18:03:27', '1', 1, 1),
+(8, 'Tư vấn chọn mua đồng hồ cho người cổ tay nhỏ phù hợp, sang trọng nhất', 'xe-dap-giam-soc-den-25-them-qua-hot-mung-gio-to-1424574', 'Khuyến mãi tưng bừng - Mừng ngày Giỗ Tổ, Điện máy XANH mở bán ưu đãi cực “hời” cho Xe đạp đến 25% cùng quà tặng siêu xịn khi mua kèm. Cơ hội cực hấp dẫn để sở hữu xe đạp chất lượng với giá cả phải chăng. Nhanh tay đặt mua ngay bạn nhé!', '\r\n<p>\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Files/2019/07/09/1178467/dongho-318x154.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>1. Thời gian khuyến mãi: Từ 08/04 - 10/04/2022</strong>\r\n\r\n\r\n    <strong>2. Nội dung chương trình</strong>\r\n\r\n\r\n    <p>- Trong thời gian khuyến mãi, nhiều thương hiệu xe đạp hàng đầu như Totem, Pacific, Merida, Phoenix, Twitter, Stitch, Gammax, Txed,... được giảm đến 25% tại Điện máy XANH. (theo danh sách bên dưới hoặc chi tiết TẠI ĐÂY!)\r\n- Áp dụng trả góp 0%.\r\n\r\n- Đặc biệt, khi mua online bạn sẽ được tặng thêm Nón bảo hiểm (khi mua xe người lớn) hoặc đồng hồ trẻ em (khi mua xe trẻ em) mẫu ngẫu nhiên cực xịn.\r\n\r\n- Ngoài ra còn được giảm đến 30% khi mua kèm các sản phẩm điện máy từ 3 triệu trở lên. Xem chi tiết TẠI ĐÂY!</p>     \r\n</p>\r\n', 'dongho-318x154.jpg', '2022-03-23 23:18:02', '1', '2022-03-24 18:03:27', '1', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng `db_customer`
+-- Table structure for table `db_customer`
 --
 
 CREATE TABLE `db_customer` (
@@ -226,12 +165,12 @@ CREATE TABLE `db_customer` (
   `phone` varchar(13) CHARACTER SET utf8 NOT NULL,
   `email` varchar(50) CHARACTER SET utf8 NOT NULL,
   `created` datetime NOT NULL,
-  `trash` int(1) NOT NULL DEFAULT '1',
-  `status` int(1) NOT NULL DEFAULT '1'
+  `trash` int(1) NOT NULL DEFAULT 1,
+  `status` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- dữ liệu cho bảng `db_customer`
+-- Dumping data for table `db_customer`
 --
 
 INSERT INTO `db_customer` (`id`, `fullname`, `username`, `password`, `address`, `phone`, `email`, `created`, `trash`, `status`) VALUES
@@ -250,12 +189,14 @@ INSERT INTO `db_customer` (`id`, `fullname`, `username`, `password`, `address`, 
 (55, 'Ethereum', '', '', '', '03056451', '', '2022-03-29 15:02:46', 1, 1),
 (56, 'Binance', '', '', '', '0305464844', '', '2022-03-29 15:09:06', 0, 1),
 (57, 'Huobi', '', '', '', '032133234', '', '2022-03-26 23:01:51', 1, 1),
-(66, 'Thành 2022', 'dinhthanh', 'e10adc3949ba59abbe56e057f20f883e', '', '0306444854', 'dinhthanh@gmail.com', '2022-03-26 00:00:00', 1, 1);
+(66, 'Thành 2022', 'dinhthanh', 'e10adc3949ba59abbe56e057f20f883e', '', '0306444854', 'dinhthanh@gmail.com', '2022-03-26 00:00:00', 1, 1),
+(67, 'lol', '', '', '', '03745686554', 'lol@gmail.com', '2022-04-22 14:31:47', 1, 1),
+(68, 'lol', '', '', '', '12123123132', '', '2022-04-22 14:32:15', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng `db_discount`
+-- Table structure for table `db_discount`
 --
 
 CREATE TABLE `db_discount` (
@@ -274,7 +215,7 @@ CREATE TABLE `db_discount` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- dữ liệu cho bảng `db_discount`
+-- Dumping data for table `db_discount`
 --
 
 INSERT INTO `db_discount` (`id`, `code`, `discount`, `limit_number`, `number_used`, `expiration_date`, `payment_limit`, `description`, `created`, `orders`, `trash`, `status`) VALUES
@@ -291,7 +232,7 @@ INSERT INTO `db_discount` (`id`, `code`, `discount`, `limit_number`, `number_use
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng  `db_district`
+-- Table structure for table `db_district`
 --
 
 CREATE TABLE `db_district` (
@@ -302,7 +243,7 @@ CREATE TABLE `db_district` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- dữ liệu cho bảng `db_district`
+-- Dumping data for table `db_district`
 --
 
 INSERT INTO `db_district` (`id`, `name`, `type`, `provinceid`) VALUES
@@ -1023,7 +964,7 @@ INSERT INTO `db_district` (`id`, `name`, `type`, `provinceid`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng `db_order`
+-- Table structure for table `db_order`
 --
 
 CREATE TABLE `db_order` (
@@ -1039,12 +980,12 @@ CREATE TABLE `db_order` (
   `province` int(5) NOT NULL,
   `district` int(5) NOT NULL,
   `address` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `trash` int(1) NOT NULL DEFAULT '1',
-  `status` int(1) NOT NULL DEFAULT '1'
+  `trash` int(1) NOT NULL DEFAULT 1,
+  `status` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- dữ liệu cho bảng `db_order`
+-- Dumping data for table `db_order`
 --
 
 INSERT INTO `db_order` (`id`, `orderCode`, `customerid`, `orderdate`, `fullname`, `phone`, `money`, `price_ship`, `coupon`, `province`, `district`, `address`, `trash`, `status`) VALUES
@@ -1141,13 +1082,14 @@ INSERT INTO `db_order` (`id`, `orderCode`, `customerid`, `orderdate`, `fullname`
 (97, '4erjkjsd', 2, '2022-04-08 22:16:37', 'Hoàng Đình Thành', '0981643651', 22520000, 30000, 0, 60, 597, 'so nha 23', 1, 2),
 (98, 'qwsujxhf', 2, '2022-04-08 22:16:37', 'Hoàng Đình Thành', '0981643651', 22520000, 30000, 0, 60, 597, 'so nha 23', 1, 2),
 (99, 'kjwshdcn', 2, '2022-04-08 22:16:37', 'Hoàng Đình Thành', '0981643651', 22520000, 30000, 0, 60, 597, 'so nha 23', 1, 2),
-(100,'shdfjkti', 2, '2022-04-08 22:16:37', 'Hoàng Đình Thành', '0981643651', 22520000, 30000, 0, 60, 597, 'so nha 23', 1, 2);
-
+(100, 'shdfjkti', 2, '2022-04-08 22:16:37', 'Hoàng Đình Thành', '0981643651', 22520000, 30000, 0, 60, 597, 'so nha 23', 1, 2),
+(101, 'DekAiwbd', 67, '2022-04-22 14:31:47', 'lol', '03745686554', 12621000, 30000, 0, 2, 34, 'ok', 1, 0),
+(102, 'Ac4ZWlyU', 68, '2022-04-22 14:32:15', 'lol', '12123123132', 12621000, 30000, 0, 64, 622, 'ok', 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng  `db_orderdetail`
+-- Table structure for table `db_orderdetail`
 --
 
 CREATE TABLE `db_orderdetail` (
@@ -1156,24 +1098,26 @@ CREATE TABLE `db_orderdetail` (
   `productid` int(11) NOT NULL,
   `count` int(10) NOT NULL,
   `price` int(11) NOT NULL,
-  `trash` tinyint(1) NOT NULL DEFAULT '1',
-  `status` tinyint(1) NOT NULL DEFAULT '1'
+  `trash` tinyint(1) NOT NULL DEFAULT 1,
+  `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- dữ liệu cho bảng `db_orderdetail`
+-- Dumping data for table `db_orderdetail`
 --
 
 INSERT INTO `db_orderdetail` (`id`, `orderid`, `productid`, `count`, `price`, `trash`, `status`) VALUES
 (7, 7, 1, 4, 29390000, 1, 1),
 (8, 8, 1, 3, 29390000, 1, 1),
 (9, 9, 1, 3, 29390000, 1, 1),
-(10, 10, 1, 3, 29390000, 1, 1);
+(10, 10, 1, 3, 29390000, 1, 1),
+(101, 101, 17, 1, 12591000, 1, 1),
+(102, 102, 17, 1, 12591000, 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `db_producer`
+-- Table structure for table `db_producer`
 --
 
 CREATE TABLE `db_producer` (
@@ -1185,12 +1129,12 @@ CREATE TABLE `db_producer` (
   `created_by` int(11) NOT NULL,
   `modified` datetime NOT NULL,
   `modified_by` int(11) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
-  `trash` int(11) NOT NULL DEFAULT '1'
+  `status` int(11) NOT NULL DEFAULT 1,
+  `trash` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `db_producer`
+-- Dumping data for table `db_producer`
 --
 
 INSERT INTO `db_producer` (`id`, `name`, `code`, `keyword`, `created_at`, `created_by`, `modified`, `modified_by`, `status`, `trash`) VALUES
@@ -1201,7 +1145,7 @@ INSERT INTO `db_producer` (`id`, `name`, `code`, `keyword`, `created_at`, `creat
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng `db_product`
+-- Table structure for table `db_product`
 --
 
 CREATE TABLE `db_product` (
@@ -1217,544 +1161,56 @@ CREATE TABLE `db_product` (
   `number` int(11) NOT NULL,
   `number_buy` int(11) NOT NULL,
   `sale` int(3) DEFAULT NULL,
+  `pre_sale` int(11) NOT NULL,
   `price` int(11) NOT NULL,
   `price_sale` int(11) NOT NULL,
   `created` datetime NOT NULL,
   `created_by` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT 'HDL',
   `modified` datetime NOT NULL,
   `modified_by` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT 'HDL',
-  `trash` int(1) NOT NULL DEFAULT '1',
-  `status` int(1) NOT NULL DEFAULT '1'
+  `trash` int(1) NOT NULL DEFAULT 1,
+  `status` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- dữ liệu cho bảng `db_product`
+-- Dumping data for table `db_product`
 --
-INSERT INTO `db_product` (`id`, `catid`, `name`, `alias`, `avatar`, `img`, `sortDesc`, `detail`, `producer`, `number`, `number_buy`, `sale`, `price`, `price_sale`, `created`, `created_by`, `modified`, `modified_by`, `trash`, `status`) VALUES
-(1, 1, 'Smart Tivi Sony 50 inch KDL-50W660G', 'sony-kdl-50w660g', 'sony-kdl-50w660g_0.jpg', 'sony-kdl-50w660g_0.jpg#sony-kdl-50w660g_1.jpg#sony-kdl-50w660g_2.jpg', 'Thiết kế hiện đại, đẹp mắt phù hợp với phong họp, phòng khách', 
-'
-<p>
-    <strong>Thiết kế đẹp mắt, hiện đại</strong>\r\n\r\n 
-    <p>Smart Tivi Sony 50 inch 50W660G mang thiết kế tinh tế, dáng vẻ hiện đại, tạo thêm nét sang trọng cho không gian phòng nhà bạn. Chiếc tivi 50 inch phù hợp với nhiều không gian như: phòng khách, phòng họp... Ngoài ra, tivi có chân đế kim loại chữ V giúp đứng vững trên mọi bề mặt phẳng.</p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/200520/sony-kdl-50w660g-10.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <strong>Hình ảnh rõ nét với độ phân giải Full HD</strong>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/200520/sony-kdl-50w660g-9.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Công nghệ X-Reality™ PRO hiện đại</strong>\r\n\r\n 
-    <p>Công nghệ này cho phép chiếc tivi Sony nhà bạn thể hiện hình ảnh sắc nét hơn, giảm nhiễu và nâng cấp chất lượng hình ảnh vượt trội.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/200520/sony-kdl-50w660g-7.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Hình ảnh được nâng cao độ sáng, vùng sáng một cách hiệu quả với công nghệ Dynamic Contrast Enhancer</strong>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/200520/sony-kdl-50w660g-8.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Hình ảnh chân thật, tăng cường độ tương phản với công nghệ HDR10</strong>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/200520/sony-kdl-50w660g-5.jpg" style="height:600px; width:950px" />\r\n\r\n  
-    <strong>Hình ảnh chân thật, tăng cường độ tương phản với công nghệ HDR10</strong>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/200520/sony-kdl-50w660g-5.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <strong>Những cảnh thể thao hay chuyển động nhanh giờ đây không còn tình trạng mờ hình với công nghệ Motionflow™ XR 200 Hz</strong>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/200520/sony-kdl-50w660g-6.jpg" style="height:600px; width:950px" />\r\n\r\n 
-</p>
-'
-, 1, 320, 60, 10, 14400000, 12960000, '2022-03-23 16:22:43', '4', '2022-03-23 17:11:20', '1', 1, 1),
-(2, 2, 'Smart Tivi Samsung 4K Crystal UHD 60 inch UA60AU8100', 'led-4k-samsung-ua60au8100', 'led-4k-samsung-ua60au8100_0.jpg', 'led-4k-samsung-ua60au8100_0.jpg#led-4k-samsung-ua60au8100_1.jpg#led-4k-samsung-ua60au8100_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Thanh mảnh, tinh tế, dùng đẹp cho không gian hiện đại</strong>\r\n\r\n 
-    <p>Smart Tivi Samsung 4K 60 inch UA60AU8100 thiết kế Airslim màn hình không viền 3 cạnh sang trọng, cộng thêm nét tinh tế cho không gian sử dụng. Kích thước màn hình tivi Samsung 60 inch phù hợp sử dụng cho phòng khách gia đình, phòng ngủ, phòng họp nhỏ…</p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/235793/Slider/led-4k-samsung-ua60au8100-190321-0233101.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Từng chi tiết được hiển thị thật rõ ràng, sắc nét, mang đến trải nghiệm xem đầy thích thú và thỏa mãn khi xem của người dùng.</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/235793/Slider/led-4k-samsung-ua60au8100-190321-0233112.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Smart tivi với bộ xử lý Crystal 4K cho khả năng tái tạo chi tiết một cách hoàn hảo, mô phỏng màu sắc chính xác giúp các hình ảnh đầu vào được nâng cấp trở nên sắc nét hơn, trong trẻo tự nhiên hơn, chất lượng gần chuẩn 4K cuốn hút người dùng hơn.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/235793/Slider/led-4k-samsung-ua60au8100-190321-0233133.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Dynamic Crystal Color với hơn 1 tỷ màu tái hiện chân thực sắc màu cuộc sống trên khung hình của Smart Tivi Samsung.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/235793/Slider/led-4k-samsung-ua60au8100-190321-0233144.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Tăng cường độ tương phản, cho hình ảnh có chiều sâu hơn với HDR10+ và Contrast Enhancer</strong>\r\n\r\n 
-    <p>Công nghệ HDR10+ của tivi Samsung 4K giúp tăng cường độ sâu và độ chi tiết của chúng giúp khung hình thêm sắc nét, chân thực theo từng nội dung mô tả.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/235793/Slider/led-4k-samsung-ua60au8100-190321-0233165.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Các khung hình tối rõ ràng, lôi cuốn hơn với vùng tối tối hơn, vùng sáng sáng hơn, tương phản tốt, chi tiết rõ ràng nhất.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/235793/Slider/led-4k-samsung-ua60au8100-190321-0233176.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Âm thanh sống động, mạnh mẽ và chi tiết với công nghệ Q-Symphony và Adaptive Sound</strong>\r\n\r\n 
-    <p>Q-Symphony đồng bộ hoàn hảo loa TV Samsung với các loa thanh và loa trần, kiến tạo âm thanh đa chiều đỉnh cao. Adaptive Sound nhận biết, phân tích nội dung và điều chỉnh âm thanh phù hợp cho từng nội dung hiển thị. Nhờ đó hình ảnh và âm thanh được gắn kết hoàn hảo để tạo nên trải nghiệm xem phim, chơi game hay nghe nhạc… cực đã.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/235793/Slider/led-4k-samsung-ua60au8100-190321-0233197.jpg" style="height:600px; width:950px" />\r\n\r\n   
-</p>
-'
-, 1, 20, 16, 20, 24990000, 24990000*0.8, '2022-03-23 23:28:34', '1', '2022-03-23 17:08:04', '1', 1, 1),
-(3, 2, 'Smart Tivi Samsung 4K 55 inch UA55TU6900', 'smart-samsung-4k-55-inch-55tu6900', 'smart-samsung-4k-55-inch-55tu6900_0.jpg', 'smart-samsung-4k-55-inch-55tu6900_0.jpg#smart-samsung-4k-55-inch-55tu6900_1.jpg#smart-samsung-4k-55-inch-55tu6900_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Thiết kế không viền 3 cạnh tinh tế</strong>\r\n\r\n 
-    <p>Smart Tivi Samsung 4K 55 inch 55TU6900 được thiết kế màn hình không viền 3 cạnh tinh tế, màu đen thanh lịch. Kiểu dáng thanh mảnh, hứa hẹn sẽ làm nổi bật không gian nội thất nhà bạn.</p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/242539/thietke.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Hiển thị hình ảnh sắc nét gấp 4 lần Full HD nhờ độ phân giải 4K</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/242539/4k.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Với khả năng tự động tối ưu tỷ lệ tương phản, điều chỉnh màu sắc và dải màu động của Bộ xử lý Crystal 4K, bạn có thể xem được những hình ảnh có chất lượng tuyệt đẹp và sắc nét.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/2/1942/242539/samsungcrystal4k.mp4" style="height:600px; width:950px" />\r\n\r\n
-    <p>Công nghệ Dynamic Crystal Color có dải màu rộng hơn 1 tỷ màu sắc, cùng khả năng tập trung tái hiện các dải màu như: Đỏ, xanh lá, xanh dương, lục, lam, vàng tím,... của công nghệ PurColor. Giúp những hình ảnh hiển thị trên tivi Samsung 4K này có màu sắc rực rỡ, tự nhiên, sống động.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/2/1942/242539/samsungdynamiccrystalcolor.mp4" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Hình ảnh được tăng cường độ sâu, độ chi tiết nhờ công nghệ Contrast Enhancer</strong>\r\n\r\n 
-    <p>Khả năng tăng cường độ tương phản tối đa, phủ nhiều lớp sáng tối trên toàn bộ khung hình của công nghệ Contrast Enhancer, giúp từng khung hình hiển thị trên Smart tivi này đều trở nên lôi cuốn và hấp dẫn. </p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/242539/hdr.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Cảnh chuyển động mượt mà, giảm thiểu độ mờ nhờ công nghệ Motion Xcelerator </p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/242539/smart-samsung-4k-55-inch-55tu6900.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Tự động tinh chỉnh âm thanh phù hợp với nội dung giải trí nhờ công nghệ Adaptive Sound</strong>\r\n\r\n 
-    <p>Công nghệ Adaptive Sound cho phép bạn thưởng thưởng thức âm thanh được tinh chỉnh phù hợp với từng nội dung xem. Cùng với tổng công suất loa 20W, bạn có thể trải nghiệm mạng lưới âm thanh sống động và bùng nổ trong chính ngôi nhà của mình.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/242539/amthanh.jpg" style="height:600px; width:950px" />\r\n\r\n   
-</p>
-'
-, 2, 400, 44, 10, 17990000, 17990000*0.9, '2022-03-23 21:45:31', '1', '2022-03-23 17:12:15', '1', 1, 1),
-(4, 2, 'Smart Tivi Samsung 4K Crystal UHD 55 inch UA55AU8100', 'led-4k-samsung-ua55au8100', 'led-4k-samsung-ua55au8100_0.jpg', 'led-4k-samsung-ua55au8100_0.jpg#led-4k-samsung-ua55au8100_1.jpg#led-4k-samsung-ua55au8100_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Trải nghiệm xem thêm nhập vai với màn hình 55 inch không viền 3 cạnh</strong>\r\n\r\n 
-    <p>Smart Tivi Samsung 4K 55 inch UA55AU8100 thiết kế theo phong cách AirSlim tối giản với các cạnh viền siêu mỏng tạo cảm giác màn hình không hề bị giới hạn. Tivi có 2 chân đế hình chữ V úp ngược giúp trụ vững trên tất cả mặt phẳng, bạn cũng có thể treo tivi lên tường để tiết kiệm không gian.</p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/235792/Slider/led-4k-samsung-ua55au8100-310321-0441231.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Độ phân giải 4K với hơn 8 triệu điểm ảnh sắc nét gấp 4 lần độ phân giải Full HD, cho hình ảnh rõ ràng, chi tiết.</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/235792/Slider/led-4k-samsung-ua55au8100-310321-0441252.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Công nghệ Dynamic Crystal Color với dải màu hơn một tỷ màu sắc sẽ tái tạo hình ảnh có chất màu gần với tự nhiên nhất, tạo hiệu ứng sống động trong từng khung hình. Mở ra thế giới muôn màu muôn vẻ ngay trước mắt bạn với chiếc Smart tivi này.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/235792/Slider/led-4k-samsung-ua55au8100-310321-0441273.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Contrast Enhancer sẽ phủ lên toàn bộ khung hình những lớp sáng tối khác nhau, giúp từng khu vực, vật thể trong khung hình trở nên sống động y như thật.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/235792/Slider/led-4k-samsung-ua55au8100-310321-0441315.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Hiển thị các sắc độ màu sắc chính xác hơn qua bộ xử lý Crystal 4K</strong>\r\n\r\n 
-    <p>Bộ xử lý mạnh mẽ trên Smart Tivi Samsung cho khả năng tự động điều chỉnh màu sắc, tỷ lệ độ tương phản, dải màu động, nâng cấp hiển thị hình ảnh vượt trội, cho bạn trải nghiệm xem chưa từng thấy.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/235792/Slider/led-4k-samsung-ua55au8100-310321-0441336.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>UHD Dimming sẽ chia khung hình thành từng phần nhỏ, sau đó sẽ dùng thuật toán để căn chỉnh màu sắc, độ cân bằng màu, chi tiết của hình ảnh để đem cho bạn những thước phim có màu sắc tuyệt hảo.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/235792/Slider/led-4k-samsung-ua55au8100-310321-0441357.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Cảnh chuyển động mượt mà, rõ nét nhờ công nghệ Motion Xcelerator</strong>\r\n\r\n 
-    <p>Công nghệ Motion Xcelerator giúp giảm mờ, tránh tình trạng rung lắc, người dùng có thể dễ dàng thưởng thức những cảnh phim hành động vô cùng mượt mà và rõ nét trên chiếc tivi Samsung 4K này.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/235792/Slider/led-4k-samsung-ua55au8100-280721-0500300.png" style="height:600px; width:950px" />\r\n\r\n   
-</p>
-'
-, 2, 368, 11, 10, 24990000, 24990000*0.9, '2022-03-23 21:49:23', '1', '2022-03-23 17:04:43', '1', 1, 1),
-(5, 8, 'Android Tivi TCL 4K 50 inch 50P615', 'tcl-50p615', 'tcl-50p615_0.jpg', 'tcl-50p615_0.jpg#tcl-50p615_1.jpg#tcl-50p615_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Kiểu dáng gọn gàng, sang trọng</strong>\r\n\r\n 
-    <p>Android Tivi TCL 4K 50 inch 50P615 có thiết kế kiểu dáng hiện đại, sang trọng và màu đen lịch lãm với chân đế hình chữ V úp ngược chắc chắn, có thể đứng vững ở mọi mặt phẳng.</p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/225954/tcl-50p615-152520-062532.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Hình ảnh hiển thị sắc nét gấp 4 lần Full HD nhờ độ phân giải Ultra HD 4K</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/225954/tcl-50p615-152520-062527.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Hình ảnh trở nên chân thực và có độ tương phản cao hơn nhờ công nghệ HDR10</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/225954/tcl-50p615-152520-062521.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Hình ảnh được tối ưu hóa và nâng cấp lên gần chuẩn 4K nhờ công nghệ 4K AI Upscaling</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/225954/tcl-50p615-053420-113421.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Các cảnh chuyển động mượt mà hơn nhờ công nghệ Auto Motion Plus</strong>\r\n\r\n 
-    <p>Công nghệ này giúp các cảnh chuyển động chậm được cải thiện hơn, giảm mờ và nhòe. Giúp cảnh chuyển động trên màn hình tivi 50 inch này trở nên lôi cuốn, mượt mà và rõ nét hơn.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/225954/tcl-50p615-152520-062512.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Thưởng thức âm thanh cực kỳ chân thực và mạnh mẽ với công nghệ âm thanh Dolby MS12D/Y (Dolby Audio)</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/225954/tcl-50p615-152520-062507.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Kho ứng dụng vô cùng phong phú với hệ điều hành Android 9.0 thế hệ mới</strong>\r\n\r\n 
-    <p>Hệ điều hành Android 9.0 là phiên bản mới nhất hiện nay dành cho các dòng Android TV. Giao diện trực quan dễ sử dụng cùng kho ứng dụng đa dạng và phong phú như: YouTube, FPT Play, Netflix, Clip TV,... cho người dùng đa dạng các trải nghiệm tuyệt vời hơn với tivi TCL này.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/225954/tcl-50p615-152520-062504.jpg" style="height:600px; width:950px" />\r\n\r\n   
-</p>
-'
-, 1, 420, 10, 10, 12990000, 12990000*0.9, '2022-03-23 21:54:51', '1', '2022-03-23 16:59:20', '1', 1, 1),
-(6, 1, 'Android Tivi Sony 4K 43 inch KD-43X75', 'led-sony-kd-43x75', 'led-sony-kd-43x75_0.jpg', 'led-sony-kd-43x75_0.jpg#led-sony-kd-43x75_1.jpg#led-sony-kd-43x75_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Thiết kế gọn gàng, sang trọng</strong>\r\n\r\n 
-    <p>Tivi LED Sony KD-43X75 là tivi màn hình phẳng, cạnh viền được làm mỏng tinh tế cho bạn hoàn toàn đắm chìm vào nội dung đang được trình chiếu trên tivi. </p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238695/untitled-1.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Độ phân giải 4K với hơn 8.3 triệu điểm ảnh, khung hình hiển thị sắc nét, chi tiết</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238695/1-1.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>4K X-Reality PRO nâng cấp nội dung nguồn từ chuẩn 2K, Full HD lên gần với độ phân giải 4K nhất nhờ dùng hệ thống cơ sở dữ liệu 4K riêng biệt.  </p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238695/4k-x.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Đi cùng công nghệ này còn có HLG, HDR10 nâng cao độ sáng, độ tương phản, màu sắc cho từng chi tiết ảnh để tạo nên khung hình ảnh tuyệt đẹp cho bạn trải nghiệm xem chân thực và chuẩn điện ảnh tại gia.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238695/dolby.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Chất âm đa chiều đầy cuốn hút cùng Dolby Audio, S-Force Front Surround và DTS Digital Surrounde</strong>\r\n\r\n 
-    <p>Công nghệ Dolby Audio và S-Force Front Surround đảm nhiệm phần tái tạo âm thanh vòm đa chiều với khả năng lọc âm thanh, cải thiện chi tiết và tinh chỉnh âm thanh thông minh.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238695/3-1.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Giao diện của Android 10 khá là thông minh với vị trí sắp xếp ứng dụng khoa học, dễ nhìn, dễ tùy chỉnh. Thư viện ứng dụng có đến hơn 5000 ứng dụng hỗ trợ tiếng Việt và tiếng Anh với các ứng dụng cài sẵn Youtube, Netflix, FPT Play, Clip TV, Galaxy Play, các ứng dụng có thể tải thêm VieON, NCT, Zing,... cho bạn thoải mái tùy chỉnh và giải trí theo cách mình muốn. </p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238695/4-1.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Dễ dàng điều khiển, tìm kiếm bằng giọng nói có hỗ trợ Tiếng Việt qua Remote thông minh và Google Assistant</strong>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238695/5-1.jpg" style="height:600px; width:950px" />\r\n\r\n   
-</p>
-'
-, 2, 190, 20, 0, 13400000, 13400000, '2022-03-23 22:04:43', '1', '2022-03-23 16:57:33', '1', 1, 1),
-(7, 1, 'Android Tivi Sony 4K 55 inch KD-55X80J', 'led-sony-kd-55x80j', 'led-sony-kd-55x80j_0.jpg', 'led-sony-kd-55x80j_0.jpg#led-sony-kd-55x80j_1.jpg#led-sony-kd-55x80j_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Thiết kế hiện đại, sang trọng</strong>\r\n\r\n 
-    <p>Android Tivi Sony 4K 55 inch KD-55X80AJ sở hữu thiết kế tinh tế, sang trọng, phù hợp với không gian sống hiện đại. Màn hình tràn viền 4 cạnh giúp khung hình của tivi được mở rộng, mang đến trải nghiệm xem thoải mái và tập trung vào từng khung hình.</p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/247850/android-sony-4k-55-inch-kd-55x80aj1.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Độ phân giải 4K, chi tiết gấp 4 lần so với tivi Full HD</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/247850/android-sony-4k-55-inch-kd-55x80aj2.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Công nghệ HDR 10 giúp màu trắng sẽ trắng hơn, màu đen sẽ đen hơn, hình ảnh hiển thị trên tivi Sony có chiều sâu vượt trội so với những sản phẩm khác.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/247850/android-sony-4k-55-inch-kd-55x80aj3.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Công nghệ Triluminos PRO độc đáo có thể phát hiện màu sắc từ độ bão hòa, sắc độ và độ sáng để tái tạo sắc thái tự nhiên trong từng chi tiết. Bạn sẽ được tận hưởng những màu sắc chân thực gần với thực tế hơn với chiếc tivi Sony 4K này. </p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/247850/android-sony-4k-55-inch-kd-55x80aj4fix.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Chip xử lý X1 4K HDR và công nghệ 4K X-Reality PRO cho hình ảnh trung thực, sắc nét</strong>\r\n\r\n 
-    <p>Bộ xử lý X1 4K Processor dùng các thuật toán để giảm nhiễu, giảm mờ và tăng độ chi tiết. Với bộ xử lý này, mọi thứ bạn xem đều sẽ đạt gần chuẩn độ phân giải 4K, tràn ngập màu sắc và độ tương phản sống động như thật.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/247850/android-sony-4k-55-inch-kd-55x80aj5fix.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Công nghệ Motionflow XR 100 giúp tạo ra và chèn thêm khung hình vào giữa các khung hình ban đầu. Công nghệ này so sánh các yếu tố trực quan chính trên các khung hình liên tiếp rồi tính toán từng khoảnh khắc hành động trong các cảnh phim. Nhờ vậy, người xem có thể tận hưởng các chi tiết mượt mà và sắc nét ngay cả trong các cảnh chuyển động nhanh.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/247850/android-sony-4k-55-inch-kd-55x80aj-101121-062131.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Tận hưởng âm thanh vòm chất lượng cao với công nghệ Dolby Atmos và S-Force Front Surround và thiết kế loa bất đối xứng X-Balanced Speaker</strong>\r\n\r\n 
-    <p>Công nghệ tạo hiệu ứng âm thanh đa chiều Dolby Atmos và S-Force Front Surround đưa bạn vào không gian âm thanh vòm sống động, mạnh mẽ, cho bạn cảm giác sống động như thật, giúp bạn có thể có trải nghiệm điện ảnh ngay tại nhà thực sự với Android tivi Sony.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/247850/android-sony-4k-55-inch-kd-55x80aj7.jpg" style="height:600px; width:950px" />\r\n\r\n   
-</p>
-'
-, 2, 160, 30, 0, 18400000, 18400000, '2022-03-23 22:08:30', '1', '2022-03-23 16:55:46', '1', 1, 1),
-(8, 7, 'Smart Tivi LG 4K 55 inch 55UP7750PTB', 'led-lg-55up7750ptb', 'led-lg-55up7750ptb_0.jpg', 'led-lg-55up7750ptb_0.jpg#led-lg-55up7750ptb_1.jpg', 'Thông tin giá bán, cấu hình chi tiết, quà tặng khủng', 
-'
-<p>
-    <strong>Thiết kế trang nhã, chắc chắn, hòa hợp trong mọi không gian</strong>\r\n\r\n 
-    <p>Smart Tivi LG 4K 55 inch 55UP7750PTB được thiết kế màu đen thanh lịch, trang nhã, màn hình tivi siêu mỏng cho trải nghiệm xem tuyệt vời nhất. Bên cạnh đó, tivi còn sở hữu giá đỡ chữ V úp ngược chắc chắn giúp tivi luôn đứng vững.</p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/236888/led-lg-55up7750ptb1-1.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Độ phân giải 4K cho hình ảnh hiển thị sắc nét gấp 4 lần Full HD</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/236888/led-lg-55up7750ptb2.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Với công nghệ 4K Upscaling hình ảnh được cải thiện độ tương phản màu, ánh sáng để hiển thị chi tiết rõ ràng hơn, có chiều sâu và độ chân thực hơn, đạt chất lượng gần chuẩn 4K.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/236888/untitled-1.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Tivi được hỗ trợ các định dạng HDR như HDR10 Pro, HDR Dynamic Tone Mapping, HLG và Active HDR giúp cải thiện chiều sâu, độ rõ nét chi tiết, màu sắc tự nhiên của hình ảnh mà không làm thay đổi các đặc tính nguyên bản. Nhờ đó, khung hình trở nên sống động hơn, chân thực đến từng chi tiết.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/236888/led-lg-55up7750ptb4.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Thưởng thức từng thước phim mượt mà qua chế độ Filmmaker Mode</strong>\r\n\r\n 
-    <p>Filmmaker Mode tắt tính năng làm mịn các chuyển động mà vẫn duy trì tỷ lệ, tốc độ, màu sắc khung hình gốc cho người xem cảm nhận trọn vẹn ý đồ nghệ thuật mà nhà làm phim muốn truyền tải, thưởng thức phim ảnh như đang ở rạp chiếu phim thực sự. </p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/236888/led-lg-55up7750ptb5.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Công nghệ AI Sound được tối ưu chất âm thanh theo nội dung cụ thể, từ giọng nói, hiệu ứng đến tần số âm để người dùng cảm nhận rõ ràng nhất thông tin đang trải nghiệm trên Tivi LG.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/236888/led-lg-55up7750ptb6.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Giao diện thân thiện, dễ dùng của hệ điều hành WebOS 6.0</strong>\r\n\r\n 
-    <p>Tivi chạy hệ điều hành WebOS 6.0 các thẻ ứng dụng được sắp xếp hợp lý, rõ ràng, cho người dùng thuận tiện trong từng thao tác. Kho ứng dụng Smart tivi đa dạng với các ứng dụng sẵn có gồm Youtube, Netflix, trình duyệt web, LG Content Store, bạn cũng có thể tải thêm nhiều ứng dụng khác như FPT Play, MyTV, Clip TV, Nhaccuatui, Spotify, Zing TV,...</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/236888/led-lg-55up7750ptb-210322-095739.jpg" style="height:600px; width:950px" />\r\n\r\n   
-</p>
-'
-, 2, 220, 30, 10, 12990000, 12990000, '2022-03-23 22:14:17', '1', '2022-03-23 17:14:06', '1', 1, 1);
-INSERT INTO `db_product` (`id`, `catid`, `name`, `alias`, `avatar`, `img`, `sortDesc`, `detail`, `producer`, `number`, `number_buy`, `sale`, `price`, `price_sale`, `created`, `created_by`, `modified`, `modified_by`, `trash`, `status`) VALUES
-(9, 7, 'Smart Tivi NanoCell LG 4K 43 inch 43NANO75TPA', 'nanocell-lg-43nano75tpa', 'nanocell-lg-43nano75tpa_0.jpg', 'nanocell-lg-43nano75tpa_0.jpg#nanocell-lg-43nano75tpa_1.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Kiểu dáng tối giản, thanh lịch</strong>\r\n\r\n 
-    <p>Smart Tivi NanoCell LG 4K 43 inch 43NANO75TPA được thiết kế với đường nét sắc sảo, đơn giản mà sang trọng, tôn vinh mọi không gian nội thất. </p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/236893/nanocell-lg-43nano75tpa-1.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Hình ảnh có độ nét cao gấp 4 lần Full HD qua độ phân giải 4K</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/236893/nanocell-lg-43nano75tpa-2.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Công nghệ này sử dụng các hạt tinh thể nano kích cỡ siêu nhỏ lọc và tinh chỉnh sắc màu, loại bỏ những tín hiệu gây nhiễu khỏi các bước sóng RGB, tái tạo màu sắc chính xác và tinh tế vượt trội, tăng độ chi tiết, cho hình ảnh đẹp và cuốn hút hơn.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/236893/nanocell-lg-43nano75tpa-3.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Smart tivi tích hợp 4K Upscaler và Image Enhancing giúp nâng cấp các video đầu vào có chất lượng thấp lên gần đạt chuẩn 4K, trong khi 4K Upscaler thực hiện nâng cấp qua 6 bước thì Image Enhancing xử lý bằng các thuật toán chuyên sâu kết hợp trí tuệ nhân tạo để tối ưu các yếu tố, cho các thước phim hiển thị sống động, chân thực trong từng phút giây. </p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/236893/nanocell-lg-43nano75tpa-4.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Thưởng thức bộ phim theo góc nhìn của nhà làm phim qua chế độ Filmmaker Mode</strong>\r\n\r\n 
-    <p>Ngoài Filmmaker Mode, còn có 8 chế độ hình ảnh khác như rạp chiếu phim, trò chơi, thể thao, tiêu chuẩn, để bạn tùy chỉnh linh hoạt theo từng thể loại, đắm chìm trong nội dung đang thưởng thức tối ưu. </p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/236893/nanocell-lg-43nano75tpa-5.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Công nghệ này sử dụng siêu dữ liệu metadata, tự động tối ưu đèn nền, các điểm ảnh, màu sắc theo khung hình đang trình chiếu, cải thiện đồng thời khai thác tối ưu độ tương phản để mang đến các cảnh quay tươi tắn, đẹp mắt.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/236893/nanocell-lg-43nano75tpa-6.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Tận hưởng âm thanh trung thực theo từng nội dung cùng công nghệ Al Sound</strong>\r\n\r\n 
-    <p>Al Sound tự xác nhận giọng nói, các tần số, hiệu ứng âm thanh, công suất loa tivi LG 4K 20 W tái tạo âm thanh phù hợp với từng thể loại giải trí mà bạn lựa chọn, cho người nghe cảm nhận rõ hơn giai điệu êm ái của bản nhạc tình, sự hồi hộp, gay cấn của cảnh phim hành động, chương trình thể thao. </p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/236893/nanocell-lg-43nano75tpa-8.jpg" style="height:600px; width:950px" />\r\n\r\n   
-</p>
 
-'
-, 2, 310, 41, 0, 16900000, 16900000, '2022-03-23 22:18:49', '1', '2022-03-23 17:15:05', '1', 1, 1),
-(10, 10, 'Máy giặt Samsung Inverter 9 Kg WW90TP54DSH/SV', 'samsung-ww90tp54dsh-sv', 'samsung-ww90tp54dsh-sv_0.jpg', 'samsung-ww90tp54dsh-sv_0.jpg#samsung-ww90tp54dsh-sv_1.jpg#samsung-ww90tp54dsh-sv_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Ghi nhớ và đề xuất chế độ giặt với bảng điều khiển thông minh AI Control</strong>\r\n\r\n 
-    <p>Với bảng điều khiển này, máy giặt sẽ ghi nhớ những chế độ giặt mà bạn đã sử dụng sau đó phân tích thói quen và sở thích từ đó tự động đề xuất chế độ giặt và cài đặt yêu thích (sau lần giặt thứ 10 máy sẽ đề xuất). Điều này giúp cho việc giặt giũ của bạn trở nên dễ dàng hơn, không cần thiết lập quá nhiều thông số khi chuẩn bị giặt.</p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/236123/aicontrol.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Nhờ có công nghệ EcoBubble làm cho bột giặt nhanh chóng thấm sâu vào quần áo kết hợp với vòi xịt siêu tốc và lồng giặt xoay nhanh giúp cho quy trình giặt sẽ hoàn thành chỉ trong 39 phút.</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/236123/quicldrive.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Công nghệ VRT Plus giúp lồng giặt được giữ cân bằng tuyệt đối ngay cả ở tốc độ quay cao và khối lượng giặt lớn trong suốt chu trình giặt.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/236123/vrtplus1.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Nếu là người hay quên, gom đồ đi giặt hay bị sót, thì bạn sẽ phải hài lòng với chiếc máy giặt cửa trước này vì nó được trang bị cửa phụ Add Wash, một điểm nổi bật của máy giặt Samsung. Với cửa phụ này bạn có thể thêm đồ sót, nước giặt, nước xả vào bất cứ khi nào.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/236123/addwash1.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Tiết kiệm năng lượng và hoạt động bền bỉ với động cơ Digital Inverter</strong>\r\n\r\n 
-    <p>Động cơ Digital Inverter cho khả năng hoạt động bền bỉ, mạnh mẽ, chống rung, giảm thiểu tiếng ồn hiệu quả nhờ sử dụng nam châm vĩnh cửu giúp giảm thiểu ma sát khi vận hành. Hơn nữa, động cơ này còn giúp tiết kiệm điện đáng kể.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/236123/digitalinverter.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Máy giặt Samsung Inverter WW90TP54DSH/SV có thiết kế hiện đại và tinh tế. Máy được trang bị bảng điều khiển tiếng Việt giúp cho các bà nội trợ dễ dàng sử dụng và tìm hiểu hơn.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/236123/thietke.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>23 chương trình giặt được tích hợp sẵn, đáp ứng tốt nhu cầu giặt giũ của của gia đình</strong>\r\n\r\n 
-    <p>Máy giặt Samsung Inverter 9 Kg WW90TP54DSH/SV có 8 chương trình giặt nổi bật thường dùng: giặt nhanh 15 phút, giặt hơi nước, đồ len, giặt siêu êm, đồ trẻ em, sạch siêu tốc, cotton, vệ sinh lồng giặt và 15 chương trình tiện lợi khác (xem chi tiết tại bảng thông số kỹ thuật). Nhờ việc giúp tiết kiệm được thời gian giặt giũ quần áo một cách hiệu quả nên chương trình giặt nhanh 15 phút được người tiêu dùng ưa chuộng sử dụng.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/236123/samsung-ww90tp54dsh-sv-251021-082030.jpg" style="height:600px; width:950px" />\r\n\r\n   
-</p>
-'
-, 2, 605, 27, 10, 14200000, 14200000*0.9, '2022-03-23 22:21:22', '1', '2022-03-23 22:21:22', '1', 1, 1),
-(11, 8, 'Android Tivi TCL 43 inch L43S5200', 'led-tcl-l43s5200', 'led-tcl-l43s5200_0.jpg', 'led-tcl-l43s5200_0.jpg#led-tcl-l43s5200_1.jpg#led-tcl-l43s5200_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Thiết kế sang trọng, chân đế chắc chắn</strong>\r\n\r\n 
-    <p>Android Tivi TCL 43 inch L43S5200 có thiết kế hiện đại, gọn gàng, khung viền được làm mỏng cho màn hình phủ trọn tầm nhìn của bạn, mang đến trải nghiệm tuyệt vời, không bị giới hạn.</p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238554/tk.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Hình ảnh hiển thị sắc nét sống động với độ phân giải Full HD </p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238554/fullhd.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Hình ảnh trở nên chân thực và có độ tương phản cao hơn nhờ công nghệ HDR10</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238554/hdr10.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Công nghệ này có khả năng phân nội dung video thành hàng trăm khu vực, để tự điều chỉnh độ sáng và độ tối chi tiết phù hợp cho từng khu vực hình ảnh. Bên cạnh đó còn có khả năng phân tích nội dung video giúp hình ảnh hiển thị được tối ưu và chân thực hơn.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238554/micro.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Tăng cường độ chi tiết, màu sắc của hình ảnh nhờ chip xử lý hình ảnh Mali 470x2</strong>\r\n\r\n 
-    <p>Mali 470x2 trên Smart tivi TCL sẽ tiếp nhận thông tin nội dung đầu vào, tiến hành phân tích và nâng cấp hình ảnh mang đến cho bạn những thước phim đẹp nhất.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238554/mali.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Thưởng thức âm thanh cực kỳ sống động, vang dội với loa có tổng công suất 16W kết hợp cùng công nghệ Dolby MS12. Công nghệ âm thanh này sẽ cho bạn trải nghiệm các thước phim, những chương trình bóng đá với lời thoại cực kỳ chân thật và sắc nét với khả năng tinh chỉnh âm thanh tối ưu cho tiếng động chân thật, lời thoại rõ ràng, bản nhạc đa âm sắc sống động, cho bạn hoàn toàn chìm đắng vào thế giới giải trí.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238554/amthanh.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Hệ điều hành Android 8.0 hiện đại với kho ứng dụng đa dạng</strong>\r\n\r\n 
-    <p>Giao diện trực quan, dễ dùng, thư viện ứng dụng phong phú, có sẵn các ứng dụng gồm YouTube, Netflix, Zing TV, FPT Play, Clip TV. Ngoài ra, bạn còn có thể cài thêm các ứng dụng khác cho tivi TCL này như: Galaxy Play, VTVCab ON,...</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238554/hdh.jpg" style="height:600px; width:950px" />\r\n\r\n   
-</p>
-'
-, 1, 220, 4, 0, 7090000, 7090000, '2022-03-23 22:27:35', '1', '2022-03-23 16:42:14', '1', 1, 1),
-(12, 8, 'Android Tivi TCL 32 inch L32S66A', 'tcl-l32s66a', 'tcl-l32s66a_0.jpg', 'tcl-l32s66a_1.jpg#tcl-l32s66a_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Thiết kế thanh mảnh, tinh tế</strong>\r\n\r\n 
-    <p>Android Tivi TCL 32 inch L32S66A sở hữu thiết kế thanh mảnh với viền mỏng 0,3 cm đi kèm với chân đế hình chữ V úp ngược không chỉ mang lại vẻ đẹp về thẩm mỹ mà còn giúp tivi đứng vững trên nhiều dạng bề mặt khác nhau.</p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/220573/tivi.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Tivi TCL HD kết hợp với công nghệ HDR10 có khả năng tăng độ tương phản cho hình ảnh bằng cách làm sáng hoặc tối cho một khu vực riêng biệt trên màn hình, bên cạnh đó công nghệ này cũng cho độ sáng cao hơn những màn hình khác giúp hình ảnh hiển thị được chân thật hơn.</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/220573/do-tuong-phan.gif" style="height:600px; width:950px" />\r\n\r\n
-    <p>Tivi TCL sở hữu công nghệ âm thanh Dolby MS12 cùng tổng công suất loa đạt 10 W cho âm thanh mạnh mẽ và sống động, đem lại cho bạn những trải nghiệm chân thật như hòa vào từng giai điệu của bài hát hay bộ phim mà bạn yêu thích.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/220573/tcl-l32s66a-261021-033028.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Android Tivi có hệ điều hành Android 8.0 sở hữu giao diện trực quan dễ sử dụng, giúp bạn có thể nhanh chóng làm quen khi sử dụng tivi mà không gặp bất kì khó khăn nào.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/220573/tcl-l32s66a-211420-021425.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Tìm kiếm bằng giọng nói, hỗ trợ tiếng Việt</strong>\r\n\r\n 
-    <p>Tivi TCL sở hữu remote thông minh có khả năng tìm kiếm giọng nói bằng tiếng Việt giúp bạn thỏa sức tìm kiếm nội dung mà mình yêu thích mà không cần phải di chuyển chọn từng kí tự trên màn hình nữa.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/220573/6-remote.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Chiếu màn hình điện thoại lên tivi qua tính năng Screen Mirroring</strong>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/220573/12-chieu-man-hinh-dien-thoai-2.jpg" style="height:600px; width:950px" />\r\n\r\n   
-</p>
-
-'
-, 2, 260, 16, 0, 6490000, 6490000, '2022-03-23 22:30:05', '1', '2022-03-23 16:40:11', '1', 1, 1),
-(13, 10, 'Máy giặt Toshiba Inverter 9.5 Kg TW-BK105S3V(SK)', 'toshiba-tw-bk105s3v-sk', 'toshiba-tw-bk105s3v-sk_0.jpg', 'toshiba-tw-bk105s3v-sk_0.jpg#toshiba-tw-bk105s3v-sk_1.jpg#toshiba-tw-bk105s3v-sk_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Tiết kiệm điện và nước nhờ công nghệ Inverter</strong>\r\n\r\n 
-    <p>Máy giặt Toshiba 9.5 Kg TW-BK105S3V(SK) sử dụng công nghệ Inverter nên có khả năng điều chỉnh vòng quay của động cơ, giúp lồng giặt hoạt động hiệu quả với việc dùng điện và nước sao cho tiết kiệm nhất mà vẫn đạt được khả năng giặt tẩy sạch quần áo tối ưu. </p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/223670/p.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Chiếc máy giặt Toshiba Inverter TW-BK105S3V(SK) sở hữu kiểu thiết kế lồng ngang - mang phong cách châu Âu, kèm với bảng điều khiển song ngữ Anh - Việt dễ sử dụng với thao tác nút xoay lẫn nút nhấn tiện lợi.</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/223670/e.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Máy giặt Toshiba TW-BK105S3V(SK) là lựa chọn phù hợp cho những hộ gia đình có nhiều thành viên (5 - 7 người) hoặc có nhu cầu giặt giũ quần áo với số lượng nhiều đến tận 9.5 kg trong mỗi lần giặt. </p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/223670/w.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Máy giặt Toshiba Inverter 9.5 Kg TW-BK105S3V(SK) được thiết kế với bảng điều khiển song ngữ Anh - Việt có nút xoay, nút nhấn và màn hình hiển thị dễ dàng thao tác. 8 chương trình giặt nổi bật như: Giặt nhanh 15 phút, không phai màu, đồ len, đồ hỗn hợp, đồ giặt em bé, đồ Cotton, giặt tiết kiệm Cotton và 8 chương trình khác (Xem thêm chi tiết tại bảng thông số kĩ thuật).</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/223670/vi-vn-toshiba-tw-bk105s3v-sk-199.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Giặt sạch vết bẩn cứng đầu, diệt khuẩn hiệu quả nhờ công nghệ nước nóng</strong>\r\n\r\n 
-    <p>Công nghệ nước nóng sẽ góp phần giặt sạch các vết bẩn cứng đầu dễ dàng hơn, đồng thời hỗ trợ diệt khuẩn hiệu quả nhằm mang lại sự an toàn và an tâm cho người sử dụng, nhất là trẻ nhỏ và người lớn tuổi có làn da nhạy cảm. </p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/223670/u.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Chiếc máy giặt Inverter TW-BK105S3V(SK) còn đạt tốc độ vắt 1200 vòng/phút, với chức năng vắt cực khô, quần áo của bạn sẽ khô nhanh sau khi phơi, nhất là tiện lợi cho những ngày trời mưa, ẩm ướt. </p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/223670/toshiba-tw-bk105s3v-sk-090921-095045.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Tránh sự nghịch phá của trẻ, an tâm cho người lớn bởi chức năng khóa trẻ em</strong>\r\n\r\n 
-    <p>Với chức năng khóa trẻ em, máy giặt sẽ tránh được sự nghịch phá của trẻ nhỏ khi máy đang trong quá trình hoạt động, mang lại sự an tâm cho người lớn khi không có mặt ở đó.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/223670/q.jpg" style="height:600px; width:950px" />\r\n\r\n   
-</p>
-
-'
-, 1, 731, 110, 0, 11790000, 11790000, '2022-03-23 22:33:51', '1', '2022-03-23 17:54:59', '1', 1, 1),
-(14, 6, 'Tủ lạnh Toshiba Inverter 513 lít GR-RS682WE-PMV', 'toshiba-gr-rs682we-pmv-06-mg', 'toshiba-gr-rs682we-pmv-06-mg_0.jpg', 'toshiba-gr-rs682we-pmv-06-mg_0.jpg#toshiba-gr-rs682we-pmv-06-mg_1.jpg#toshiba-gr-rs682we-pmv-06-mg_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Thiết kế sang trọng, bảng điều khiển cảm ứng hiện đại bên ngoài </strong>\r\n\r\n 
-    <p>Toshiba Inverter 513 lít GR-RS682WE-PMV(06)-MG thuộc mẫu tủ lạnh side by side, gam màu đen tinh tế, cùng với bảng điều khiển cảm ứng hiện đại được thiết kế bên ngoài, ắt hẳn sẽ trở thành nội thất sang trọng cho không gian nhà bạn. </p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/221082/toshiba-gr-rs682we-pmv-06-mgthie%CC%82%CC%81t-ke%CC%82%CC%81.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Nhờ có công nghệ Origin Inverter, tủ lạnh Toshiba này mang lại hiệu quả tiết kiệm điện tối ưu khi có khả năng sử dụng đồng thời máy nén Inverter lẫn quạt Inverter, nhằm duy trì được hơi lạnh lý tưởng, phù hợp với khối lượng thực phẩm bên trong tủ lạnh. </p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/221082/Slider/-vi-vn-inverter.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Chiếc tủ lạnh Toshiba Inverter GR-RS682WE-PMV(06)-MG còn sở hữu công nghệ làm lạnh vòng cung, giúp luồng khí được lan tỏa mọi ngóc ngách bên trong tủ, làm cho hơi lạnh bao quanh toàn diện thực phẩm, nhằm giữ được độ tươi ngon và kéo dài thời gian bảo quản thực phẩm lâu hơn. </p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/221082/toshiba-gr-rs682we-pmv-06-mg-241121-092623.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Khả năng lưu trữ thực phẩm nhiều với dung tích lên đến 513 lít, trong đó ngăn đá chiếm 175 lít và ngăn lạnh chiếm 338 lít, tủ lạnh Toshiba GR-RS682WE-PMV(06)-MG là một trong những lựa chọn phù hợp cho những hộ gia đình có trên 5 thành viên, hoặc ít hơn nhưng lại có nhu cầu bảo quản thực phẩm nhiều mỗi ngày. </p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/221082/toshiba-gr-rs682we-pmv-06-mgdung-ti%CC%81ch.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Tiện lợi khi lấy nước bên ngoài nhanh chóng</strong>\r\n\r\n 
-    <p>Không cần phải mở cửa gây mất thời gian, bạn có thể lấy nước lạnh ngay phía bên ngoài một cách nhanh chóng. </p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/221082/toshiba-gr-rs682we-pmv-06-mglay-nuoc-ngoai.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Chiếc tủ lạnh này sẽ phát ra tiếng chuông nhờ chức năng chuông báo mở cửa, giúp cho bạn kiểm soát được thời gian mở cửa tủ lạnh quá lâu, tránh thất thoát hơi lạnh làm tiêu hao điện năng. </p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/221082/toshiba-gr-rs682we-pmv-06-mgchuo%CC%82ng.jpg" style="height:600px; width:950px" />\r\n\r\n
-</p>
-
-'
-, 2, 120, 6, 0, 26490000, 26490000, '2022-03-23 22:36:43', '1', '2022-03-23 17:54:37', '1', 1, 1),
-(15, 11, 'Tủ lạnh Hitachi Inverter 509 lít R-FW650PGV8 GBK', 'hitachi-inverter-509-lit-r-fw650pgv8', 'hitachi-inverter-509-lit-r-fw650pgv8_0.jpg', 'hitachi-inverter-509-lit-r-fw650pgv8_0.jpg#hitachi-inverter-509-lit-r-fw650pgv8_1.jpg#hitachi-inverter-509-lit-r-fw650pgv8_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Tủ lạnh Hitachi Inverter 509 lít R-FW650PGV8 với thiết kế Multi Door độc đáo, sang trọng, đi kèm công nghệ tiết kiệm điện Inverter kết hợp cùng cảm biến nhiệt Eco cho hiệu quả tiết kiệm điện tối ưu. Cùng nhiều tiện ích đi kèm như khay đá xoay linh hoạt, bảng điều khiển bên ngoài, chuông cảnh báo mở cửa,...</strong>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/273309/hitachi-inverter-509-lit-r-fw650pgv8-270322-103336.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Ngăn trữ chuyển đổi: cho phép tùy chỉnh nhiệt độ bên trong ngăn bằng cách chuyển đổi giữa chế độ trữ rau quả (khoảng 5°C) và chế độ trữ sữa/thịt (khoảng 1°C)</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/273309/hitachi-inverter-509-lit-r-fw650pgv8-270322-100545.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Các ngăn trong tủ được thiết kế rộng rãi, thuận tiện cho việc lưu trữ các thực phẩm có kích thước lớn.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/273309/hitachi-inverter-509-lit-r-fw650pgv8-270322-103338.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Công nghệ Inverter: máy nén vận hành êm ái, mang lại hiệu suất làm lạnh ổn định, hạn chế đóng tuyết, tiết kiệm hiệu quả điện năng tiêu thụ.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/273309/hitachi-inverter-509-lit-r-fw650pgv8-270322-104042.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Công nghệ làm lạnh - bảo quản thực phẩm</strong>\r\n\r\n 
-    <p>Hệ thống quạt kép: cung cấp khí lạnh cho ngăn đá và ngăn mát một cách riêng biệt, tránh lẫn mùi thực phẩm giữa các ngăn với nhau. Kết hợp giữa quạt làm lạnh và động cơ Inverter đem đến hiệu quả làm lạnh tối ưu đồng thời hạn chế sự lãng phí năng lượng.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/273309/hitachi-inverter-509-lit-r-fw650pgv8-270322-104754.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Công nghệ Nano Titanium giúp tiêu diệt vi khuẩn hiệu quả, lọc sạch nấm mốc, mùi hôi nhờ sử dụng chất xúc tác TiO2, mang lại không gian trong lành, bảo quản thực phẩm luôn tươi ngon.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/273309/hitachi-inverter-509-lit-r-fw650pgv8-270322-100543.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Tiện ích</strong>\r\n\r\n 
-    <p>Chuông cảnh báo mở cửa: tủ lạnh sẽ phát ra âm thanh cảnh báo khi thời gian mở cửa quá lâu, từ đó hạn chế được lượng điện năng hao phí khi quên không đóng cửa.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/273309/hitachi-inverter-509-lit-r-fw650pgv8-270322-110712.jpg" style="height:600px; width:950px" />\r\n\r\n   
-</p>
-
-'
-, 2, 61, 4, 0, 24900000, 24900000, '2022-03-23 22:40:49', '1', '2022-03-23 17:54:42', '1', 1, 1),
-(16, 11, 'Tủ lạnh Hitachi Inverter 339 lít R-FVX450PGV9 GBK', 'hitachi-inverter-406-lit-r-fvx450pgv9', 'hitachi-inverter-406-lit-r-fvx450pgv9_0.jpg', 'hitachi-inverter-406-lit-r-fvx450pgv9_0.jpg#hitachi-inverter-406-lit-r-fvx450pgv9_1.jpg#hitachi-inverter-406-lit-r-fvx450pgv9_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Tổng quan thiết kế</strong>\r\n\r\n 
-    <p>Tủ lạnh Hitachi Inverter 339 lít R-FVX450PGV9 là dòng tủ lạnh bình dân với thiết kế ngăn đá trên quen thuộc, chất liệu cửa tủ bàng kính có độ bóng cao tạo sự thẩm mỹ cho gian bếp. Tủ lạnh có nhiều tính năng như cảm biến nhiệt Eco, Inverter, hệ thống làm lạnh quạt kép và bộ lọc khử mùi 3 lớp Triple Power.</p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/273313/hitachi-inverter-406-lit-r-fvx450pgv9-230322-112243.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Có thiết kế các ngăn kệ bên trong và trên cánh tủ để phân loại và sắp xếp thực phẩm theo nhu cầu.</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/273313/hitachi-inverter-406-lit-r-fvx450pgv9-230322-112503.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Dung tích: 101 lít. Có ngăn kệ bên trong và trên cánh tủ để tăng không gian lưu trữ thực phẩm tươi sống</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/273313/hitachi-inverter-406-lit-r-fvx450pgv9-230322-112237.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Bộ lọc khử mùi 3 lớp Triple Power được trang bị bên trong tủ để loại bỏ các mùi khó chịu sinh ra từ thực phẩm, vi khuẩn độc hại, mang đến không gian tủ trong lành và an toàn.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/273313/hitachi-inverter-406-lit-r-fvx450pgv9-230322-113542.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Công nghệ tiết kiệm điện</strong>\r\n\r\n 
-    <p>Tủ lạnh Hitachi có trang bị hai cảm biến Eco ở ngăn đá và ngăn lạnh để nhận biết sự thay đổi nhiệt độ ở từng ngăn và duy trì nhiệt độ lý tưởng tại mọi thời điểm.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/273313/hitachi-inverter-406-lit-r-fvx450pgv9-230322-112239.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Hệ thống làm lạnh quạt kép sẽ làm lạnh hiệu quả và độc lập ở hai ngăn, giúp tiết kiệm điện cũng như làm lạnh nhanh hơn, góp phần bảo quản thực phẩm tươi ngon lâu dài.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/273313/hitachi-inverter-406-lit-r-fvx450pgv9-230322-113723.jpg" style="height:600px; width:950px" />\r\n\r\n
-</p>
-'
-, 2, 90, 8, 0, 14100000, 14100000, '2022-03-23 23:24:20', '1', '2022-03-23 17:54:33', '1', 1, 1),
-(17, 6, 'Tủ lạnh Toshiba Inverter 311 lít GR-RT395WE-PMV', 'toshiba-gr-rt395we-pmv-06-mg', 'toshiba-gr-rt395we-pmv-06-mg_0.jpg', 'toshiba-gr-rt395we-pmv-06-mg_0.jpg#toshiba-gr-rt395we-pmv-06-mg_1.jpg#toshiba-gr-rt395we-pmv-06-mg_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Lấy nước bên ngoài tiện lợi tránh thất thoát hơi lạnh </strong>\r\n\r\n 
-    <p>Bạn có thể lấy nước phía bên ngoài cửa tủ lạnh Toshiba GR-RT395WE-PMV(06)-MG, thao tác tiện lợi mà không cần phải mở cửa, giúp bạn thưởng thức được ngay ly nước lọc mát lạnh trong những ngày trời oi bức. Bình chứa nước làm từ chất liệu nhựa an toàn HIPS theo tiêu chuẩn của châu Âu.</p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/239277/toshiba-gr-rt395we-pmv-06-mg8.png" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Công nghệ Air Fall Cooling sẽ tỏa ra 2 luồng khí lạnh như thác đổ, luồng khí trước sẽ kết hợp với luồng khí phía sau để làm lạnh thực phẩm nhanh chóng tại bất kì vị trí nào bên trong ngăn tủ, nhờ đó giảm thiểu được tình trạng hỏng thực phẩm do không đủ hơi lạnh.</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/239277/vi-vn-toshiba-gr-rt395we-pmv-06-mg6-min.png" style="height:600px; width:950px" />\r\n\r\n
-    <p>Tủ lạnh Toshiba 311 lít này còn được trang bị công nghệ Origin Inverter có khả năng giúp máy nén Inverter và động cơ quạt Inverter hoạt động cùng một lúc, nhằm tỏa đều hơi lạnh để duy trì nhiệt độ ổn định bên trong tủ nhằm tăng hiệu quả làm lạnh, tiết kiệm điện.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/239277/vi-vn-toshiba-gr-rt395we-pmv-06-mg3-min.png" style="height:600px; width:950px" />\r\n\r\n
-    <p>Công nghệ PureBio giúp diệt khuẩn và khử mùi hiệu quả bên trong tủ lạnh Toshiba nhờ bộ lọc Ceramic nhúng tinh thể bạc kết hợp với than hoạt tính, từ đó góp phần kéo dài thời gian bảo quản thực phẩm cũng như tạo cảm giác tươi mát mỗi khi người dùng mở cửa tủ lạnh.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/239277/vi-vn-toshiba-gr-rt395we-pmv-06-mg5-min.png" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Chống bám vân tay với bề mặt cửa tủ hoàn thiện 10 lớp</strong>\r\n\r\n 
-    <p>Chất liệu cửa tủ được cấu tạo bởi 10 lớp đặc biệt, tạo nên vân kim loại tinh tế trên bề mặt, kết hợp với lớp phủ sơn tĩnh điện chống bám vân tay, hạn chế trầy xước trong thời gian sử dụng.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/239277/toshiba-gr-rt395we-pmv-06-mg-5.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Ngăn lạnh nhanh Cooling Zone có thể giúp thực phẩm tươi sống như thịt cá giữ được chất dinh dưỡng trọn vẹn và chống ôi thiu từ 1 - 2 ngày, đáp ứng nhu cầu chế biến thực phẩm ngay lập tức mà không cần phải rã đông.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/239277/vi-vn-toshiba-gr-rt395we-pmv-06-mg4-min.png" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Cân bằng độ ẩm các loại rau củ quả trong ngăn Origin Fresh, kéo dài thời gian bảo quản</strong>\r\n\r\n 
-    <p>Các loại rau củ quả khi chứa trong ngăn Origin Fresh sẽ có thời gian bảo quản lâu hơn, vì tránh được tình trạng úng hoặc héo do cân bằng được độ ẩm bên trong ngăn với nút tùy chỉnh độ ẩm mà bạn có thể điều chỉnh được.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/239277/vi-vn-toshiba-gr-rt395we-pmv-06-mg7-min.png" style="height:600px; width:950px" />\r\n\r\n   
-</p>
-'
-, 2, 180, 13, 10, 13990000, 13990000*0.9, '2022-03-23 23:28:14', '1', '2022-03-23 17:54:25', '1', 1, 1);
-INSERT INTO `db_product` (`id`, `catid`, `name`, `alias`, `avatar`, `img`, `sortDesc`, `detail`, `producer`, `number`, `number_buy`, `sale`, `price`, `price_sale`, `created`, `created_by`, `modified`, `modified_by`, `trash`, `status`) VALUES
-(18, 9, 'Tủ lạnh Sharp Inverter 150 lít SJ-X176E-SL', 'sharp-sj-x176e-sl', 'sharp-sj-x176e-sl_0.jpg', 'sharp-sj-x176e-sl_0.jpg#sharp-sj-x176e-sl_1.jpg#sharp-sj-x176e-sl_.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Thiết kế nhỏ gọn, tinh tế</strong>\r\n\r\n 
-    <p>Tủ lạnh Sharp Inverter 150 lít SJ-X176E-SL với thiết kế màu bạc tinh tế, kích thước nhỏ gọn sẽ dễ dàng kết hợp với bất kì kiểu không gian nội thất nào của gia đình, đồng thời bạn cũng sẽ không phải lo lắng tủ chiếm quá nhiều diện tích.</p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/145456/sharp-sj-x176e-sl-220921-104816.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Được trang bị công nghệ J-Tech Inverter, chiếc tủ lạnh 2 cửa này không chỉ mang đến khả năng vận hành êm ái, làm lạnh ổn định với 36 cấp độ làm lạnh mà nó còn giúp bạn không còn phải quá lo lắng về chi phí điện năng hàng tháng.</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/145456/sharp-sj-x176e-sl-220921-104957.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Với bộ khử mùi phân tử bạc Nano Ag+, tủ lạnh sẽ sử dụng các phân tử bạc có kích thước siêu nhỏ để tiêu diệt vi khuẩn và tác nhân gây mùi hôi khó chịu phát sinh trong tủ lạnh. Giờ đây, bạn không còn bị ám ảnh về mùi hôi thực phẩm mỗi lần mở tủ lạnh nữa.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/145456/sharp-sj-x176e-sl-220921-105135.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Tính năng làm đá nhanh của tủ lạnh Sharp Inverter mang đến cho bạn những viên đá mát lạnh</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/145456/sharp-sj-x176e-sl-220921-105303.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Thoải mái bảo quản nhiều thực phẩm với kệ kính chịu lực hiện đại</strong>\r\n\r\n 
-    <p>Sử dụng chất liệu kính chịu lực cho kệ chứa, tủ lạnh Sharp giúp bạn thoải mái chứa nhiều thực phẩm bảo quản lên kệ với khối lượng lên đến 100 kg mà không lo kệ bị hư hỏng, nứt, vỡ.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/145456/sharp-sj-x176e-sl-220921-105606.jpg" style="height:600px; width:950px" />\r\n\r\n
-</p>
-'
-, 2, 140, 22, 10, 59890000, 59890000*0.9, '2022-03-23 23:30:36', '1', '2022-03-23 17:54:19', '1', 1, 1),
-(19, 5, 'Tủ lạnh Panasonic Inverter 322 lít NR-BC360QKVN', 'panasonic-nr-bc360qkvn', 'panasonic-nr-bc360qkvn_0.jpg', 'panasonic-nr-bc360qkvn_0.jpg#panasonic-nr-bc360qkvn_1.jpg#panasonic-nr-bc360qkvn_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Tủ lạnh Panasonic ngăn cấp đông mềm thế hệ mới Prime Fresh+ bảo quản thực phẩm không cần rã đông</strong>\r\n\r\n 
-    <p>Tủ lạnh Panasonic Inverter 322 lít NR-BC360QKVN trang bị ngăn đông mềm thế hệ mới Prime Fresh+ với mức nhiệt độ ở -3 độ C giúp thực phẩm tươi sống được làm đông nhanh mà không bị đông đá và tươi mới lên đến 7 ngày. Do đó, thực phẩm giữ được các chất dinh dưỡng, độ thơm ngon và bạn không phải tốn thêm nhiều thời gian để rã đông trước khi chế biến.</p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/209334/Slider/-primefresh+-2-ngan.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Tủ lạnh này trang bị công nghệ Inverter giúp tiết kiệm điện hiệu quả trong quá trình vận hành nhưng không làm mất đi khả năng hoạt động êm ái, duy trì độ lạnh ổn định.</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/209334/panasonic-nr-bc360qkvn-25.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Cảm biến nhiệt độ bên ngoài: Khi nhiệt độ bên ngoài thay đổi, tủ lạnh sẽ tự động điều chỉnh nhiệt độ bên trong sao cho phù hợp.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/209334/panasonic-nr-bc360qkvn-24.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Ngăn rau quả giữ ẩm giúp duy trì nhiệt độ ổn định và độ ẩm lý tưởng đến toàn bộ không gian, không để độ ẩm thất thoát ra ngoài giúp thực phẩm luôn tươi và ngon.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/179593/Slider/vi-vn-panasonic-nr-bv288gkv2-9.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Kiểu dáng hiện đại, thanh lịch với ngăn đá dưới tiện lợi</strong>\r\n\r\n 
-    <p>Tủ lạnh Panasonic NR-BC360QKVN này mang gam màu đen bóng sang trọng, thanh lịch. Thiết kế ngăn đá bên dưới không chỉ mang lại vẻ đẹp mới mẻ, hiện đại cho không gian nội thất mà nó còn mang lại sự tiện lợi, giúp người sử dụng có thể dễ dàng lấy thực phẩm ở ngăn mát mà không phải khom cúi nhiều lần.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/209334/panasonic-nr-bc360qkvn-16.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Tủ lạnh Panasonic 322 lít này đảm bảo phục vụ tốt nhu cầu sử dụng cho gia đình từ 3 - 4 người cho phép bạn dự trữ khối lượng lớn thực phẩm tươi ngon để gia đình sử dụng trong nhiều ngày mà không cần phải đi chợ nhiều lần.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/209334/panasonic-nr-bc360qkvn-26.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Mang hơi lạnh tỏa đều mọi vị trí trong tủ với công nghệ làm lạnh Panorama</strong>\r\n\r\n 
-    <p>Công nghệ Panorama là một công nghệ làm lạnh đa chiều độc quyền đến từ Panasonic, có thể mang hơi lạnh đến mọi ngóc ngách của tủ lạnh giúp thực phẩm sẽ luôn nhận được đầy đủ hơi lạnh thích hợp và luôn tươi ngon.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/209334/panasonic-nr-bc360qkvn-21.jpg" style="height:600px; width:950px" />\r\n\r\n   
-</p>
-'
-, 1, 300, 26, 10, 16790000, 16790000*0.9, '2022-03-23 23:33:43', '1', '2022-03-23 23:33:43', '1', 1, 1),
-(20, 1, 'Android Tivi Sony 4K 50 inch KD-50X75', 'led-sony-kd-50x75', 'led-sony-kd-50x75_0.jpg', 'led-sony-kd-50x75_0.jpg#led-sony-kd-50x75_1.jpg#led-sony-kd-50x75_2.jpg', ' Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Thiết kế tinh tế, thanh lịch</strong>\r\n\r\n 
-    <p>Android Tivi Sony 4K 50 inch KD-50X75 sở hữu thiết kế màn hình phẳng, tràn viền cho trải nghiệm xem tivi đắm chìm.</p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238721/111w1w1.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Hình ảnh hiển thị sắc nét gấp 4 lần Full HD với độ phân giải 4K</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/224404/sony-kd-43x8500h-s-230220-020231.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Cùng 4K X-Reality PRO nâng cấp chất lượng từng điểm ảnh cho độ rõ nét vượt trội. Các điểm ảnh trên nhiều khung hình được phân tích, đồng thời hình ảnh được tinh chỉnh và làm sắc nét theo thời gian thực. Android tivi Sony luôn mang đến hình ảnh sắc nét, rõ ràng và sống động như thật.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238721/23.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Tivi được trang bị công nghệ đèn nền Direct LED Frame Dimming với khả năng làm giảm độ sáng các đèn LED được bố trí dọc cạnh màn hình, nhằm tăng độ tương phản cho hình ảnh hiển thị.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238721/fgdfg-2.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Chuyển động mượt mà rõ nét, không mờ nhòe với công nghệ Motionflow XR 200 Hz và Auto Mode</strong>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238721/3-1.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Với Dolby Audio, S-Force Front Surround bạn có thể thưởng thức âm thanh vòm 360° sống động chân thực. Bên cạnh đó, tivi tích công nghệ DTS Digital Surround có thể mã hóa 6 kênh 20-bit audio riêng biệt giúp âm thanh vòm và lan tỏa hơn.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238791/led-sony-kd-75x80j-7.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Hệ điều hành Android 10 dễ sử dụng, kho ứng dụng giải trí đa dạng</strong>\r\n\r\n 
-    <p>Kho ứng dụng sẵn có trên tivi đa dạng như: YouTube, Google Play, Netflix, Trình duyệt web. Ngoài ra tùy theo nhu cầu và sở thích mà bạn có thể tải thêm nhiều ứng dụng khác như: Spotify, VTVCab ON, FPT Play,...</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1942/238885/4-1.jpg" style="height:600px; width:950px" />\r\n\r\n   
-</p>
-'
-, 2, 240, 17, 10, 16500000, 16500000*0.9, '2022-03-23 00:03:02', '1', '2022-03-23 00:03:02', '2', 0, 1),
-(21, 10, 'Máy giặt Samsung Addwash Inverter 8.5kg WW85T554DAW/SV', 'samsung-addwash-ww85t554daw-sv', 'samsung-addwash-ww85t554daw-sv_0.jpg', 'samsung-addwash-ww85t554daw-sv_0.jpg#samsung-addwash-ww85t554daw-sv_1.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Ghi nhớ và đề xuất chế độ giặt ưa thích với bảng điều khiển thông minh AI Control</strong>\r\n\r\n 
-    <p>Bảng điều khiển thông minh AI Control này sẽ tự động ghi nhớ các chế độ giặt giũ mà bạn thường sử dụng, từ đó sẽ tiến hành đề xuất chế độ giặt phù hợp với loại đồ theo thói quen sử dụng. Màn hình hiển thị quy trình giặt dễ hiểu, hướng dẫn thông minh bất kỳ ai trong gia đình đều có thể sử dụng dễ dàng.</p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/236161/Slider/samsung-addwash-ww85t554daw-sv-060421-0849530.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Công nghệ này sẽ đánh tan bột/nước giặt với sự kết hợp giữa khí và nước tạo thành những bong bóng siêu mịn dễ dàng thẩm thấu sâu vào từng sợi vải nhanh gấp 40 lần, đánh bật các vết bẩn cứng đầu nhanh hơn 24%.</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/236161/Slider/samsung-addwash-ww85t554daw-sv-060421-0816424.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Hygiene Steam sử dụng hơi nước thoát ra từ nước được đun ở nhiệt độ cao để làm sạch quần áo của bạn, hơi nước dễ dàng loại bỏ bụi bẩn và diệt 99.9% vi khuẩn, các tác nhân gây dị ứng  trong từng kẽ vải bảo vệ sức khỏe cả nhà.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/236161/Slider/samsung-addwash-ww85t554daw-sv-060421-0816413.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Máy giặt Samsung với công nghệ VRT Plus™, thiết kế khung máy giặt có độ ổn định cao kết hợp với bộ cảm biến độ rung ồn sẽ giúp cho việc giặt giũ trở nên êm ái, giảm tiếng ồn tạo ra khi giặt đến 30%, kể cả khi máy đang vắt với tốc độ cao hoặc được nhét đầy quần áo.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/236161/samsung-addwash-ww85t554daw-sv-141021-112406.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Dễ dàng thêm quần áo trong quá trình giặt với cửa phụ Add Door </strong>\r\n\r\n 
-    <p>Với cửa phụ Add Door được tích hợp ngay trên cửa chính bạn có thể thêm đồ vào máy giặt bất cứ khi nào mà không cần phải tạm dừng và mở nắp máy như trước đây. Ngoài ra bạn cũng có thể thêm nước giặt, xả vào khi máy đang hoạt động thông qua của phụ này.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/236161/samsung-addwash-ww85t554daw-sv-121021-102516.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Nhờ ứng dụng SmartThings bạn có thể dàng kích hoạt máy giặt ở mọi nơi mọi lúc thông qua điện thoại vô cùng tiện lợi. Trước khi đi làm bạn có thể để quần áo bẩn và chất giặt tẩy vào máy giặt trước, để khi sắp tan làm bạn có thể bật và chọn chế độ giặt từ xa khi về đến nhà bạn chỉ cần đem đi phơi thôi, tiết kiệm thời gian đáng kể.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/236161/Slider/samsung-addwash-ww85t554daw-sv-060421-0816435.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Tiết kiệm điện năng tối đa, vận hành êm ái bền bỉ với động cơ Digital Inverter</strong>\r\n\r\n 
-    <p>Động cơ Digital Inverter sử dụng nam châm vĩnh cửu giúp làm giảm sự ma sát khi máy giặt vận hành, kết hợp cùng khả năng điều chỉnh vòng quay đưa lồng giặt vào trạng thái hoạt động phù hợp từ đó giúp bạn tiết kiệm điện hiệu quả hơn máy không có Inverter. </p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/236161/digital-inverter-1-1.jpg" style="height:600px; width:950px" />\r\n\r\n   
-</p>
-'
-, 2, 720, 161, 0, 12400000, 12400000, '2022-03-23 00:04:42', '1', '2022-03-23 17:54:03', '1', 1, 1),
-(22, 5, 'Tủ lạnh Panasonic Inverter 550 lít NR-DZ601VGKV', 'panasonic-inverter-550-lit-nr-dz601vgkv', 'panasonic-inverter-550-lit-nr-dz601vgkv_0.jpg', 'panasonic-inverter-550-lit-nr-dz601vgkv_0.jpg#panasonic-inverter-550-lit-nr-dz601vgkv_1.jpg#panasonic-inverter-550-lit-nr-dz601vgkv_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Bảo quản thực phẩm tươi sống không cần rã đông với ngăn Prime Fresh+ Blue Ag+ </strong>\r\n\r\n 
-    <p>Tủ lạnh Panasonic 550 lít NR-DZ601VGKV có ngăn đông mềm với nhiệt độ -3°C, phù hợp để bảo quản thực phẩm tươi sống mà không làm đông đá. Được thiết kế dạng ngăn kéo riêng biệt và công nghệ Blue Ag+ nên có thể tránh lẫn mùi với thực phẩm khác. Nhờ vậy, giữ trọn hương vị và độ tươi ngon, bạn có thể lấy ra nấu ăn ngay mà không cần tốn thời gian rã đông.</p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/240703/panasonic-inverter-550-lit-nr-dz601vgkv-18.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Tủ lạnh của bạn sẽ được giữ tươi mát, sạch vi khuẩn vì công nghệ Blue Ag+ sử dụng ánh sáng xanh đi qua tấm lọc tích hợp tinh thể bạc và được đặt ngay tại lỗ thoát khí hơi lạnh, giúp luồng khí đi qua bộ lọc nhanh chóng lan tỏa khắp tủ để kháng khuẩn, khử mùi và đảm bảo an toàn thực phẩm cho người sử dụng.</p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/240703/panasonic-inverter-550-lit-nr-dz601vgkv1-1.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Công nghệ diệt khuẩn Blue Ag+ có thể diệt được khuẩn E.coli và khuẩn tụ cầu vàng Staphylococcus aureus, nguyên nhân gây bệnh đường ruột và kích ứng da, đã được cấp chứng nhận bởi Sudsachsen Wasser (Đức).</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Files/2020/07/26/1273851/cac-tinh-nang-diet-khuan-bao-ve-suc-khoe-nao-dang--2.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Tủ lạnh Panasonic có ngăn rau củ được thiết kế dạng kéo riêng biệt, ngăn hơi ẩm thoát ra ngoài và không khí lạnh không thổi trực tiếp lên rau củ. Ngoài ra còn có bộ điều khiển cho phép bạn tự động điều chỉnh nhiệt độ phù hợp với lượng rau củ bảo quản.</p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/240703/panasonic-inverter-550-lit-nr-dz601vgkv2-1.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Thiết kế 4 cánh thanh lịch, mặt kính sang trọng</strong>\r\n\r\n 
-    <p>Thiết kế 4 cánh cửa, tủ mặt kính cao cấp, phù hợp với phong cách hiện đại. Tay cầm cong duyên dáng kết hợp với mặt kính phẳng không viền mang lại sự tinh tế cho căn bếp.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/240703/panasonic-inverter-550-lit-nr-dz601vgkv3-1.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Công nghệ này có khả năng làm lạnh đa chiều và đưa các luồng khí lạnh thổi nhanh và đồng đều khắp các ngóc ngách trong tủ. Vì vậy, khi để đầy thực phẩm trong các ngăn vẫn đảm bảo thực phẩm được bảo quản tốt và giữ chúng tươi ngon lâu dài.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/240703/panasonic-inverter-550-lit-nr-dz601vgkv4-1.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Ngăn lẫn mùi thực phẩm với ngăn trữ đông tinh thể bạc Ag Hygiene Zone</strong>\r\n\r\n 
-    <p>Đây là ngăn được thiết kế dạng kéo riêng biệt ở trong ngăn đá, có các tinh thể bạc để loại bỏ các mùi hôi khó chịu từ các loại thực phẩm tươi sống có mùi tanh, mùi hôi, tránh lẫn mùi với các thực phẩm khác trong tủ, đảm bảo vệ sinh hơn.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1943/240703/panasonic-inverter-550-lit-nr-dz601vgkv5-1.jpg" style="height:600px; width:950px" />\r\n\r\n   
-</p>
-'
-, 2, 250, 3, 0, 40900000, 40900000, '2022-03-23 00:10:34', '1', '2022-03-23 17:53:43', '1', 1, 1);
-INSERT INTO `db_product` (`id`, `catid`, `name`, `alias`, `avatar`, `img`, `sortDesc`, `detail`, `producer`, `number`, `number_buy`, `sale`, `price`, `price_sale`, `created`, `created_by`, `modified`, `modified_by`, `trash`, `status`) VALUES
-(23, 10, 'Máy giặt LG Inverter 10 kg FV1410S4P', 'lg-inverter-10-kg-fv1410s4p', 'lg-inverter-10-kg-fv1410s4p_0.jpg', 'lg-inverter-10-kg-fv1410s4p_0.jpg#lg-inverter-10-kg-fv1410s4p_1.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', 
-'
-<p>
-    <strong>Thiết kế hiện đại, nhỏ gọn với gam màu tinh tế</strong>\r\n\r\n 
-    <p>Máy giặt LG Inverter 10 kg FV1410S4P có kiểu dáng nhỏ gọn cùng tông màu trắng tinh tế phù hợp với mọi không gian nội thất của gia đình Việt. </p>\r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/255492/lg-inverter-10-kg-fv1410s4p-210322-034423.jpg" style="height:600px; width:950px" />\r\n\r\n 
-    <p>Chiếc máy giặt LG cửa trước này được tích hợp 14 chương trình giặt khác nhau (xem chi tiết tại bảng thông số kỹ thuật), bao gồm: chu trình tải về, giặt chăn ga, giặt hơi nước đồ trẻ em, giặt ngừa dị ứng, giặt nhanh 30 phút, giặt nhẹ, giặt tay + đồ len, giặt tiết kiệm cotton, và 6 chương trình giặt khác. </p>\r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/255492/lg-inverter-10-kg-fv1410s4p-210322-034427.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Nếu bạn có nhu cầu lựa chọn máy giặt cho gia đình từ 5 - 7 thành viên hoặc khối lượng đồ giặt hàng ngày nhiều thì máy giặt LG này với khối lượng giặt 10 kg sẽ là một lựa chọn đáng cân nhắc. </p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/255492/lg-inverter-10-kg-fv1410s4p-210322-034420.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Chiếc máy giặt LG Inverter này còn được trang bị ứng dụng trí tuệ nhân tạo AI không những phát hiện chính xác khối lượng đồ giặt mà còn cảm nhận được độ mềm của sợi vải. Từ đó tối ưu chương trình giặt cho phù hợp. </p> \r\n\r\n 
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/255492/may-giat-lg-inverter-10-kg-fv1410s4p-sp08.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Giặt nhanh hơn và sạch hơn với công nghệ TurboWash</strong>\r\n\r\n 
-    <p>Điểm nổi bật ở chiếc máy giặt này là công nghệ TurboWash cho hiệu quả giặt sạch trong thời gian ngắn. Công nghệ Turbo Wash sử dụng vòi xả nước mạnh từ các phía trong lồng giặt với tốc độ cao giúp các vết bẩn trên quần áo được loại bỏ nhanh hơn. </p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/255492/lg-inverter-10-kg-fv1410s4p-210322-034437.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <p>Nhờ công nghệ giặt hơi nước, máy giặt LG có khả năng diệt khuẩn tối ưu đến 99.99%, loại bỏ các tác nhân dị ứng trên quần áo bằng hơi nước nóng, giúp bảo vệ làn da và sức khỏe của người dùng. Bên cạnh đó, công nghệ này còn giúp giảm nhăn quần áo và hạn chế phai màu sợi vải.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/255492/lg-inverter-10-kg-fv1410s4p-210322-034439.jpg" style="height:600px; width:950px" />\r\n\r\n
-    <strong>Giảm thiểu hư tổn, chăm sóc sợi vải thông minh nhờ công nghệ 6 Motion DD</strong>\r\n\r\n 
-    <p>Bằng cách mô phỏng theo các bước giặt bằng tay như đập, nén, đảo, nhào trộn, quay và chà xát, công nghệ giặt 6 chuyển động giúp quần áo vừa sạch sâu mà không bị xoắn rối, giảm thiểu nguy cơ sờn rách sợi vải, đảm bảo quần áo của gia đình được bền đẹp lâu hơn.</p> \r\n\r\n
-    <img alt="" src="https://cdn.tgdd.vn/Products/Images/1944/255492/may-giat-lg-inverter-10-kg-fv1410s4p-sp03.jpg" style="height:600px; width:950px" />\r\n\r\n   
-</p>
-'
-, 2, 560, 0, 10, 13900000, 13900000*0.9, '2022-03-23 17:32:25', '1', '2022-03-23 17:32:25', '1', 1, 0);
+INSERT INTO `db_product` (`id`, `catid`, `name`, `alias`, `avatar`, `img`, `sortDesc`, `detail`, `producer`, `number`, `number_buy`, `sale`, `pre_sale`, `price`, `price_sale`, `created`, `created_by`, `modified`, `modified_by`, `trash`, `status`) VALUES
+(1, 1, 'Smart Tivi Sony 50 inch KDL-50W660G', 'sony-kdl-50w660g', 'sony-kdl-50w660g_0.jpg', 'sony-kdl-50w660g_0.jpg#sony-kdl-50w660g_1.jpg#sony-kdl-50w660g_2.jpg', 'Thiết kế hiện đại, đẹp mắt phù hợp với phong họp, phòng khách', '\r\n<p>\r\n    <strong>Thiết kế đẹp mắt, hiện đại</strong>\r\n\r\n \r\n    <p>Smart Tivi Sony 50 inch 50W660G mang thiết kế tinh tế, dáng vẻ hiện đại, tạo thêm nét sang trọng cho không gian phòng nhà bạn. Chiếc tivi 50 inch phù hợp với nhiều không gian như: phòng khách, phòng họp... Ngoài ra, tivi có chân đế kim loại chữ V giúp đứng vững trên mọi bề mặt phẳng.</p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/200520/sony-kdl-50w660g-10.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <strong>Hình ảnh rõ nét với độ phân giải Full HD</strong>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/200520/sony-kdl-50w660g-9.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Công nghệ X-Reality™ PRO hiện đại</strong>\r\n\r\n \r\n    <p>Công nghệ này cho phép chiếc tivi Sony nhà bạn thể hiện hình ảnh sắc nét hơn, giảm nhiễu và nâng cấp chất lượng hình ảnh vượt trội.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/200520/sony-kdl-50w660g-7.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Hình ảnh được nâng cao độ sáng, vùng sáng một cách hiệu quả với công nghệ Dynamic Contrast Enhancer</strong>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/200520/sony-kdl-50w660g-8.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Hình ảnh chân thật, tăng cường độ tương phản với công nghệ HDR10</strong>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/200520/sony-kdl-50w660g-5.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n  \r\n    <strong>Hình ảnh chân thật, tăng cường độ tương phản với công nghệ HDR10</strong>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/200520/sony-kdl-50w660g-5.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <strong>Những cảnh thể thao hay chuyển động nhanh giờ đây không còn tình trạng mờ hình với công nghệ Motionflow™ XR 200 Hz</strong>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/200520/sony-kdl-50w660g-6.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n</p>\r\n', 1, 320, 60, 10, 8000000, 14400000, 12960000, '2022-03-23 16:22:43', '4', '2022-03-23 17:11:20', '1', 1, 1),
+(2, 2, 'Smart Tivi Samsung 4K Crystal UHD 60 inch UA60AU8100', 'led-4k-samsung-ua60au8100', 'led-4k-samsung-ua60au8100_0.jpg', 'led-4k-samsung-ua60au8100_0.jpg#led-4k-samsung-ua60au8100_1.jpg#led-4k-samsung-ua60au8100_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Thanh mảnh, tinh tế, dùng đẹp cho không gian hiện đại</strong>\r\n\r\n \r\n    <p>Smart Tivi Samsung 4K 60 inch UA60AU8100 thiết kế Airslim màn hình không viền 3 cạnh sang trọng, cộng thêm nét tinh tế cho không gian sử dụng. Kích thước màn hình tivi Samsung 60 inch phù hợp sử dụng cho phòng khách gia đình, phòng ngủ, phòng họp nhỏ…</p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/235793/Slider/led-4k-samsung-ua60au8100-190321-0233101.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Từng chi tiết được hiển thị thật rõ ràng, sắc nét, mang đến trải nghiệm xem đầy thích thú và thỏa mãn khi xem của người dùng.</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/235793/Slider/led-4k-samsung-ua60au8100-190321-0233112.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Smart tivi với bộ xử lý Crystal 4K cho khả năng tái tạo chi tiết một cách hoàn hảo, mô phỏng màu sắc chính xác giúp các hình ảnh đầu vào được nâng cấp trở nên sắc nét hơn, trong trẻo tự nhiên hơn, chất lượng gần chuẩn 4K cuốn hút người dùng hơn.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/235793/Slider/led-4k-samsung-ua60au8100-190321-0233133.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Dynamic Crystal Color với hơn 1 tỷ màu tái hiện chân thực sắc màu cuộc sống trên khung hình của Smart Tivi Samsung.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/235793/Slider/led-4k-samsung-ua60au8100-190321-0233144.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Tăng cường độ tương phản, cho hình ảnh có chiều sâu hơn với HDR10+ và Contrast Enhancer</strong>\r\n\r\n \r\n    <p>Công nghệ HDR10+ của tivi Samsung 4K giúp tăng cường độ sâu và độ chi tiết của chúng giúp khung hình thêm sắc nét, chân thực theo từng nội dung mô tả.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/235793/Slider/led-4k-samsung-ua60au8100-190321-0233165.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Các khung hình tối rõ ràng, lôi cuốn hơn với vùng tối tối hơn, vùng sáng sáng hơn, tương phản tốt, chi tiết rõ ràng nhất.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/235793/Slider/led-4k-samsung-ua60au8100-190321-0233176.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Âm thanh sống động, mạnh mẽ và chi tiết với công nghệ Q-Symphony và Adaptive Sound</strong>\r\n\r\n \r\n    <p>Q-Symphony đồng bộ hoàn hảo loa TV Samsung với các loa thanh và loa trần, kiến tạo âm thanh đa chiều đỉnh cao. Adaptive Sound nhận biết, phân tích nội dung và điều chỉnh âm thanh phù hợp cho từng nội dung hiển thị. Nhờ đó hình ảnh và âm thanh được gắn kết hoàn hảo để tạo nên trải nghiệm xem phim, chơi game hay nghe nhạc… cực đã.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/235793/Slider/led-4k-samsung-ua60au8100-190321-0233197.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n', 1, 20, 16, 20, 15600000, 24990000, 19992000, '2022-03-23 23:28:34', '1', '2022-03-23 17:08:04', '1', 1, 1),
+(3, 2, 'Smart Tivi Samsung 4K 55 inch UA55TU6900', 'smart-samsung-4k-55-inch-55tu6900', 'smart-samsung-4k-55-inch-55tu6900_0.jpg', 'smart-samsung-4k-55-inch-55tu6900_0.jpg#smart-samsung-4k-55-inch-55tu6900_1.jpg#smart-samsung-4k-55-inch-55tu6900_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Thiết kế không viền 3 cạnh tinh tế</strong>\r\n\r\n \r\n    <p>Smart Tivi Samsung 4K 55 inch 55TU6900 được thiết kế màn hình không viền 3 cạnh tinh tế, màu đen thanh lịch. Kiểu dáng thanh mảnh, hứa hẹn sẽ làm nổi bật không gian nội thất nhà bạn.</p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/242539/thietke.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Hiển thị hình ảnh sắc nét gấp 4 lần Full HD nhờ độ phân giải 4K</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/242539/4k.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Với khả năng tự động tối ưu tỷ lệ tương phản, điều chỉnh màu sắc và dải màu động của Bộ xử lý Crystal 4K, bạn có thể xem được những hình ảnh có chất lượng tuyệt đẹp và sắc nét.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/2/1942/242539/samsungcrystal4k.mp4\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Công nghệ Dynamic Crystal Color có dải màu rộng hơn 1 tỷ màu sắc, cùng khả năng tập trung tái hiện các dải màu như: Đỏ, xanh lá, xanh dương, lục, lam, vàng tím,... của công nghệ PurColor. Giúp những hình ảnh hiển thị trên tivi Samsung 4K này có màu sắc rực rỡ, tự nhiên, sống động.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/2/1942/242539/samsungdynamiccrystalcolor.mp4\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Hình ảnh được tăng cường độ sâu, độ chi tiết nhờ công nghệ Contrast Enhancer</strong>\r\n\r\n \r\n    <p>Khả năng tăng cường độ tương phản tối đa, phủ nhiều lớp sáng tối trên toàn bộ khung hình của công nghệ Contrast Enhancer, giúp từng khung hình hiển thị trên Smart tivi này đều trở nên lôi cuốn và hấp dẫn. </p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/242539/hdr.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Cảnh chuyển động mượt mà, giảm thiểu độ mờ nhờ công nghệ Motion Xcelerator </p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/242539/smart-samsung-4k-55-inch-55tu6900.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Tự động tinh chỉnh âm thanh phù hợp với nội dung giải trí nhờ công nghệ Adaptive Sound</strong>\r\n\r\n \r\n    <p>Công nghệ Adaptive Sound cho phép bạn thưởng thưởng thức âm thanh được tinh chỉnh phù hợp với từng nội dung xem. Cùng với tổng công suất loa 20W, bạn có thể trải nghiệm mạng lưới âm thanh sống động và bùng nổ trong chính ngôi nhà của mình.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/242539/amthanh.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n', 2, 400, 44, 10, 13000000, 17990000, 16191000, '2022-03-23 21:45:31', '1', '2022-03-23 17:12:15', '1', 1, 1),
+(4, 2, 'Smart Tivi Samsung 4K Crystal UHD 55 inch UA55AU8100', 'led-4k-samsung-ua55au8100', 'led-4k-samsung-ua55au8100_0.jpg', 'led-4k-samsung-ua55au8100_0.jpg#led-4k-samsung-ua55au8100_1.jpg#led-4k-samsung-ua55au8100_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Trải nghiệm xem thêm nhập vai với màn hình 55 inch không viền 3 cạnh</strong>\r\n\r\n \r\n    <p>Smart Tivi Samsung 4K 55 inch UA55AU8100 thiết kế theo phong cách AirSlim tối giản với các cạnh viền siêu mỏng tạo cảm giác màn hình không hề bị giới hạn. Tivi có 2 chân đế hình chữ V úp ngược giúp trụ vững trên tất cả mặt phẳng, bạn cũng có thể treo tivi lên tường để tiết kiệm không gian.</p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/235792/Slider/led-4k-samsung-ua55au8100-310321-0441231.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Độ phân giải 4K với hơn 8 triệu điểm ảnh sắc nét gấp 4 lần độ phân giải Full HD, cho hình ảnh rõ ràng, chi tiết.</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/235792/Slider/led-4k-samsung-ua55au8100-310321-0441252.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Công nghệ Dynamic Crystal Color với dải màu hơn một tỷ màu sắc sẽ tái tạo hình ảnh có chất màu gần với tự nhiên nhất, tạo hiệu ứng sống động trong từng khung hình. Mở ra thế giới muôn màu muôn vẻ ngay trước mắt bạn với chiếc Smart tivi này.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/235792/Slider/led-4k-samsung-ua55au8100-310321-0441273.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Contrast Enhancer sẽ phủ lên toàn bộ khung hình những lớp sáng tối khác nhau, giúp từng khu vực, vật thể trong khung hình trở nên sống động y như thật.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/235792/Slider/led-4k-samsung-ua55au8100-310321-0441315.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Hiển thị các sắc độ màu sắc chính xác hơn qua bộ xử lý Crystal 4K</strong>\r\n\r\n \r\n    <p>Bộ xử lý mạnh mẽ trên Smart Tivi Samsung cho khả năng tự động điều chỉnh màu sắc, tỷ lệ độ tương phản, dải màu động, nâng cấp hiển thị hình ảnh vượt trội, cho bạn trải nghiệm xem chưa từng thấy.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/235792/Slider/led-4k-samsung-ua55au8100-310321-0441336.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>UHD Dimming sẽ chia khung hình thành từng phần nhỏ, sau đó sẽ dùng thuật toán để căn chỉnh màu sắc, độ cân bằng màu, chi tiết của hình ảnh để đem cho bạn những thước phim có màu sắc tuyệt hảo.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/235792/Slider/led-4k-samsung-ua55au8100-310321-0441357.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Cảnh chuyển động mượt mà, rõ nét nhờ công nghệ Motion Xcelerator</strong>\r\n\r\n \r\n    <p>Công nghệ Motion Xcelerator giúp giảm mờ, tránh tình trạng rung lắc, người dùng có thể dễ dàng thưởng thức những cảnh phim hành động vô cùng mượt mà và rõ nét trên chiếc tivi Samsung 4K này.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/235792/Slider/led-4k-samsung-ua55au8100-280721-0500300.png\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n', 2, 368, 11, 10, 18000000, 24990000, 22491000, '2022-03-23 21:49:23', '1', '2022-03-23 17:04:43', '1', 1, 1),
+(5, 8, 'Android Tivi TCL 4K 50 inch 50P615', 'tcl-50p615', 'tcl-50p615_0.jpg', 'tcl-50p615_0.jpg#tcl-50p615_1.jpg#tcl-50p615_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Kiểu dáng gọn gàng, sang trọng</strong>\r\n\r\n \r\n    <p>Android Tivi TCL 4K 50 inch 50P615 có thiết kế kiểu dáng hiện đại, sang trọng và màu đen lịch lãm với chân đế hình chữ V úp ngược chắc chắn, có thể đứng vững ở mọi mặt phẳng.</p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/225954/tcl-50p615-152520-062532.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Hình ảnh hiển thị sắc nét gấp 4 lần Full HD nhờ độ phân giải Ultra HD 4K</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/225954/tcl-50p615-152520-062527.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Hình ảnh trở nên chân thực và có độ tương phản cao hơn nhờ công nghệ HDR10</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/225954/tcl-50p615-152520-062521.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Hình ảnh được tối ưu hóa và nâng cấp lên gần chuẩn 4K nhờ công nghệ 4K AI Upscaling</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/225954/tcl-50p615-053420-113421.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Các cảnh chuyển động mượt mà hơn nhờ công nghệ Auto Motion Plus</strong>\r\n\r\n \r\n    <p>Công nghệ này giúp các cảnh chuyển động chậm được cải thiện hơn, giảm mờ và nhòe. Giúp cảnh chuyển động trên màn hình tivi 50 inch này trở nên lôi cuốn, mượt mà và rõ nét hơn.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/225954/tcl-50p615-152520-062512.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Thưởng thức âm thanh cực kỳ chân thực và mạnh mẽ với công nghệ âm thanh Dolby MS12D/Y (Dolby Audio)</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/225954/tcl-50p615-152520-062507.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Kho ứng dụng vô cùng phong phú với hệ điều hành Android 9.0 thế hệ mới</strong>\r\n\r\n \r\n    <p>Hệ điều hành Android 9.0 là phiên bản mới nhất hiện nay dành cho các dòng Android TV. Giao diện trực quan dễ sử dụng cùng kho ứng dụng đa dạng và phong phú như: YouTube, FPT Play, Netflix, Clip TV,... cho người dùng đa dạng các trải nghiệm tuyệt vời hơn với tivi TCL này.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/225954/tcl-50p615-152520-062504.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n', 1, 420, 10, 10, 8000000, 12990000, 11691000, '2022-03-23 21:54:51', '1', '2022-03-23 16:59:20', '1', 1, 1),
+(6, 1, 'Android Tivi Sony 4K 43 inch KD-43X75', 'led-sony-kd-43x75', 'led-sony-kd-43x75_0.jpg', 'led-sony-kd-43x75_0.jpg#led-sony-kd-43x75_1.jpg#led-sony-kd-43x75_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Thiết kế gọn gàng, sang trọng</strong>\r\n\r\n \r\n    <p>Tivi LED Sony KD-43X75 là tivi màn hình phẳng, cạnh viền được làm mỏng tinh tế cho bạn hoàn toàn đắm chìm vào nội dung đang được trình chiếu trên tivi. </p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238695/untitled-1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Độ phân giải 4K với hơn 8.3 triệu điểm ảnh, khung hình hiển thị sắc nét, chi tiết</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238695/1-1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>4K X-Reality PRO nâng cấp nội dung nguồn từ chuẩn 2K, Full HD lên gần với độ phân giải 4K nhất nhờ dùng hệ thống cơ sở dữ liệu 4K riêng biệt.  </p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238695/4k-x.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Đi cùng công nghệ này còn có HLG, HDR10 nâng cao độ sáng, độ tương phản, màu sắc cho từng chi tiết ảnh để tạo nên khung hình ảnh tuyệt đẹp cho bạn trải nghiệm xem chân thực và chuẩn điện ảnh tại gia.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238695/dolby.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Chất âm đa chiều đầy cuốn hút cùng Dolby Audio, S-Force Front Surround và DTS Digital Surrounde</strong>\r\n\r\n \r\n    <p>Công nghệ Dolby Audio và S-Force Front Surround đảm nhiệm phần tái tạo âm thanh vòm đa chiều với khả năng lọc âm thanh, cải thiện chi tiết và tinh chỉnh âm thanh thông minh.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238695/3-1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Giao diện của Android 10 khá là thông minh với vị trí sắp xếp ứng dụng khoa học, dễ nhìn, dễ tùy chỉnh. Thư viện ứng dụng có đến hơn 5000 ứng dụng hỗ trợ tiếng Việt và tiếng Anh với các ứng dụng cài sẵn Youtube, Netflix, FPT Play, Clip TV, Galaxy Play, các ứng dụng có thể tải thêm VieON, NCT, Zing,... cho bạn thoải mái tùy chỉnh và giải trí theo cách mình muốn. </p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238695/4-1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Dễ dàng điều khiển, tìm kiếm bằng giọng nói có hỗ trợ Tiếng Việt qua Remote thông minh và Google Assistant</strong>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238695/5-1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n', 2, 190, 20, 0, 12000000, 13400000, 13400000, '2022-03-23 22:04:43', '1', '2022-03-23 16:57:33', '1', 1, 1),
+(7, 1, 'Android Tivi Sony 4K 55 inch KD-55X80J', 'led-sony-kd-55x80j', 'led-sony-kd-55x80j_0.jpg', 'led-sony-kd-55x80j_0.jpg#led-sony-kd-55x80j_1.jpg#led-sony-kd-55x80j_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Thiết kế hiện đại, sang trọng</strong>\r\n\r\n \r\n    <p>Android Tivi Sony 4K 55 inch KD-55X80AJ sở hữu thiết kế tinh tế, sang trọng, phù hợp với không gian sống hiện đại. Màn hình tràn viền 4 cạnh giúp khung hình của tivi được mở rộng, mang đến trải nghiệm xem thoải mái và tập trung vào từng khung hình.</p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/247850/android-sony-4k-55-inch-kd-55x80aj1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Độ phân giải 4K, chi tiết gấp 4 lần so với tivi Full HD</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/247850/android-sony-4k-55-inch-kd-55x80aj2.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Công nghệ HDR 10 giúp màu trắng sẽ trắng hơn, màu đen sẽ đen hơn, hình ảnh hiển thị trên tivi Sony có chiều sâu vượt trội so với những sản phẩm khác.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/247850/android-sony-4k-55-inch-kd-55x80aj3.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Công nghệ Triluminos PRO độc đáo có thể phát hiện màu sắc từ độ bão hòa, sắc độ và độ sáng để tái tạo sắc thái tự nhiên trong từng chi tiết. Bạn sẽ được tận hưởng những màu sắc chân thực gần với thực tế hơn với chiếc tivi Sony 4K này. </p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/247850/android-sony-4k-55-inch-kd-55x80aj4fix.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Chip xử lý X1 4K HDR và công nghệ 4K X-Reality PRO cho hình ảnh trung thực, sắc nét</strong>\r\n\r\n \r\n    <p>Bộ xử lý X1 4K Processor dùng các thuật toán để giảm nhiễu, giảm mờ và tăng độ chi tiết. Với bộ xử lý này, mọi thứ bạn xem đều sẽ đạt gần chuẩn độ phân giải 4K, tràn ngập màu sắc và độ tương phản sống động như thật.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/247850/android-sony-4k-55-inch-kd-55x80aj5fix.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Công nghệ Motionflow XR 100 giúp tạo ra và chèn thêm khung hình vào giữa các khung hình ban đầu. Công nghệ này so sánh các yếu tố trực quan chính trên các khung hình liên tiếp rồi tính toán từng khoảnh khắc hành động trong các cảnh phim. Nhờ vậy, người xem có thể tận hưởng các chi tiết mượt mà và sắc nét ngay cả trong các cảnh chuyển động nhanh.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/247850/android-sony-4k-55-inch-kd-55x80aj-101121-062131.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Tận hưởng âm thanh vòm chất lượng cao với công nghệ Dolby Atmos và S-Force Front Surround và thiết kế loa bất đối xứng X-Balanced Speaker</strong>\r\n\r\n \r\n    <p>Công nghệ tạo hiệu ứng âm thanh đa chiều Dolby Atmos và S-Force Front Surround đưa bạn vào không gian âm thanh vòm sống động, mạnh mẽ, cho bạn cảm giác sống động như thật, giúp bạn có thể có trải nghiệm điện ảnh ngay tại nhà thực sự với Android tivi Sony.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/247850/android-sony-4k-55-inch-kd-55x80aj7.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n', 2, 160, 30, 0, 16000000, 18400000, 18400000, '2022-03-23 22:08:30', '1', '2022-03-23 16:55:46', '1', 1, 1),
+(8, 7, 'Smart Tivi LG 4K 55 inch 55UP7750PTB', 'led-lg-55up7750ptb', 'led-lg-55up7750ptb_0.jpg', 'led-lg-55up7750ptb_0.jpg#led-lg-55up7750ptb_1.jpg', 'Thông tin giá bán, cấu hình chi tiết, quà tặng khủng', '\r\n<p>\r\n    <strong>Thiết kế trang nhã, chắc chắn, hòa hợp trong mọi không gian</strong>\r\n\r\n \r\n    <p>Smart Tivi LG 4K 55 inch 55UP7750PTB được thiết kế màu đen thanh lịch, trang nhã, màn hình tivi siêu mỏng cho trải nghiệm xem tuyệt vời nhất. Bên cạnh đó, tivi còn sở hữu giá đỡ chữ V úp ngược chắc chắn giúp tivi luôn đứng vững.</p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/236888/led-lg-55up7750ptb1-1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Độ phân giải 4K cho hình ảnh hiển thị sắc nét gấp 4 lần Full HD</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/236888/led-lg-55up7750ptb2.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Với công nghệ 4K Upscaling hình ảnh được cải thiện độ tương phản màu, ánh sáng để hiển thị chi tiết rõ ràng hơn, có chiều sâu và độ chân thực hơn, đạt chất lượng gần chuẩn 4K.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/236888/untitled-1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Tivi được hỗ trợ các định dạng HDR như HDR10 Pro, HDR Dynamic Tone Mapping, HLG và Active HDR giúp cải thiện chiều sâu, độ rõ nét chi tiết, màu sắc tự nhiên của hình ảnh mà không làm thay đổi các đặc tính nguyên bản. Nhờ đó, khung hình trở nên sống động hơn, chân thực đến từng chi tiết.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/236888/led-lg-55up7750ptb4.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Thưởng thức từng thước phim mượt mà qua chế độ Filmmaker Mode</strong>\r\n\r\n \r\n    <p>Filmmaker Mode tắt tính năng làm mịn các chuyển động mà vẫn duy trì tỷ lệ, tốc độ, màu sắc khung hình gốc cho người xem cảm nhận trọn vẹn ý đồ nghệ thuật mà nhà làm phim muốn truyền tải, thưởng thức phim ảnh như đang ở rạp chiếu phim thực sự. </p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/236888/led-lg-55up7750ptb5.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Công nghệ AI Sound được tối ưu chất âm thanh theo nội dung cụ thể, từ giọng nói, hiệu ứng đến tần số âm để người dùng cảm nhận rõ ràng nhất thông tin đang trải nghiệm trên Tivi LG.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/236888/led-lg-55up7750ptb6.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Giao diện thân thiện, dễ dùng của hệ điều hành WebOS 6.0</strong>\r\n\r\n \r\n    <p>Tivi chạy hệ điều hành WebOS 6.0 các thẻ ứng dụng được sắp xếp hợp lý, rõ ràng, cho người dùng thuận tiện trong từng thao tác. Kho ứng dụng Smart tivi đa dạng với các ứng dụng sẵn có gồm Youtube, Netflix, trình duyệt web, LG Content Store, bạn cũng có thể tải thêm nhiều ứng dụng khác như FPT Play, MyTV, Clip TV, Nhaccuatui, Spotify, Zing TV,...</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/236888/led-lg-55up7750ptb-210322-095739.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n', 2, 220, 30, 10, 11000000, 12990000, 12990000, '2022-03-23 22:14:17', '1', '2022-03-23 17:14:06', '1', 1, 1),
+(9, 7, 'Smart Tivi NanoCell LG 4K 43 inch 43NANO75TPA', 'nanocell-lg-43nano75tpa', 'nanocell-lg-43nano75tpa_0.jpg', 'nanocell-lg-43nano75tpa_0.jpg#nanocell-lg-43nano75tpa_1.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Kiểu dáng tối giản, thanh lịch</strong>\r\n\r\n \r\n    <p>Smart Tivi NanoCell LG 4K 43 inch 43NANO75TPA được thiết kế với đường nét sắc sảo, đơn giản mà sang trọng, tôn vinh mọi không gian nội thất. </p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/236893/nanocell-lg-43nano75tpa-1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Hình ảnh có độ nét cao gấp 4 lần Full HD qua độ phân giải 4K</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/236893/nanocell-lg-43nano75tpa-2.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Công nghệ này sử dụng các hạt tinh thể nano kích cỡ siêu nhỏ lọc và tinh chỉnh sắc màu, loại bỏ những tín hiệu gây nhiễu khỏi các bước sóng RGB, tái tạo màu sắc chính xác và tinh tế vượt trội, tăng độ chi tiết, cho hình ảnh đẹp và cuốn hút hơn.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/236893/nanocell-lg-43nano75tpa-3.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Smart tivi tích hợp 4K Upscaler và Image Enhancing giúp nâng cấp các video đầu vào có chất lượng thấp lên gần đạt chuẩn 4K, trong khi 4K Upscaler thực hiện nâng cấp qua 6 bước thì Image Enhancing xử lý bằng các thuật toán chuyên sâu kết hợp trí tuệ nhân tạo để tối ưu các yếu tố, cho các thước phim hiển thị sống động, chân thực trong từng phút giây. </p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/236893/nanocell-lg-43nano75tpa-4.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Thưởng thức bộ phim theo góc nhìn của nhà làm phim qua chế độ Filmmaker Mode</strong>\r\n\r\n \r\n    <p>Ngoài Filmmaker Mode, còn có 8 chế độ hình ảnh khác như rạp chiếu phim, trò chơi, thể thao, tiêu chuẩn, để bạn tùy chỉnh linh hoạt theo từng thể loại, đắm chìm trong nội dung đang thưởng thức tối ưu. </p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/236893/nanocell-lg-43nano75tpa-5.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Công nghệ này sử dụng siêu dữ liệu metadata, tự động tối ưu đèn nền, các điểm ảnh, màu sắc theo khung hình đang trình chiếu, cải thiện đồng thời khai thác tối ưu độ tương phản để mang đến các cảnh quay tươi tắn, đẹp mắt.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/236893/nanocell-lg-43nano75tpa-6.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Tận hưởng âm thanh trung thực theo từng nội dung cùng công nghệ Al Sound</strong>\r\n\r\n \r\n    <p>Al Sound tự xác nhận giọng nói, các tần số, hiệu ứng âm thanh, công suất loa tivi LG 4K 20 W tái tạo âm thanh phù hợp với từng thể loại giải trí mà bạn lựa chọn, cho người nghe cảm nhận rõ hơn giai điệu êm ái của bản nhạc tình, sự hồi hộp, gay cấn của cảnh phim hành động, chương trình thể thao. </p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/236893/nanocell-lg-43nano75tpa-8.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n\r\n', 2, 310, 41, 0, 15000000, 16900000, 16900000, '2022-03-23 22:18:49', '1', '2022-03-23 17:15:05', '1', 1, 1),
+(10, 10, 'Máy giặt Samsung Inverter 9 Kg WW90TP54DSH/SV', 'samsung-ww90tp54dsh-sv', 'samsung-ww90tp54dsh-sv_0.jpg', 'samsung-ww90tp54dsh-sv_0.jpg#samsung-ww90tp54dsh-sv_1.jpg#samsung-ww90tp54dsh-sv_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Ghi nhớ và đề xuất chế độ giặt với bảng điều khiển thông minh AI Control</strong>\r\n\r\n \r\n    <p>Với bảng điều khiển này, máy giặt sẽ ghi nhớ những chế độ giặt mà bạn đã sử dụng sau đó phân tích thói quen và sở thích từ đó tự động đề xuất chế độ giặt và cài đặt yêu thích (sau lần giặt thứ 10 máy sẽ đề xuất). Điều này giúp cho việc giặt giũ của bạn trở nên dễ dàng hơn, không cần thiết lập quá nhiều thông số khi chuẩn bị giặt.</p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/236123/aicontrol.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Nhờ có công nghệ EcoBubble làm cho bột giặt nhanh chóng thấm sâu vào quần áo kết hợp với vòi xịt siêu tốc và lồng giặt xoay nhanh giúp cho quy trình giặt sẽ hoàn thành chỉ trong 39 phút.</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/236123/quicldrive.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Công nghệ VRT Plus giúp lồng giặt được giữ cân bằng tuyệt đối ngay cả ở tốc độ quay cao và khối lượng giặt lớn trong suốt chu trình giặt.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/236123/vrtplus1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Nếu là người hay quên, gom đồ đi giặt hay bị sót, thì bạn sẽ phải hài lòng với chiếc máy giặt cửa trước này vì nó được trang bị cửa phụ Add Wash, một điểm nổi bật của máy giặt Samsung. Với cửa phụ này bạn có thể thêm đồ sót, nước giặt, nước xả vào bất cứ khi nào.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/236123/addwash1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Tiết kiệm năng lượng và hoạt động bền bỉ với động cơ Digital Inverter</strong>\r\n\r\n \r\n    <p>Động cơ Digital Inverter cho khả năng hoạt động bền bỉ, mạnh mẽ, chống rung, giảm thiểu tiếng ồn hiệu quả nhờ sử dụng nam châm vĩnh cửu giúp giảm thiểu ma sát khi vận hành. Hơn nữa, động cơ này còn giúp tiết kiệm điện đáng kể.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/236123/digitalinverter.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Máy giặt Samsung Inverter WW90TP54DSH/SV có thiết kế hiện đại và tinh tế. Máy được trang bị bảng điều khiển tiếng Việt giúp cho các bà nội trợ dễ dàng sử dụng và tìm hiểu hơn.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/236123/thietke.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>23 chương trình giặt được tích hợp sẵn, đáp ứng tốt nhu cầu giặt giũ của của gia đình</strong>\r\n\r\n \r\n    <p>Máy giặt Samsung Inverter 9 Kg WW90TP54DSH/SV có 8 chương trình giặt nổi bật thường dùng: giặt nhanh 15 phút, giặt hơi nước, đồ len, giặt siêu êm, đồ trẻ em, sạch siêu tốc, cotton, vệ sinh lồng giặt và 15 chương trình tiện lợi khác (xem chi tiết tại bảng thông số kỹ thuật). Nhờ việc giúp tiết kiệm được thời gian giặt giũ quần áo một cách hiệu quả nên chương trình giặt nhanh 15 phút được người tiêu dùng ưa chuộng sử dụng.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/236123/samsung-ww90tp54dsh-sv-251021-082030.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n', 2, 605, 27, 10, 11000000, 14200000, 12780000, '2022-03-23 22:21:22', '1', '2022-03-23 22:21:22', '1', 1, 1),
+(11, 8, 'Android Tivi TCL 43 inch L43S5200', 'led-tcl-l43s5200', 'led-tcl-l43s5200_0.jpg', 'led-tcl-l43s5200_0.jpg#led-tcl-l43s5200_1.jpg#led-tcl-l43s5200_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Thiết kế sang trọng, chân đế chắc chắn</strong>\r\n\r\n \r\n    <p>Android Tivi TCL 43 inch L43S5200 có thiết kế hiện đại, gọn gàng, khung viền được làm mỏng cho màn hình phủ trọn tầm nhìn của bạn, mang đến trải nghiệm tuyệt vời, không bị giới hạn.</p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238554/tk.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Hình ảnh hiển thị sắc nét sống động với độ phân giải Full HD </p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238554/fullhd.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Hình ảnh trở nên chân thực và có độ tương phản cao hơn nhờ công nghệ HDR10</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238554/hdr10.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Công nghệ này có khả năng phân nội dung video thành hàng trăm khu vực, để tự điều chỉnh độ sáng và độ tối chi tiết phù hợp cho từng khu vực hình ảnh. Bên cạnh đó còn có khả năng phân tích nội dung video giúp hình ảnh hiển thị được tối ưu và chân thực hơn.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238554/micro.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Tăng cường độ chi tiết, màu sắc của hình ảnh nhờ chip xử lý hình ảnh Mali 470x2</strong>\r\n\r\n \r\n    <p>Mali 470x2 trên Smart tivi TCL sẽ tiếp nhận thông tin nội dung đầu vào, tiến hành phân tích và nâng cấp hình ảnh mang đến cho bạn những thước phim đẹp nhất.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238554/mali.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Thưởng thức âm thanh cực kỳ sống động, vang dội với loa có tổng công suất 16W kết hợp cùng công nghệ Dolby MS12. Công nghệ âm thanh này sẽ cho bạn trải nghiệm các thước phim, những chương trình bóng đá với lời thoại cực kỳ chân thật và sắc nét với khả năng tinh chỉnh âm thanh tối ưu cho tiếng động chân thật, lời thoại rõ ràng, bản nhạc đa âm sắc sống động, cho bạn hoàn toàn chìm đắng vào thế giới giải trí.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238554/amthanh.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Hệ điều hành Android 8.0 hiện đại với kho ứng dụng đa dạng</strong>\r\n\r\n \r\n    <p>Giao diện trực quan, dễ dùng, thư viện ứng dụng phong phú, có sẵn các ứng dụng gồm YouTube, Netflix, Zing TV, FPT Play, Clip TV. Ngoài ra, bạn còn có thể cài thêm các ứng dụng khác cho tivi TCL này như: Galaxy Play, VTVCab ON,...</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238554/hdh.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n', 1, 220, 4, 0, 5000000, 7090000, 7090000, '2022-03-23 22:27:35', '1', '2022-03-23 16:42:14', '1', 1, 1),
+(12, 8, 'Android Tivi TCL 32 inch L32S66A', 'tcl-l32s66a', 'tcl-l32s66a_0.jpg', 'tcl-l32s66a_1.jpg#tcl-l32s66a_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Thiết kế thanh mảnh, tinh tế</strong>\r\n\r\n \r\n    <p>Android Tivi TCL 32 inch L32S66A sở hữu thiết kế thanh mảnh với viền mỏng 0,3 cm đi kèm với chân đế hình chữ V úp ngược không chỉ mang lại vẻ đẹp về thẩm mỹ mà còn giúp tivi đứng vững trên nhiều dạng bề mặt khác nhau.</p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/220573/tivi.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Tivi TCL HD kết hợp với công nghệ HDR10 có khả năng tăng độ tương phản cho hình ảnh bằng cách làm sáng hoặc tối cho một khu vực riêng biệt trên màn hình, bên cạnh đó công nghệ này cũng cho độ sáng cao hơn những màn hình khác giúp hình ảnh hiển thị được chân thật hơn.</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/220573/do-tuong-phan.gif\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Tivi TCL sở hữu công nghệ âm thanh Dolby MS12 cùng tổng công suất loa đạt 10 W cho âm thanh mạnh mẽ và sống động, đem lại cho bạn những trải nghiệm chân thật như hòa vào từng giai điệu của bài hát hay bộ phim mà bạn yêu thích.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/220573/tcl-l32s66a-261021-033028.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Android Tivi có hệ điều hành Android 8.0 sở hữu giao diện trực quan dễ sử dụng, giúp bạn có thể nhanh chóng làm quen khi sử dụng tivi mà không gặp bất kì khó khăn nào.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/220573/tcl-l32s66a-211420-021425.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Tìm kiếm bằng giọng nói, hỗ trợ tiếng Việt</strong>\r\n\r\n \r\n    <p>Tivi TCL sở hữu remote thông minh có khả năng tìm kiếm giọng nói bằng tiếng Việt giúp bạn thỏa sức tìm kiếm nội dung mà mình yêu thích mà không cần phải di chuyển chọn từng kí tự trên màn hình nữa.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/220573/6-remote.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Chiếu màn hình điện thoại lên tivi qua tính năng Screen Mirroring</strong>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/220573/12-chieu-man-hinh-dien-thoai-2.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n\r\n', 2, 260, 16, 0, 6000000, 6490000, 6490000, '2022-03-23 22:30:05', '1', '2022-03-23 16:40:11', '1', 1, 1),
+(13, 10, 'Máy giặt Toshiba Inverter 9.5 Kg TW-BK105S3V(SK)', 'toshiba-tw-bk105s3v-sk', 'toshiba-tw-bk105s3v-sk_0.jpg', 'toshiba-tw-bk105s3v-sk_0.jpg#toshiba-tw-bk105s3v-sk_1.jpg#toshiba-tw-bk105s3v-sk_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Tiết kiệm điện và nước nhờ công nghệ Inverter</strong>\r\n\r\n \r\n    <p>Máy giặt Toshiba 9.5 Kg TW-BK105S3V(SK) sử dụng công nghệ Inverter nên có khả năng điều chỉnh vòng quay của động cơ, giúp lồng giặt hoạt động hiệu quả với việc dùng điện và nước sao cho tiết kiệm nhất mà vẫn đạt được khả năng giặt tẩy sạch quần áo tối ưu. </p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/223670/p.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Chiếc máy giặt Toshiba Inverter TW-BK105S3V(SK) sở hữu kiểu thiết kế lồng ngang - mang phong cách châu Âu, kèm với bảng điều khiển song ngữ Anh - Việt dễ sử dụng với thao tác nút xoay lẫn nút nhấn tiện lợi.</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/223670/e.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Máy giặt Toshiba TW-BK105S3V(SK) là lựa chọn phù hợp cho những hộ gia đình có nhiều thành viên (5 - 7 người) hoặc có nhu cầu giặt giũ quần áo với số lượng nhiều đến tận 9.5 kg trong mỗi lần giặt. </p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/223670/w.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Máy giặt Toshiba Inverter 9.5 Kg TW-BK105S3V(SK) được thiết kế với bảng điều khiển song ngữ Anh - Việt có nút xoay, nút nhấn và màn hình hiển thị dễ dàng thao tác. 8 chương trình giặt nổi bật như: Giặt nhanh 15 phút, không phai màu, đồ len, đồ hỗn hợp, đồ giặt em bé, đồ Cotton, giặt tiết kiệm Cotton và 8 chương trình khác (Xem thêm chi tiết tại bảng thông số kĩ thuật).</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/223670/vi-vn-toshiba-tw-bk105s3v-sk-199.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Giặt sạch vết bẩn cứng đầu, diệt khuẩn hiệu quả nhờ công nghệ nước nóng</strong>\r\n\r\n \r\n    <p>Công nghệ nước nóng sẽ góp phần giặt sạch các vết bẩn cứng đầu dễ dàng hơn, đồng thời hỗ trợ diệt khuẩn hiệu quả nhằm mang lại sự an toàn và an tâm cho người sử dụng, nhất là trẻ nhỏ và người lớn tuổi có làn da nhạy cảm. </p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/223670/u.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Chiếc máy giặt Inverter TW-BK105S3V(SK) còn đạt tốc độ vắt 1200 vòng/phút, với chức năng vắt cực khô, quần áo của bạn sẽ khô nhanh sau khi phơi, nhất là tiện lợi cho những ngày trời mưa, ẩm ướt. </p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/223670/toshiba-tw-bk105s3v-sk-090921-095045.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Tránh sự nghịch phá của trẻ, an tâm cho người lớn bởi chức năng khóa trẻ em</strong>\r\n\r\n \r\n    <p>Với chức năng khóa trẻ em, máy giặt sẽ tránh được sự nghịch phá của trẻ nhỏ khi máy đang trong quá trình hoạt động, mang lại sự an tâm cho người lớn khi không có mặt ở đó.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/223670/q.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n\r\n', 1, 731, 110, 0, 10000000, 11790000, 11790000, '2022-03-23 22:33:51', '1', '2022-03-23 17:54:59', '1', 1, 1),
+(14, 6, 'Tủ lạnh Toshiba Inverter 513 lít GR-RS682WE-PMV', 'toshiba-gr-rs682we-pmv-06-mg', 'toshiba-gr-rs682we-pmv-06-mg_0.jpg', 'toshiba-gr-rs682we-pmv-06-mg_0.jpg#toshiba-gr-rs682we-pmv-06-mg_1.jpg#toshiba-gr-rs682we-pmv-06-mg_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Thiết kế sang trọng, bảng điều khiển cảm ứng hiện đại bên ngoài </strong>\r\n\r\n \r\n    <p>Toshiba Inverter 513 lít GR-RS682WE-PMV(06)-MG thuộc mẫu tủ lạnh side by side, gam màu đen tinh tế, cùng với bảng điều khiển cảm ứng hiện đại được thiết kế bên ngoài, ắt hẳn sẽ trở thành nội thất sang trọng cho không gian nhà bạn. </p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/221082/toshiba-gr-rs682we-pmv-06-mgthie%CC%82%CC%81t-ke%CC%82%CC%81.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Nhờ có công nghệ Origin Inverter, tủ lạnh Toshiba này mang lại hiệu quả tiết kiệm điện tối ưu khi có khả năng sử dụng đồng thời máy nén Inverter lẫn quạt Inverter, nhằm duy trì được hơi lạnh lý tưởng, phù hợp với khối lượng thực phẩm bên trong tủ lạnh. </p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/221082/Slider/-vi-vn-inverter.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Chiếc tủ lạnh Toshiba Inverter GR-RS682WE-PMV(06)-MG còn sở hữu công nghệ làm lạnh vòng cung, giúp luồng khí được lan tỏa mọi ngóc ngách bên trong tủ, làm cho hơi lạnh bao quanh toàn diện thực phẩm, nhằm giữ được độ tươi ngon và kéo dài thời gian bảo quản thực phẩm lâu hơn. </p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/221082/toshiba-gr-rs682we-pmv-06-mg-241121-092623.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Khả năng lưu trữ thực phẩm nhiều với dung tích lên đến 513 lít, trong đó ngăn đá chiếm 175 lít và ngăn lạnh chiếm 338 lít, tủ lạnh Toshiba GR-RS682WE-PMV(06)-MG là một trong những lựa chọn phù hợp cho những hộ gia đình có trên 5 thành viên, hoặc ít hơn nhưng lại có nhu cầu bảo quản thực phẩm nhiều mỗi ngày. </p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/221082/toshiba-gr-rs682we-pmv-06-mgdung-ti%CC%81ch.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Tiện lợi khi lấy nước bên ngoài nhanh chóng</strong>\r\n\r\n \r\n    <p>Không cần phải mở cửa gây mất thời gian, bạn có thể lấy nước lạnh ngay phía bên ngoài một cách nhanh chóng. </p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/221082/toshiba-gr-rs682we-pmv-06-mglay-nuoc-ngoai.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Chiếc tủ lạnh này sẽ phát ra tiếng chuông nhờ chức năng chuông báo mở cửa, giúp cho bạn kiểm soát được thời gian mở cửa tủ lạnh quá lâu, tránh thất thoát hơi lạnh làm tiêu hao điện năng. </p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/221082/toshiba-gr-rs682we-pmv-06-mgchuo%CC%82ng.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n</p>\r\n\r\n', 2, 120, 6, 0, 23000000, 26490000, 26490000, '2022-03-23 22:36:43', '1', '2022-03-23 17:54:37', '1', 1, 1),
+(15, 11, 'Tủ lạnh Hitachi Inverter 509 lít R-FW650PGV8 GBK', 'hitachi-inverter-509-lit-r-fw650pgv8', 'hitachi-inverter-509-lit-r-fw650pgv8_0.jpg', 'hitachi-inverter-509-lit-r-fw650pgv8_0.jpg#hitachi-inverter-509-lit-r-fw650pgv8_1.jpg#hitachi-inverter-509-lit-r-fw650pgv8_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Tủ lạnh Hitachi Inverter 509 lít R-FW650PGV8 với thiết kế Multi Door độc đáo, sang trọng, đi kèm công nghệ tiết kiệm điện Inverter kết hợp cùng cảm biến nhiệt Eco cho hiệu quả tiết kiệm điện tối ưu. Cùng nhiều tiện ích đi kèm như khay đá xoay linh hoạt, bảng điều khiển bên ngoài, chuông cảnh báo mở cửa,...</strong>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/273309/hitachi-inverter-509-lit-r-fw650pgv8-270322-103336.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Ngăn trữ chuyển đổi: cho phép tùy chỉnh nhiệt độ bên trong ngăn bằng cách chuyển đổi giữa chế độ trữ rau quả (khoảng 5°C) và chế độ trữ sữa/thịt (khoảng 1°C)</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/273309/hitachi-inverter-509-lit-r-fw650pgv8-270322-100545.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Các ngăn trong tủ được thiết kế rộng rãi, thuận tiện cho việc lưu trữ các thực phẩm có kích thước lớn.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/273309/hitachi-inverter-509-lit-r-fw650pgv8-270322-103338.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Công nghệ Inverter: máy nén vận hành êm ái, mang lại hiệu suất làm lạnh ổn định, hạn chế đóng tuyết, tiết kiệm hiệu quả điện năng tiêu thụ.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/273309/hitachi-inverter-509-lit-r-fw650pgv8-270322-104042.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Công nghệ làm lạnh - bảo quản thực phẩm</strong>\r\n\r\n \r\n    <p>Hệ thống quạt kép: cung cấp khí lạnh cho ngăn đá và ngăn mát một cách riêng biệt, tránh lẫn mùi thực phẩm giữa các ngăn với nhau. Kết hợp giữa quạt làm lạnh và động cơ Inverter đem đến hiệu quả làm lạnh tối ưu đồng thời hạn chế sự lãng phí năng lượng.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/273309/hitachi-inverter-509-lit-r-fw650pgv8-270322-104754.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Công nghệ Nano Titanium giúp tiêu diệt vi khuẩn hiệu quả, lọc sạch nấm mốc, mùi hôi nhờ sử dụng chất xúc tác TiO2, mang lại không gian trong lành, bảo quản thực phẩm luôn tươi ngon.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/273309/hitachi-inverter-509-lit-r-fw650pgv8-270322-100543.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Tiện ích</strong>\r\n\r\n \r\n    <p>Chuông cảnh báo mở cửa: tủ lạnh sẽ phát ra âm thanh cảnh báo khi thời gian mở cửa quá lâu, từ đó hạn chế được lượng điện năng hao phí khi quên không đóng cửa.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/273309/hitachi-inverter-509-lit-r-fw650pgv8-270322-110712.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n\r\n', 2, 61, 4, 0, 20000000, 24900000, 24900000, '2022-03-23 22:40:49', '1', '2022-03-23 17:54:42', '1', 1, 1);
+INSERT INTO `db_product` (`id`, `catid`, `name`, `alias`, `avatar`, `img`, `sortDesc`, `detail`, `producer`, `number`, `number_buy`, `sale`, `pre_sale`, `price`, `price_sale`, `created`, `created_by`, `modified`, `modified_by`, `trash`, `status`) VALUES
+(16, 11, 'Tủ lạnh Hitachi Inverter 339 lít R-FVX450PGV9 GBK', 'hitachi-inverter-406-lit-r-fvx450pgv9', 'hitachi-inverter-406-lit-r-fvx450pgv9_0.jpg', 'hitachi-inverter-406-lit-r-fvx450pgv9_0.jpg#hitachi-inverter-406-lit-r-fvx450pgv9_1.jpg#hitachi-inverter-406-lit-r-fvx450pgv9_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Tổng quan thiết kế</strong>\r\n\r\n \r\n    <p>Tủ lạnh Hitachi Inverter 339 lít R-FVX450PGV9 là dòng tủ lạnh bình dân với thiết kế ngăn đá trên quen thuộc, chất liệu cửa tủ bàng kính có độ bóng cao tạo sự thẩm mỹ cho gian bếp. Tủ lạnh có nhiều tính năng như cảm biến nhiệt Eco, Inverter, hệ thống làm lạnh quạt kép và bộ lọc khử mùi 3 lớp Triple Power.</p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/273313/hitachi-inverter-406-lit-r-fvx450pgv9-230322-112243.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Có thiết kế các ngăn kệ bên trong và trên cánh tủ để phân loại và sắp xếp thực phẩm theo nhu cầu.</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/273313/hitachi-inverter-406-lit-r-fvx450pgv9-230322-112503.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Dung tích: 101 lít. Có ngăn kệ bên trong và trên cánh tủ để tăng không gian lưu trữ thực phẩm tươi sống</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/273313/hitachi-inverter-406-lit-r-fvx450pgv9-230322-112237.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Bộ lọc khử mùi 3 lớp Triple Power được trang bị bên trong tủ để loại bỏ các mùi khó chịu sinh ra từ thực phẩm, vi khuẩn độc hại, mang đến không gian tủ trong lành và an toàn.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/273313/hitachi-inverter-406-lit-r-fvx450pgv9-230322-113542.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Công nghệ tiết kiệm điện</strong>\r\n\r\n \r\n    <p>Tủ lạnh Hitachi có trang bị hai cảm biến Eco ở ngăn đá và ngăn lạnh để nhận biết sự thay đổi nhiệt độ ở từng ngăn và duy trì nhiệt độ lý tưởng tại mọi thời điểm.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/273313/hitachi-inverter-406-lit-r-fvx450pgv9-230322-112239.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Hệ thống làm lạnh quạt kép sẽ làm lạnh hiệu quả và độc lập ở hai ngăn, giúp tiết kiệm điện cũng như làm lạnh nhanh hơn, góp phần bảo quản thực phẩm tươi ngon lâu dài.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/273313/hitachi-inverter-406-lit-r-fvx450pgv9-230322-113723.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n</p>\r\n', 2, 90, 8, 0, 11000000, 14100000, 14100000, '2022-03-23 23:24:20', '1', '2022-03-23 17:54:33', '1', 1, 1),
+(17, 6, 'Tủ lạnh Toshiba Inverter 311 lít GR-RT395WE-PMV', 'toshiba-gr-rt395we-pmv-06-mg', 'toshiba-gr-rt395we-pmv-06-mg_0.jpg', 'toshiba-gr-rt395we-pmv-06-mg_0.jpg#toshiba-gr-rt395we-pmv-06-mg_1.jpg#toshiba-gr-rt395we-pmv-06-mg_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Lấy nước bên ngoài tiện lợi tránh thất thoát hơi lạnh </strong>\r\n\r\n \r\n    <p>Bạn có thể lấy nước phía bên ngoài cửa tủ lạnh Toshiba GR-RT395WE-PMV(06)-MG, thao tác tiện lợi mà không cần phải mở cửa, giúp bạn thưởng thức được ngay ly nước lọc mát lạnh trong những ngày trời oi bức. Bình chứa nước làm từ chất liệu nhựa an toàn HIPS theo tiêu chuẩn của châu Âu.</p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/239277/toshiba-gr-rt395we-pmv-06-mg8.png\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Công nghệ Air Fall Cooling sẽ tỏa ra 2 luồng khí lạnh như thác đổ, luồng khí trước sẽ kết hợp với luồng khí phía sau để làm lạnh thực phẩm nhanh chóng tại bất kì vị trí nào bên trong ngăn tủ, nhờ đó giảm thiểu được tình trạng hỏng thực phẩm do không đủ hơi lạnh.</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/239277/vi-vn-toshiba-gr-rt395we-pmv-06-mg6-min.png\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Tủ lạnh Toshiba 311 lít này còn được trang bị công nghệ Origin Inverter có khả năng giúp máy nén Inverter và động cơ quạt Inverter hoạt động cùng một lúc, nhằm tỏa đều hơi lạnh để duy trì nhiệt độ ổn định bên trong tủ nhằm tăng hiệu quả làm lạnh, tiết kiệm điện.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/239277/vi-vn-toshiba-gr-rt395we-pmv-06-mg3-min.png\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Công nghệ PureBio giúp diệt khuẩn và khử mùi hiệu quả bên trong tủ lạnh Toshiba nhờ bộ lọc Ceramic nhúng tinh thể bạc kết hợp với than hoạt tính, từ đó góp phần kéo dài thời gian bảo quản thực phẩm cũng như tạo cảm giác tươi mát mỗi khi người dùng mở cửa tủ lạnh.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/239277/vi-vn-toshiba-gr-rt395we-pmv-06-mg5-min.png\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Chống bám vân tay với bề mặt cửa tủ hoàn thiện 10 lớp</strong>\r\n\r\n \r\n    <p>Chất liệu cửa tủ được cấu tạo bởi 10 lớp đặc biệt, tạo nên vân kim loại tinh tế trên bề mặt, kết hợp với lớp phủ sơn tĩnh điện chống bám vân tay, hạn chế trầy xước trong thời gian sử dụng.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/239277/toshiba-gr-rt395we-pmv-06-mg-5.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Ngăn lạnh nhanh Cooling Zone có thể giúp thực phẩm tươi sống như thịt cá giữ được chất dinh dưỡng trọn vẹn và chống ôi thiu từ 1 - 2 ngày, đáp ứng nhu cầu chế biến thực phẩm ngay lập tức mà không cần phải rã đông.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/239277/vi-vn-toshiba-gr-rt395we-pmv-06-mg4-min.png\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Cân bằng độ ẩm các loại rau củ quả trong ngăn Origin Fresh, kéo dài thời gian bảo quản</strong>\r\n\r\n \r\n    <p>Các loại rau củ quả khi chứa trong ngăn Origin Fresh sẽ có thời gian bảo quản lâu hơn, vì tránh được tình trạng úng hoặc héo do cân bằng được độ ẩm bên trong ngăn với nút tùy chỉnh độ ẩm mà bạn có thể điều chỉnh được.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/239277/vi-vn-toshiba-gr-rt395we-pmv-06-mg7-min.png\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n', 2, 180, 13, 10, 10000000, 13990000, 12591000, '2022-03-23 23:28:14', '1', '2022-03-23 17:54:25', '1', 1, 1),
+(18, 9, 'Tủ lạnh Sharp Inverter 150 lít SJ-X176E-SL', 'sharp-sj-x176e-sl', 'sharp-sj-x176e-sl_0.jpg', 'sharp-sj-x176e-sl_0.jpg#sharp-sj-x176e-sl_1.jpg#sharp-sj-x176e-sl_.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Thiết kế nhỏ gọn, tinh tế</strong>\r\n\r\n \r\n    <p>Tủ lạnh Sharp Inverter 150 lít SJ-X176E-SL với thiết kế màu bạc tinh tế, kích thước nhỏ gọn sẽ dễ dàng kết hợp với bất kì kiểu không gian nội thất nào của gia đình, đồng thời bạn cũng sẽ không phải lo lắng tủ chiếm quá nhiều diện tích.</p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/145456/sharp-sj-x176e-sl-220921-104816.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Được trang bị công nghệ J-Tech Inverter, chiếc tủ lạnh 2 cửa này không chỉ mang đến khả năng vận hành êm ái, làm lạnh ổn định với 36 cấp độ làm lạnh mà nó còn giúp bạn không còn phải quá lo lắng về chi phí điện năng hàng tháng.</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/145456/sharp-sj-x176e-sl-220921-104957.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Với bộ khử mùi phân tử bạc Nano Ag+, tủ lạnh sẽ sử dụng các phân tử bạc có kích thước siêu nhỏ để tiêu diệt vi khuẩn và tác nhân gây mùi hôi khó chịu phát sinh trong tủ lạnh. Giờ đây, bạn không còn bị ám ảnh về mùi hôi thực phẩm mỗi lần mở tủ lạnh nữa.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/145456/sharp-sj-x176e-sl-220921-105135.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Tính năng làm đá nhanh của tủ lạnh Sharp Inverter mang đến cho bạn những viên đá mát lạnh</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/145456/sharp-sj-x176e-sl-220921-105303.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Thoải mái bảo quản nhiều thực phẩm với kệ kính chịu lực hiện đại</strong>\r\n\r\n \r\n    <p>Sử dụng chất liệu kính chịu lực cho kệ chứa, tủ lạnh Sharp giúp bạn thoải mái chứa nhiều thực phẩm bảo quản lên kệ với khối lượng lên đến 100 kg mà không lo kệ bị hư hỏng, nứt, vỡ.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/145456/sharp-sj-x176e-sl-220921-105606.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n</p>\r\n', 2, 140, 22, 10, 50000000, 59890000, 53901000, '2022-03-23 23:30:36', '1', '2022-03-23 17:54:19', '1', 1, 1),
+(19, 5, 'Tủ lạnh Panasonic Inverter 322 lít NR-BC360QKVN', 'panasonic-nr-bc360qkvn', 'panasonic-nr-bc360qkvn_0.jpg', 'panasonic-nr-bc360qkvn_0.jpg#panasonic-nr-bc360qkvn_1.jpg#panasonic-nr-bc360qkvn_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Tủ lạnh Panasonic ngăn cấp đông mềm thế hệ mới Prime Fresh+ bảo quản thực phẩm không cần rã đông</strong>\r\n\r\n \r\n    <p>Tủ lạnh Panasonic Inverter 322 lít NR-BC360QKVN trang bị ngăn đông mềm thế hệ mới Prime Fresh+ với mức nhiệt độ ở -3 độ C giúp thực phẩm tươi sống được làm đông nhanh mà không bị đông đá và tươi mới lên đến 7 ngày. Do đó, thực phẩm giữ được các chất dinh dưỡng, độ thơm ngon và bạn không phải tốn thêm nhiều thời gian để rã đông trước khi chế biến.</p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/209334/Slider/-primefresh+-2-ngan.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Tủ lạnh này trang bị công nghệ Inverter giúp tiết kiệm điện hiệu quả trong quá trình vận hành nhưng không làm mất đi khả năng hoạt động êm ái, duy trì độ lạnh ổn định.</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/209334/panasonic-nr-bc360qkvn-25.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Cảm biến nhiệt độ bên ngoài: Khi nhiệt độ bên ngoài thay đổi, tủ lạnh sẽ tự động điều chỉnh nhiệt độ bên trong sao cho phù hợp.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/209334/panasonic-nr-bc360qkvn-24.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Ngăn rau quả giữ ẩm giúp duy trì nhiệt độ ổn định và độ ẩm lý tưởng đến toàn bộ không gian, không để độ ẩm thất thoát ra ngoài giúp thực phẩm luôn tươi và ngon.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/179593/Slider/vi-vn-panasonic-nr-bv288gkv2-9.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Kiểu dáng hiện đại, thanh lịch với ngăn đá dưới tiện lợi</strong>\r\n\r\n \r\n    <p>Tủ lạnh Panasonic NR-BC360QKVN này mang gam màu đen bóng sang trọng, thanh lịch. Thiết kế ngăn đá bên dưới không chỉ mang lại vẻ đẹp mới mẻ, hiện đại cho không gian nội thất mà nó còn mang lại sự tiện lợi, giúp người sử dụng có thể dễ dàng lấy thực phẩm ở ngăn mát mà không phải khom cúi nhiều lần.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/209334/panasonic-nr-bc360qkvn-16.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Tủ lạnh Panasonic 322 lít này đảm bảo phục vụ tốt nhu cầu sử dụng cho gia đình từ 3 - 4 người cho phép bạn dự trữ khối lượng lớn thực phẩm tươi ngon để gia đình sử dụng trong nhiều ngày mà không cần phải đi chợ nhiều lần.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/209334/panasonic-nr-bc360qkvn-26.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Mang hơi lạnh tỏa đều mọi vị trí trong tủ với công nghệ làm lạnh Panorama</strong>\r\n\r\n \r\n    <p>Công nghệ Panorama là một công nghệ làm lạnh đa chiều độc quyền đến từ Panasonic, có thể mang hơi lạnh đến mọi ngóc ngách của tủ lạnh giúp thực phẩm sẽ luôn nhận được đầy đủ hơi lạnh thích hợp và luôn tươi ngon.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/209334/panasonic-nr-bc360qkvn-21.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n', 1, 300, 26, 10, 12000000, 16790000, 15111000, '2022-03-23 23:33:43', '1', '2022-03-23 23:33:43', '1', 1, 1),
+(20, 1, 'Android Tivi Sony 4K 50 inch KD-50X75', 'led-sony-kd-50x75', 'led-sony-kd-50x75_0.jpg', 'led-sony-kd-50x75_0.jpg#led-sony-kd-50x75_1.jpg#led-sony-kd-50x75_2.jpg', ' Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Thiết kế tinh tế, thanh lịch</strong>\r\n\r\n \r\n    <p>Android Tivi Sony 4K 50 inch KD-50X75 sở hữu thiết kế màn hình phẳng, tràn viền cho trải nghiệm xem tivi đắm chìm.</p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238721/111w1w1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Hình ảnh hiển thị sắc nét gấp 4 lần Full HD với độ phân giải 4K</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/224404/sony-kd-43x8500h-s-230220-020231.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Cùng 4K X-Reality PRO nâng cấp chất lượng từng điểm ảnh cho độ rõ nét vượt trội. Các điểm ảnh trên nhiều khung hình được phân tích, đồng thời hình ảnh được tinh chỉnh và làm sắc nét theo thời gian thực. Android tivi Sony luôn mang đến hình ảnh sắc nét, rõ ràng và sống động như thật.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238721/23.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Tivi được trang bị công nghệ đèn nền Direct LED Frame Dimming với khả năng làm giảm độ sáng các đèn LED được bố trí dọc cạnh màn hình, nhằm tăng độ tương phản cho hình ảnh hiển thị.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238721/fgdfg-2.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Chuyển động mượt mà rõ nét, không mờ nhòe với công nghệ Motionflow XR 200 Hz và Auto Mode</strong>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238721/3-1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Với Dolby Audio, S-Force Front Surround bạn có thể thưởng thức âm thanh vòm 360° sống động chân thực. Bên cạnh đó, tivi tích công nghệ DTS Digital Surround có thể mã hóa 6 kênh 20-bit audio riêng biệt giúp âm thanh vòm và lan tỏa hơn.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238791/led-sony-kd-75x80j-7.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Hệ điều hành Android 10 dễ sử dụng, kho ứng dụng giải trí đa dạng</strong>\r\n\r\n \r\n    <p>Kho ứng dụng sẵn có trên tivi đa dạng như: YouTube, Google Play, Netflix, Trình duyệt web. Ngoài ra tùy theo nhu cầu và sở thích mà bạn có thể tải thêm nhiều ứng dụng khác như: Spotify, VTVCab ON, FPT Play,...</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1942/238885/4-1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n', 2, 240, 17, 10, 11000000, 16500000, 14850000, '2022-03-23 00:03:02', '1', '2022-03-23 00:03:02', '2', 0, 1),
+(21, 10, 'Máy giặt Samsung Addwash Inverter 8.5kg WW85T554DAW/SV', 'samsung-addwash-ww85t554daw-sv', 'samsung-addwash-ww85t554daw-sv_0.jpg', 'samsung-addwash-ww85t554daw-sv_0.jpg#samsung-addwash-ww85t554daw-sv_1.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Ghi nhớ và đề xuất chế độ giặt ưa thích với bảng điều khiển thông minh AI Control</strong>\r\n\r\n \r\n    <p>Bảng điều khiển thông minh AI Control này sẽ tự động ghi nhớ các chế độ giặt giũ mà bạn thường sử dụng, từ đó sẽ tiến hành đề xuất chế độ giặt phù hợp với loại đồ theo thói quen sử dụng. Màn hình hiển thị quy trình giặt dễ hiểu, hướng dẫn thông minh bất kỳ ai trong gia đình đều có thể sử dụng dễ dàng.</p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/236161/Slider/samsung-addwash-ww85t554daw-sv-060421-0849530.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Công nghệ này sẽ đánh tan bột/nước giặt với sự kết hợp giữa khí và nước tạo thành những bong bóng siêu mịn dễ dàng thẩm thấu sâu vào từng sợi vải nhanh gấp 40 lần, đánh bật các vết bẩn cứng đầu nhanh hơn 24%.</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/236161/Slider/samsung-addwash-ww85t554daw-sv-060421-0816424.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Hygiene Steam sử dụng hơi nước thoát ra từ nước được đun ở nhiệt độ cao để làm sạch quần áo của bạn, hơi nước dễ dàng loại bỏ bụi bẩn và diệt 99.9% vi khuẩn, các tác nhân gây dị ứng  trong từng kẽ vải bảo vệ sức khỏe cả nhà.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/236161/Slider/samsung-addwash-ww85t554daw-sv-060421-0816413.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Máy giặt Samsung với công nghệ VRT Plus™, thiết kế khung máy giặt có độ ổn định cao kết hợp với bộ cảm biến độ rung ồn sẽ giúp cho việc giặt giũ trở nên êm ái, giảm tiếng ồn tạo ra khi giặt đến 30%, kể cả khi máy đang vắt với tốc độ cao hoặc được nhét đầy quần áo.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/236161/samsung-addwash-ww85t554daw-sv-141021-112406.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Dễ dàng thêm quần áo trong quá trình giặt với cửa phụ Add Door </strong>\r\n\r\n \r\n    <p>Với cửa phụ Add Door được tích hợp ngay trên cửa chính bạn có thể thêm đồ vào máy giặt bất cứ khi nào mà không cần phải tạm dừng và mở nắp máy như trước đây. Ngoài ra bạn cũng có thể thêm nước giặt, xả vào khi máy đang hoạt động thông qua của phụ này.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/236161/samsung-addwash-ww85t554daw-sv-121021-102516.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Nhờ ứng dụng SmartThings bạn có thể dàng kích hoạt máy giặt ở mọi nơi mọi lúc thông qua điện thoại vô cùng tiện lợi. Trước khi đi làm bạn có thể để quần áo bẩn và chất giặt tẩy vào máy giặt trước, để khi sắp tan làm bạn có thể bật và chọn chế độ giặt từ xa khi về đến nhà bạn chỉ cần đem đi phơi thôi, tiết kiệm thời gian đáng kể.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/236161/Slider/samsung-addwash-ww85t554daw-sv-060421-0816435.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Tiết kiệm điện năng tối đa, vận hành êm ái bền bỉ với động cơ Digital Inverter</strong>\r\n\r\n \r\n    <p>Động cơ Digital Inverter sử dụng nam châm vĩnh cửu giúp làm giảm sự ma sát khi máy giặt vận hành, kết hợp cùng khả năng điều chỉnh vòng quay đưa lồng giặt vào trạng thái hoạt động phù hợp từ đó giúp bạn tiết kiệm điện hiệu quả hơn máy không có Inverter. </p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/236161/digital-inverter-1-1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n', 2, 720, 161, 0, 10000000, 12400000, 12400000, '2022-03-23 00:04:42', '1', '2022-03-23 17:54:03', '1', 1, 1),
+(22, 5, 'Tủ lạnh Panasonic Inverter 550 lít NR-DZ601VGKV', 'panasonic-inverter-550-lit-nr-dz601vgkv', 'panasonic-inverter-550-lit-nr-dz601vgkv_0.jpg', 'panasonic-inverter-550-lit-nr-dz601vgkv_0.jpg#panasonic-inverter-550-lit-nr-dz601vgkv_1.jpg#panasonic-inverter-550-lit-nr-dz601vgkv_2.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Bảo quản thực phẩm tươi sống không cần rã đông với ngăn Prime Fresh+ Blue Ag+ </strong>\r\n\r\n \r\n    <p>Tủ lạnh Panasonic 550 lít NR-DZ601VGKV có ngăn đông mềm với nhiệt độ -3°C, phù hợp để bảo quản thực phẩm tươi sống mà không làm đông đá. Được thiết kế dạng ngăn kéo riêng biệt và công nghệ Blue Ag+ nên có thể tránh lẫn mùi với thực phẩm khác. Nhờ vậy, giữ trọn hương vị và độ tươi ngon, bạn có thể lấy ra nấu ăn ngay mà không cần tốn thời gian rã đông.</p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/240703/panasonic-inverter-550-lit-nr-dz601vgkv-18.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Tủ lạnh của bạn sẽ được giữ tươi mát, sạch vi khuẩn vì công nghệ Blue Ag+ sử dụng ánh sáng xanh đi qua tấm lọc tích hợp tinh thể bạc và được đặt ngay tại lỗ thoát khí hơi lạnh, giúp luồng khí đi qua bộ lọc nhanh chóng lan tỏa khắp tủ để kháng khuẩn, khử mùi và đảm bảo an toàn thực phẩm cho người sử dụng.</p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/240703/panasonic-inverter-550-lit-nr-dz601vgkv1-1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Công nghệ diệt khuẩn Blue Ag+ có thể diệt được khuẩn E.coli và khuẩn tụ cầu vàng Staphylococcus aureus, nguyên nhân gây bệnh đường ruột và kích ứng da, đã được cấp chứng nhận bởi Sudsachsen Wasser (Đức).</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Files/2020/07/26/1273851/cac-tinh-nang-diet-khuan-bao-ve-suc-khoe-nao-dang--2.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Tủ lạnh Panasonic có ngăn rau củ được thiết kế dạng kéo riêng biệt, ngăn hơi ẩm thoát ra ngoài và không khí lạnh không thổi trực tiếp lên rau củ. Ngoài ra còn có bộ điều khiển cho phép bạn tự động điều chỉnh nhiệt độ phù hợp với lượng rau củ bảo quản.</p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/240703/panasonic-inverter-550-lit-nr-dz601vgkv2-1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Thiết kế 4 cánh thanh lịch, mặt kính sang trọng</strong>\r\n\r\n \r\n    <p>Thiết kế 4 cánh cửa, tủ mặt kính cao cấp, phù hợp với phong cách hiện đại. Tay cầm cong duyên dáng kết hợp với mặt kính phẳng không viền mang lại sự tinh tế cho căn bếp.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/240703/panasonic-inverter-550-lit-nr-dz601vgkv3-1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Công nghệ này có khả năng làm lạnh đa chiều và đưa các luồng khí lạnh thổi nhanh và đồng đều khắp các ngóc ngách trong tủ. Vì vậy, khi để đầy thực phẩm trong các ngăn vẫn đảm bảo thực phẩm được bảo quản tốt và giữ chúng tươi ngon lâu dài.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/240703/panasonic-inverter-550-lit-nr-dz601vgkv4-1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Ngăn lẫn mùi thực phẩm với ngăn trữ đông tinh thể bạc Ag Hygiene Zone</strong>\r\n\r\n \r\n    <p>Đây là ngăn được thiết kế dạng kéo riêng biệt ở trong ngăn đá, có các tinh thể bạc để loại bỏ các mùi hôi khó chịu từ các loại thực phẩm tươi sống có mùi tanh, mùi hôi, tránh lẫn mùi với các thực phẩm khác trong tủ, đảm bảo vệ sinh hơn.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1943/240703/panasonic-inverter-550-lit-nr-dz601vgkv5-1.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n', 2, 250, 3, 0, 35000000, 40900000, 40900000, '2022-03-23 00:10:34', '1', '2022-03-23 17:53:43', '1', 1, 1),
+(23, 10, 'Máy giặt LG Inverter 10 kg FV1410S4P', 'lg-inverter-10-kg-fv1410s4p', 'lg-inverter-10-kg-fv1410s4p_0.jpg', 'lg-inverter-10-kg-fv1410s4p_0.jpg#lg-inverter-10-kg-fv1410s4p_1.jpg', 'Thiết kế độc đáo tiện lợi, khẳng định đẳng cấp', '\r\n<p>\r\n    <strong>Thiết kế hiện đại, nhỏ gọn với gam màu tinh tế</strong>\r\n\r\n \r\n    <p>Máy giặt LG Inverter 10 kg FV1410S4P có kiểu dáng nhỏ gọn cùng tông màu trắng tinh tế phù hợp với mọi không gian nội thất của gia đình Việt. </p>\r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/255492/lg-inverter-10-kg-fv1410s4p-210322-034423.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n \r\n    <p>Chiếc máy giặt LG cửa trước này được tích hợp 14 chương trình giặt khác nhau (xem chi tiết tại bảng thông số kỹ thuật), bao gồm: chu trình tải về, giặt chăn ga, giặt hơi nước đồ trẻ em, giặt ngừa dị ứng, giặt nhanh 30 phút, giặt nhẹ, giặt tay + đồ len, giặt tiết kiệm cotton, và 6 chương trình giặt khác. </p>\r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/255492/lg-inverter-10-kg-fv1410s4p-210322-034427.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Nếu bạn có nhu cầu lựa chọn máy giặt cho gia đình từ 5 - 7 thành viên hoặc khối lượng đồ giặt hàng ngày nhiều thì máy giặt LG này với khối lượng giặt 10 kg sẽ là một lựa chọn đáng cân nhắc. </p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/255492/lg-inverter-10-kg-fv1410s4p-210322-034420.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Chiếc máy giặt LG Inverter này còn được trang bị ứng dụng trí tuệ nhân tạo AI không những phát hiện chính xác khối lượng đồ giặt mà còn cảm nhận được độ mềm của sợi vải. Từ đó tối ưu chương trình giặt cho phù hợp. </p> \r\n\r\n \r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/255492/may-giat-lg-inverter-10-kg-fv1410s4p-sp08.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Giặt nhanh hơn và sạch hơn với công nghệ TurboWash</strong>\r\n\r\n \r\n    <p>Điểm nổi bật ở chiếc máy giặt này là công nghệ TurboWash cho hiệu quả giặt sạch trong thời gian ngắn. Công nghệ Turbo Wash sử dụng vòi xả nước mạnh từ các phía trong lồng giặt với tốc độ cao giúp các vết bẩn trên quần áo được loại bỏ nhanh hơn. </p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/255492/lg-inverter-10-kg-fv1410s4p-210322-034437.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <p>Nhờ công nghệ giặt hơi nước, máy giặt LG có khả năng diệt khuẩn tối ưu đến 99.99%, loại bỏ các tác nhân dị ứng trên quần áo bằng hơi nước nóng, giúp bảo vệ làn da và sức khỏe của người dùng. Bên cạnh đó, công nghệ này còn giúp giảm nhăn quần áo và hạn chế phai màu sợi vải.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/255492/lg-inverter-10-kg-fv1410s4p-210322-034439.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n\r\n    <strong>Giảm thiểu hư tổn, chăm sóc sợi vải thông minh nhờ công nghệ 6 Motion DD</strong>\r\n\r\n \r\n    <p>Bằng cách mô phỏng theo các bước giặt bằng tay như đập, nén, đảo, nhào trộn, quay và chà xát, công nghệ giặt 6 chuyển động giúp quần áo vừa sạch sâu mà không bị xoắn rối, giảm thiểu nguy cơ sờn rách sợi vải, đảm bảo quần áo của gia đình được bền đẹp lâu hơn.</p> \r\n\r\n\r\n    <img alt=\"\" src=\"https://cdn.tgdd.vn/Products/Images/1944/255492/may-giat-lg-inverter-10-kg-fv1410s4p-sp03.jpg\" style=\"height:600px; width:950px\" />\r\n\r\n   \r\n</p>\r\n', 2, 560, 0, 10, 10000000, 13900000, 12510000, '2022-03-23 17:32:25', '1', '2022-03-23 17:32:25', '1', 1, 0),
+(30, 5, 'TIvi', 'tivi', '36da9aa21153408471d294f8f36c56f9.png', 'e10a3c470635c67d6bc32cf2efe6ed36.png', 'ok', 'ok', 1, 1, 0, 0, 8000000, 1000000, 1000000, '2022-04-19 11:08:56', '1', '2022-04-19 11:13:47', '1', 0, 1),
+(32, 2, 'ads', 'ads', '', '', 'ads', 'add', 3, 1, 0, 10, 0, 50000, 40000, '2022-04-22 14:53:58', '1', '2022-04-22 14:55:42', '1', 0, 1),
+(33, 1, 'áda', 'ada', '', '', 'a', 'a', 3, 1, 0, 0, 50000, 40000, 30000, '2022-04-22 15:06:09', '1', '2022-04-22 15:06:09', '1', 0, 1),
+(34, 5, 'aa', 'aa', '', '', 'a', 'a', 3, 1, 0, 0, 50000, 60000, 50000, '2022-04-22 15:11:11', '1', '2022-04-22 15:11:11', '1', 0, 1),
+(35, 2, 'a', 'a', '', '', 'a', 'a', 2, 1, 0, 0, 50000, 60000, 60000, '2022-04-22 15:14:22', '1', '2022-04-22 15:14:37', '1', 0, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng  `db_province`
+-- Table structure for table `db_province`
 --
 
 CREATE TABLE `db_province` (
@@ -1764,7 +1220,7 @@ CREATE TABLE `db_province` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- dữ liệu cho bảng `db_province`
+-- Dumping data for table `db_province`
 --
 
 INSERT INTO `db_province` (`id`, `name`, `type`) VALUES
@@ -1835,7 +1291,7 @@ INSERT INTO `db_province` (`id`, `name`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng  `db_slider`
+-- Table structure for table `db_slider`
 --
 
 CREATE TABLE `db_slider` (
@@ -1847,12 +1303,12 @@ CREATE TABLE `db_slider` (
   `created_by` varchar(50) CHARACTER SET utf8 NOT NULL DEFAULT 'Supper Admin',
   `modified` datetime NOT NULL,
   `modified_by` varchar(50) CHARACTER SET utf8 NOT NULL DEFAULT 'Supper Admin',
-  `trash` tinyint(1) NOT NULL DEFAULT '1',
-  `status` tinyint(1) NOT NULL DEFAULT '1'
+  `trash` tinyint(1) NOT NULL DEFAULT 1,
+  `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- dữ liệu cho bảng `db_slider`
+-- Dumping data for table `db_slider`
 --
 
 INSERT INTO `db_slider` (`id`, `name`, `link`, `img`, `created`, `created_by`, `modified`, `modified_by`, `trash`, `status`) VALUES
@@ -1866,7 +1322,7 @@ INSERT INTO `db_slider` (`id`, `name`, `link`, `img`, `created`, `created_by`, `
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng  `db_user`
+-- Table structure for table `db_user`
 --
 
 CREATE TABLE `db_user` (
@@ -1881,12 +1337,12 @@ CREATE TABLE `db_user` (
   `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `img` varchar(255) CHARACTER SET utf8 NOT NULL,
   `created` datetime NOT NULL,
-  `trash` int(1) NOT NULL DEFAULT '1',
-  `status` int(1) NOT NULL DEFAULT '1'
+  `trash` int(1) NOT NULL DEFAULT 1,
+  `status` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- dữ liệu cho bảng `db_user`
+-- Dumping data for table `db_user`
 --
 
 INSERT INTO `db_user` (`id`, `fullname`, `username`, `password`, `role`, `email`, `gender`, `phone`, `address`, `img`, `created`, `trash`, `status`) VALUES
@@ -1902,7 +1358,7 @@ INSERT INTO `db_user` (`id`, `fullname`, `username`, `password`, `role`, `email`
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng  `db_usergroup`
+-- Table structure for table `db_usergroup`
 --
 
 CREATE TABLE `db_usergroup` (
@@ -1912,13 +1368,13 @@ CREATE TABLE `db_usergroup` (
   `created_by` int(11) NOT NULL,
   `modified` datetime NOT NULL,
   `modified_by` int(11) NOT NULL,
-  `trash` tinyint(1) NOT NULL DEFAULT '1',
-  `access` tinyint(1) NOT NULL DEFAULT '1',
-  `status` tinyint(1) NOT NULL DEFAULT '1'
+  `trash` tinyint(1) NOT NULL DEFAULT 1,
+  `access` tinyint(1) NOT NULL DEFAULT 1,
+  `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- dữ liệu cho bảng `db_usergroup`
+-- Dumping data for table `db_usergroup`
 --
 
 INSERT INTO `db_usergroup` (`id`, `name`, `created`, `created_by`, `modified`, `modified_by`, `trash`, `access`, `status`) VALUES
@@ -1926,54 +1382,54 @@ INSERT INTO `db_usergroup` (`id`, `name`, `created`, `created_by`, `modified`, `
 (2, 'Nhân viên', '2022-03-23 23:29:21', 1, '2022-03-23 23:29:21', 4, 1, 1, 1);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `db_category`
+-- Indexes for table `db_category`
 --
 ALTER TABLE `db_category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `db_config`
+-- Indexes for table `db_config`
 --
 ALTER TABLE `db_config`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `db_contact`
+-- Indexes for table `db_contact`
 --
 ALTER TABLE `db_contact`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `db_content`
+-- Indexes for table `db_content`
 --
 ALTER TABLE `db_content`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `db_customer`
+-- Indexes for table `db_customer`
 --
 ALTER TABLE `db_customer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `db_discount`
+-- Indexes for table `db_discount`
 --
 ALTER TABLE `db_discount`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `db_district`
+-- Indexes for table `db_district`
 --
 ALTER TABLE `db_district`
   ADD PRIMARY KEY (`id`),
   ADD KEY `matp` (`provinceid`);
 
 --
--- Chỉ mục cho bảng `db_order`
+-- Indexes for table `db_order`
 --
 ALTER TABLE `db_order`
   ADD PRIMARY KEY (`id`),
@@ -1986,7 +1442,7 @@ ALTER TABLE `db_order`
   ADD KEY `district_3` (`district`);
 
 --
--- Chỉ mục cho bảng `db_orderdetail`
+-- Indexes for table `db_orderdetail`
 --
 ALTER TABLE `db_orderdetail`
   ADD PRIMARY KEY (`id`),
@@ -1994,13 +1450,13 @@ ALTER TABLE `db_orderdetail`
   ADD KEY `orderid` (`orderid`);
 
 --
--- Chỉ mục cho bảng `db_producer`
+-- Indexes for table `db_producer`
 --
 ALTER TABLE `db_producer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `db_product`
+-- Indexes for table `db_product`
 --
 ALTER TABLE `db_product`
   ADD PRIMARY KEY (`id`),
@@ -2008,111 +1464,124 @@ ALTER TABLE `db_product`
   ADD KEY `catid` (`catid`);
 
 --
--- Chỉ mục cho bảng `db_province`
+-- Indexes for table `db_province`
 --
 ALTER TABLE `db_province`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `db_slider`
+-- Indexes for table `db_slider`
 --
 ALTER TABLE `db_slider`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `db_user`
+-- Indexes for table `db_user`
 --
 ALTER TABLE `db_user`
   ADD PRIMARY KEY (`id`),
   ADD KEY `role` (`role`);
 
 --
--- Chỉ mục cho bảng `db_usergroup`
+-- Indexes for table `db_usergroup`
 --
 ALTER TABLE `db_usergroup`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `db_category`
+-- AUTO_INCREMENT for table `db_category`
 --
 ALTER TABLE `db_category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
--- AUTO_INCREMENT cho bảng `db_config`
+-- AUTO_INCREMENT for table `db_config`
 --
 ALTER TABLE `db_config`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT cho bảng `db_contact`
+-- AUTO_INCREMENT for table `db_contact`
 --
 ALTER TABLE `db_contact`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
--- AUTO_INCREMENT cho bảng `db_content`
+-- AUTO_INCREMENT for table `db_content`
 --
 ALTER TABLE `db_content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
--- AUTO_INCREMENT cho bảng `db_customer`
+-- AUTO_INCREMENT for table `db_customer`
 --
 ALTER TABLE `db_customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+
 --
--- AUTO_INCREMENT cho bảng `db_discount`
+-- AUTO_INCREMENT for table `db_discount`
 --
 ALTER TABLE `db_discount`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=18;
+
 --
--- AUTO_INCREMENT cho bảng `db_order`
+-- AUTO_INCREMENT for table `db_order`
 --
 ALTER TABLE `db_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+
 --
--- AUTO_INCREMENT cho bảng `db_orderdetail`
+-- AUTO_INCREMENT for table `db_orderdetail`
 --
 ALTER TABLE `db_orderdetail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+
 --
--- AUTO_INCREMENT cho bảng `db_producer`
+-- AUTO_INCREMENT for table `db_producer`
 --
 ALTER TABLE `db_producer`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- AUTO_INCREMENT cho bảng `db_product`
+-- AUTO_INCREMENT for table `db_product`
 --
 ALTER TABLE `db_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
 --
--- AUTO_INCREMENT cho bảng `db_slider`
+-- AUTO_INCREMENT for table `db_slider`
 --
 ALTER TABLE `db_slider`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
--- AUTO_INCREMENT cho bảng `db_user`
+-- AUTO_INCREMENT for table `db_user`
 --
 ALTER TABLE `db_user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
--- AUTO_INCREMENT cho bảng `db_usergroup`
+-- AUTO_INCREMENT for table `db_usergroup`
 --
 ALTER TABLE `db_usergroup`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `db_district`
+-- Constraints for table `db_district`
 --
 ALTER TABLE `db_district`
   ADD CONSTRAINT `db_district_ibfk_1` FOREIGN KEY (`provinceid`) REFERENCES `db_province` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Các ràng buộc cho bảng `db_order`
+-- Constraints for table `db_order`
 --
 ALTER TABLE `db_order`
   ADD CONSTRAINT `db_order_ibfk_2` FOREIGN KEY (`province`) REFERENCES `db_province` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -2120,24 +1589,25 @@ ALTER TABLE `db_order`
   ADD CONSTRAINT `db_order_ibfk_4` FOREIGN KEY (`customerid`) REFERENCES `db_customer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Các ràng buộc cho bảng `db_orderdetail`
+-- Constraints for table `db_orderdetail`
 --
 ALTER TABLE `db_orderdetail`
   ADD CONSTRAINT `db_orderdetail_ibfk_2` FOREIGN KEY (`productid`) REFERENCES `db_product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `db_orderdetail_ibfk_3` FOREIGN KEY (`orderid`) REFERENCES `db_order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Các ràng buộc cho bảng `db_product`
+-- Constraints for table `db_product`
 --
 ALTER TABLE `db_product`
   ADD CONSTRAINT `db_product_ibfk_1` FOREIGN KEY (`catid`) REFERENCES `db_category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `db_product_ibfk_2` FOREIGN KEY (`producer`) REFERENCES `db_producer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Các ràng buộc cho bảng `db_user`
+-- Constraints for table `db_user`
 --
 ALTER TABLE `db_user`
   ADD CONSTRAINT `db_user_ibfk_1` FOREIGN KEY (`role`) REFERENCES `db_usergroup` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

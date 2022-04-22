@@ -59,6 +59,7 @@ class Product extends CI_Controller {
 				'sortDesc'=>$_POST['sortDesc'], 
 				'number'=>$_POST['number'],
 				'sale'=>$_POST['sale_of'],
+        'pre_sale'=>$_POST['price_pre_sale'],
 				'price'=>$_POST['price_root'],
 				'price_sale'=>$_POST['price_buy'],
 				'created'=>$today,
@@ -125,8 +126,9 @@ class Product extends CI_Controller {
          function check(){
            $giaban= $this->input->post('price_buy');
            $giagoc= $this->input->post('price_root');
-           if($giaban>$giagoc){
-            $this->form_validation->set_message(__FUNCTION__,'Bạn phải nhập giá bán nhỏ hơn hoặc bằng giá gốc');
+           $gianhaphang = $this->input->post('price_pre_sale');           
+           if($giaban<$gianhaphang){
+            $this->form_validation->set_message(__FUNCTION__,'Bạn phải nhập giá bán lớn hơn hoặc bằng giá nhập hàng');
             return FALSE;
           }else{
             return true;
@@ -157,6 +159,7 @@ public function update($id){
            'detail'=>$_POST['detail'], 
            'sortDesc'=>$_POST['sortDesc'],
            'sale'=>$_POST['sale_of'],
+           'pre_sale'=>$_POST['price_pre_sale'],
            'price'=>$_POST['price_root'],
            'price_sale'=>$_POST['price_buy'],
            'modified'=>$today,

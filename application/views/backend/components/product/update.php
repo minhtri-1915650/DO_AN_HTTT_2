@@ -83,9 +83,15 @@ foreach ($listProducer as $r) {
 								</div>
 							</div>
 							<div class="col-md-3">
+							<div class="form-group">
+									<label>Giá nhập hàng</label>
+									<input name="price_pre_sale" class="form-control" type="number" value="<?php echo $row['pre_sale'] ?>" min="0" step="10000" max="1000000000">
+									
+								</div>
 								<div class="form-group">
 									<label>Giá gốc</label>
 									<input name="price_root" class="form-control" type="number" value="<?php echo $row['price'] ?>" min="0" step="10000" max="1000000000">
+									
 								</div>
 								<div class="form-group">
 									<label>Khuyến mãi (%)</label>

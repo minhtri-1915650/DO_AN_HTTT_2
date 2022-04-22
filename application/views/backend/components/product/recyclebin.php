@@ -51,6 +51,7 @@
 													<span class="glyphicon glyphicon-edit"></span> Khôi phục
 												</a>
 											</td>
+											
 											<?php  
 												$quyen='';
 												if($user['role']==1){

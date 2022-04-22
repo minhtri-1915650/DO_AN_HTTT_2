@@ -76,8 +76,14 @@
 							</div>
 							<div class="col-md-3">
 								<div class="form-group">
+									<label>Giá nhập hàng</label>
+									<input name="price_pre_sale" class="form-control" type="number" value="0" min="0" step="1" max="1000000000">
+									
+								</div>
+								<div class="form-group">
 									<label>Giá gốc</label>
 									<input name="price_root" class="form-control" type="number" value="0" min="0" step="1" max="1000000000">
+									
 								</div>
 								<div class="form-group">
 									<label>Khuyến mãi (%)</label>
