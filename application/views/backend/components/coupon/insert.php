@@ -27,17 +27,17 @@
 								</div>
 								<div class="form-group">
 									<label>Số tiền giảm giá</label>
-									<input type="number" class="form-control" name="discount" style="width:100%" placeholder="Số tiền giảm giá">
+									<input type="number" class="form-control" name="discount" min="0" style="width:100%" placeholder="Số tiền giảm giá">
 									<div class="error" id="password_error"><?php echo form_error('discount')?></div>
 								</div>
 								<div class="form-group">
 									<label>Số lần giới hạn nhập</label>
-									<input type="number" class="form-control" name="limit_number" style="width:100%" placeholder="Số lần giới hạn nhập">
+									<input type="number" class="form-control" name="limit_number" min="0" style="width:100%" placeholder="Số lần giới hạn nhập">
 									<div class="error" id="password_error"><?php echo form_error('limit_number')?></div>
 								</div>
 								<div class="form-group">
 									<label>Số tiền đơn hàng tối thiểu được áp dụng</label>
-									<input type="number" class="form-control" name="payment_limit" style="width:100%" placeholder="Đơn hàng tối thiểu được áp dụng">
+									<input type="number" class="form-control" name="payment_limit" min="0" style="width:100%" placeholder="Đơn hàng tối thiểu được áp dụng">
 									<div class="error" id="password_error"><?php echo form_error('payment_limit')?></div>
 								</div>
 								
@@ -46,7 +46,7 @@
 								<div class="form-group">
 									<label>Ngày giới hạn nhập</label>
 									<div class="form-group">
-										<input type="date"  style="width:100%" name="expiration_date" required>
+										<input type="date"  min="<?php echo date("Y-m-d") ?>" style="width:100%" name="expiration_date"  required>
 									</div>
 								</div>
 								<div class="form-group">

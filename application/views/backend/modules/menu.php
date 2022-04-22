@@ -18,11 +18,7 @@
                     <i class="fa fa-leaf"></i><span>Sản phẩm</span>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="<?php echo base_url()?>admin/category">
-                    <i class="fa fa-indent"></i><span>Loại sản phẩm</span>
-                </a>
-            </li>
+            
             <li class="treeview">
                 <a href="<?php echo base_url()?>admin/producer">
                     <i class="fa fa-gift"></i><span>Nhà cung cấp</span>

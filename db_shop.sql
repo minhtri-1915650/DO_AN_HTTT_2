@@ -1138,9 +1138,9 @@ CREATE TABLE `db_producer` (
 --
 
 INSERT INTO `db_producer` (`id`, `name`, `code`, `keyword`, `created_at`, `created_by`, `modified`, `modified_by`, `status`, `trash`) VALUES
-(1, 'Samsung', 'SAMSUNG', 'tivi, maytinhbang,tulanh', '2022-03-22 16:08:31', 4, '2022-03-22 16:08:31', 4, 1, 1),
-(2, 'Dienmayxanh', 'DIENMAYXANH', ' tivi, maytinhbang,tulanh', '2022-03-12 23:30:37', 1, '2022-03-05 10:52:13', 1, 1, 1),
-(3, 'NguyenKim', 'NGUYENKIM', 'tivi, maytinhbang,tulanh', '2022-03-22 16:06:31', 4, '2022-03-12 23:40:22', 1, 1, 1);
+(1, 'Samsung', 'SAMSUNG', 'Tivi, Tủ lạnh, Máy giặt', '2022-03-22 16:08:31', 4, '2022-03-22 16:08:31', 4, 1, 1),
+(2, 'Dienmayxanh', 'DIENMAYXANH', ' Tivi, Tủ lạnh, Máy giặt', '2022-03-12 23:30:37', 1, '2022-03-05 10:52:13', 1, 1, 1),
+(3, 'NguyenKim', 'NGUYENKIM', 'Tivi, Tủ lạnh, Máy giặt', '2022-03-22 16:06:31', 4, '2022-03-12 23:40:22', 1, 1, 1);
 
 -- --------------------------------------------------------
 

@@ -46,7 +46,7 @@
 												<th class="text-center" style="width:20px">ID</th>
 												<th class="text-center">Code</th>
 												<th class="text-center">Name</th>
-												<th class="text-center">Keyword</th>
+												<th class="text-center">Sản phẩm</th>
 												<th class="text-center">Trạng thái</th>
 												<th class="text-center" colspan="2">Thao tác</th>
 											</tr>
