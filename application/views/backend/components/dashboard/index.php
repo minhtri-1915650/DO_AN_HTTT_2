@@ -6,10 +6,11 @@
 <?php
 $d=getdate();
 $year=$d['year'];
-$total = 0; $cost = 0;
+$total = 0; $cost = 0; $profit = 0;
 for ($i=1; $i <= 12 ; $i++) 
 {   
   $list_orrders = $this->Morders->order_follow_month($year, $i);
+  
   $sum = 0;
   foreach ($list_orrders as $row_orrder) 
   {
@@ -18,9 +19,11 @@ for ($i=1; $i <= 12 ; $i++)
       $sum += $value['count'];
     }
     $total += $row_orrder['money'];
+    $profit += $row_orrder['profit'];
   }
 }
 ?>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -106,6 +109,8 @@ for ($i=1; $i <= 12 ; $i++)
           <div class="box-body">
             <div class="chart">
               <div id="chart_div" style="width: 100%; height: 250px;"></div>
+              <div id="chart_div_1" style="width: 100%; height: 250px;"></div>
+              <div id="chart_div_2" style="width: 100%; height: 250px;"></div>
             </div>
           </div>
           <div class="box-footer">
@@ -114,6 +119,10 @@ for ($i=1; $i <= 12 ; $i++)
                 <div class="description-block border-right">
                   <h5 class="description-header" style="color: #e90000;"><?php echo number_format($total);?> VNĐ</h5>
                   <span class="description-text">Tổng doanh thu</span>
+                </div>
+                <div class="description-block border-right">
+                  <h5 class="description-header" style="color: #e90000;"><?php echo number_format($profit);?> VNĐ</h5>
+                  <span class="description-text">Tổng lợi nhuận</span>
                 </div>
                 <!-- /.description-block -->
               </div>
@@ -130,13 +139,7 @@ for ($i=1; $i <= 12 ; $i++)
             {
               $total_month += $row_orrder['money'];
             }
-            echo '<div class="col-sm-4 col-xs-6">
-                <div class="description-block border-right" style="display: inline-flex;">
-                  <span class="description-text">Doanh thu tháng '.$i.' :  </span> 
-                  <h5 class="description-header" style="color: #e90000;padding-left: 10px;">'.number_format($total_month).' VNĐ</h5>
-                </div>
-                <!-- /.description-block -->
-              </div>';
+            
           }
           ?>
             <!-- /.row -->
@@ -156,28 +159,21 @@ for ($i=1; $i <= 12 ; $i++)
 
    function drawVisualization() {
     var data = google.visualization.arrayToDataTable([
-     ['Month', 'Bán ra', 'Đơn hàng'],
+     ['Month', 'Đơn hàng'],
      <?php
      $d=getdate();
      $year=$d['year'];
      for ($i=1; $i <= 12 ; $i++) 
      {   
       $list_orrders = $this->Morders->order_follow_month($year, $i);
-      $sum = 0;
-      foreach ($list_orrders as $row_orrder) 
-      {
-        $order_detail = $this->Morderdetail->orderdetail_orderid($row_orrder['id']);
-        foreach ($order_detail as $value) {
-          $sum += $value['count'];
-        }
-      }
+      $sum = 10;
       if($i >= 1 && $i <=9)
       {
-        echo "['0".$i.'/'.$year."',".$sum.",".count($list_orrders)."],";
+        echo "['0".$i.'/'.$year."',".count($list_orrders)."],";
       }
       else
       {
-        echo "['".$i.'/'.$year."',".$sum.",".count($list_orrders)."],";
+        echo "['".$i.'/'.$year."',".count($list_orrders)."],";
       }
     }
     ?>
@@ -191,32 +187,78 @@ for ($i=1; $i <= 12 ; $i++)
 
     var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
     chart.draw(data, options);
-  }
+    }
   
   
 
-</script>
-<div id="chart"></div>
-<!-- <?php 
-//index.php
-$connect = mysqli_connect("localhost", "root", "", "testing");
-$query = "SELECT * FROM account";
-$result = mysqli_query($connect, $query);
-$chart_data = '';
-while($row = mysqli_fetch_array($result))
-{
- $chart_data .= "{ year:'".$row["year"]."', profit:".$row["profit"].", purchase:".$row["purchase"].", sale:".$row["sale"]."}, ";
-}
-$chart_data = substr($chart_data, 0, -2);
-?> -->
+  </script>
+
+
+  <script>
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      // Define the chart to be drawn.
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Element');
+      data.addColumn('number', 'Percentage');
+      data.addRows([
+        ['Tivi', 0.62],
+        ['Tủ lạnh', 0.17],
+        ['Máy giặt', 0.21]
+      ]);
+      var options = {
+      title: 'Các sản phẩm đã được bán ra'
+    };
+      // Instantiate and draw the chart.
+      var chart = new google.visualization.PieChart(document.getElementById('chart_div_1'));
+      chart.draw(data, options);
+    }
+  </script> 
+
 <script>
-Morris.Bar({
- element : 'chart',
- data:[<?php echo $chart_data; ?>],
- xkey:'year',
- ykeys:['profit', 'purchase', 'sale'],
- labels:['Profit', 'Purchase', 'Sale'],
- hideHover:'auto',
- stacked:true
-});
-</script>
+   google.charts.load('current', {'packages':['corechart']});
+   google.charts.setOnLoadCallback(drawVisualization);
+
+   function drawVisualization() {
+    var data = google.visualization.arrayToDataTable([
+     ['Month', 'Doanh thu','Lợi nhuận'],
+     <?php
+     $d=getdate();
+     $year=$d['year'];
+     for ($i=1; $i <= 12 ; $i++) 
+     {   
+      $list_orrders = $this->Morders->order_follow_month($year, $i);
+      $total_month = 0;
+      $total_month_profit =0;
+        foreach ($list_orrders as $row_orrder) 
+          {
+            $total_month += $row_orrder['money'];
+            $total_month_profit +=  $row_orrder['profit'];
+          }
+      if($i >= 1 && $i <=9)
+      {
+        echo "['0".$i.'/'.$year."',".$total_month.",".$total_month_profit."],";
+      }
+      else
+      {
+        echo "['".$i.'/'.$year."',".$total_month.",".$total_month_profit."],";
+      }
+    }
+    ?>
+
+    ]);
+
+    var options = {
+      title: 'Thống kê doanh thu và lợi nhuận trong năm 2022',
+      seriesType: 'bars'
+    };
+
+    var chart = new google.visualization.ComboChart(document.getElementById('chart_div_2'));
+    chart.draw(data, options);
+    }
+  
+  
+
+  </script>
