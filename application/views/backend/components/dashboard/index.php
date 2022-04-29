@@ -106,11 +106,11 @@ for ($i=1; $i <= 12 ; $i++)
 
             <select name="year">
 
-              <option value="2020">Năm 2020</option>
+              <option value="2020" >Năm 2020</option>
 
-              <option value="2021">Năm 2021</option>
+              <option value="2021" >Năm 2021</option>
 
-              <option value="2022">Năm 2022</option>
+              <option value="2022" >Năm 2022</option>
             </select>
 
             <input type="submit" name="submit" value="Thống kê" />
@@ -155,8 +155,10 @@ $selected_val = $_POST['year'];  // Lưu trữ giá trị được chọn trong 
               <!-- /.col -->
             </div>
             <?php
-          $d=getdate();
-          $year=$d['year'];
+          if(empty($selected_val)){
+            $year =2022;
+          }
+          else {$year=$selected_val;}
           for ($i=1; $i <= 12 ; $i++) 
           {   
             $list_orrders = $this->Morders->order_follow_month($year, $i);
@@ -188,7 +190,10 @@ $selected_val = $_POST['year'];  // Lưu trữ giá trị được chọn trong 
      ['Month', 'Đơn hàng'],
      <?php
      //$d=getdate();
-     $year=$selected_val;
+     if(empty($selected_val)){
+      $year =2022;
+    }
+    else {$year=$selected_val;}
      for ($i=1; $i <= 12 ; $i++) 
      {   
       $list_orrders = $this->Morders->order_follow_month($year, $i);
@@ -220,28 +225,7 @@ $selected_val = $_POST['year'];  // Lưu trữ giá trị được chọn trong 
   </script>
 
 
-  <script>
-    google.charts.load('current', {packages: ['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-      // Define the chart to be drawn.
-      var data = new google.visualization.DataTable();
-      data.addColumn('string', 'Element');
-      data.addColumn('number', 'Percentage');
-      data.addRows([
-        ['Tivi', 0.62],
-        ['Tủ lạnh', 0.17],
-        ['Máy giặt', 0.21]
-      ]);
-      var options = {
-      title: 'Các sản phẩm đã được bán ra'
-    };
-      // Instantiate and draw the chart.
-      var chart = new google.visualization.PieChart(document.getElementById('chart_div_1'));
-      chart.draw(data, options);
-    }
-  </script> 
+   
 
 <script>
    google.charts.load('current', {'packages':['corechart']});
@@ -251,7 +235,10 @@ $selected_val = $_POST['year'];  // Lưu trữ giá trị được chọn trong 
     var data = google.visualization.arrayToDataTable([
      ['Month', 'Doanh thu','Lợi nhuận'],
      <?php
-     $year=$selected_val;
+     if(empty($selected_val)){
+      $year =2022;
+    }
+    else {$year=$selected_val;}
      for ($i=1; $i <= 12 ; $i++) 
      {   
       $list_orrders = $this->Morders->order_follow_month($year, $i);
