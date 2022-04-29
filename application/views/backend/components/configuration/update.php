@@ -30,11 +30,7 @@
 										<label>Mail admin</label>
 										<input type="text" class="form-control" name="mail_noreply" style="width:100%" placeholder="Mail nhận thông tin đơn hàng" value="<?php echo $row['mail_noreply'] ?>">
 									</div>
-									<div class="form-group">
-										<label> PriceShip <span class = "maudo">(*)</span></label>
-										<input type="number" class="form-control" name="priceShip" style="width:100%" placeholder=" priceShip" value="<?php echo $row['priceShip'] ?>">
-
-									</div>
+									
 									<div class="form-group">
 										<label> Title <span class = "maudo">(*)</span></label>
 										<input type="text" class="form-control" name="title" style="width:100%" placeholder=" title" value="<?php echo $row['title'] ?>">

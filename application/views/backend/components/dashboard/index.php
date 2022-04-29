@@ -4,6 +4,7 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 
 <?php
+
 $d=getdate();
 $year=$d['year'];
 $total = 0; $cost = 0; $profit = 0;
@@ -100,6 +101,31 @@ for ($i=1; $i <= 12 ; $i++)
         <div class="box box-info">
           <div class="box-header with-border">
             <h3 class="box-title">Bán hàng & Doanh thu</h3>
+            <div>
+          <form action="admin" method="post">
+
+            <select name="year">
+
+              <option value="2020">Năm 2020</option>
+
+              <option value="2021">Năm 2021</option>
+
+              <option value="2022">Năm 2022</option>
+            </select>
+
+            <input type="submit" name="submit" value="Thống kê" />
+
+          </form>
+
+<?php
+
+if(isset($_POST['submit'])){
+$selected_val = $_POST['year'];  // Lưu trữ giá trị được chọn trong biến
+  // Hiển thị giá trị đã chọn
+}
+
+?>
+            </div>
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
               </button>
@@ -161,8 +187,8 @@ for ($i=1; $i <= 12 ; $i++)
     var data = google.visualization.arrayToDataTable([
      ['Month', 'Đơn hàng'],
      <?php
-     $d=getdate();
-     $year=$d['year'];
+     //$d=getdate();
+     $year=$selected_val;
      for ($i=1; $i <= 12 ; $i++) 
      {   
       $list_orrders = $this->Morders->order_follow_month($year, $i);
@@ -181,7 +207,7 @@ for ($i=1; $i <= 12 ; $i++)
     ]);
 
     var options = {
-      title: 'Số lượng đơn hàng trong năm 2022',
+      title: 'Số lượng đơn hàng trong năm <?php echo $selected_val ?>',
       seriesType: 'bars'
     };
 
@@ -225,8 +251,7 @@ for ($i=1; $i <= 12 ; $i++)
     var data = google.visualization.arrayToDataTable([
      ['Month', 'Doanh thu','Lợi nhuận'],
      <?php
-     $d=getdate();
-     $year=$d['year'];
+     $year=$selected_val;
      for ($i=1; $i <= 12 ; $i++) 
      {   
       $list_orrders = $this->Morders->order_follow_month($year, $i);
@@ -251,7 +276,7 @@ for ($i=1; $i <= 12 ; $i++)
     ]);
 
     var options = {
-      title: 'Thống kê doanh thu và lợi nhuận trong năm 2022',
+      title: 'Thống kê doanh thu và lợi nhuận trong năm <?php echo $selected_val ?>',
       seriesType: 'bars'
     };
 

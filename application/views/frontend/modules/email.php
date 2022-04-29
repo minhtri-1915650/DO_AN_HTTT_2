@@ -83,10 +83,7 @@
 										<td><strong>Tổng cộng:</strong></td>
 										<td style="text-align:right"><?php echo  number_format($total) ?> VNĐ</td>
 									</tr>
-									<tr>
-										<td><strong>Phí vận chuyển:</strong></td>
-										<td style="text-align:right"><?php echo  number_format($priceShip) ?> VNĐ</td>
-									</tr>
+									
 									<tr>
 										<td><strong>Voucher :</strong></td>
 										<td style="text-align:right">- <?php echo  number_format($coupon) ?> VNĐ</td>

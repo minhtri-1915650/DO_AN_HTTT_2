@@ -48,17 +48,14 @@
 					<tbody>
 						<tr>
 							<?php  
-							$priceShip = $info['price_ship'];
-							$total=$info['money'] - $info['price_ship'];
+							
+							$total=$info['money'] ;
 							?>
 							<td> Tổng tiền đơn hàng </td>
 							<td class="text-right"><span><?php echo number_format($total)?> VNĐ</span></td>
 						</tr>
 						
-						<tr>
-							<td>Phí giao hàng:</td>
-							<td class="text-right"><?php echo number_format($priceShip) ?> VNĐ</span></td>
-						</tr>
+						
 						<?php
 						if($info['coupon'] != 0 ){
 							echo '<tr>

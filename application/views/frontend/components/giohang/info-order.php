@@ -50,6 +50,16 @@ if (!$this->session->userdata('cart')) {
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td class="width30 text-right td-right-order">Mã giảm giá (nếu có):</td>
+                                            <td>
+                                                <input id="coupon" style="border-radius: 5px; border-color: #0f9ed8;" type="text" class="form-control" placeholder="Mã giảm giá" name="coupon">
+                                                <div class="error" id="result_coupon"></div>
+                                            </td>
+                                            <td colspan="1">
+                                                <a class="check-coupon" title="mã giảm giá" onclick="checkCoupon()">Sử dụng</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td class="width30 text-right td-right-order">Tỉnh/Thành phố: <span class="require_symbol">* </span></td>
                                             <td>
                                                 <select name="city" id="province" onchange="renderDistrict()" class="form-control next-select">
@@ -83,16 +93,7 @@ if (!$this->session->userdata('cart')) {
                                             </td>
                                         </tr>
 
-                                        <tr>
-                                            <td class="width30 text-right td-right-order">Mã giảm giá (nếu có):</td>
-                                            <td>
-                                                <input id="coupon" style="border-radius: 5px; border-color: #0f9ed8;" type="text" class="form-control" placeholder="Mã giảm giá" name="coupon">
-                                                <div class="error" id="result_coupon"></div>
-                                            </td>
-                                            <td colspan="1">
-                                                <a class="check-coupon" title="mã giảm giá" onclick="checkCoupon()">Sử dụng</a>
-                                            </td>
-                                        </tr>
+                                        
                                         <tr>
                                             <td style="border: none;"></td>
                                             <td style="border: none;">
@@ -165,12 +166,7 @@ if (!$this->session->userdata('cart')) {
                                         <td style="float: right;"><?php echo number_format($money) ?> VNĐ</td>
                                     </tr>
                                 </td>
-                                <tr>
-                                    <td colspan="3">
-                                        <p style="font-size: 12px;">(Phí giao hàng)</p>
-                                    </td>
-                                    <td style="float: right;"><?php echo number_format($this->Mconfig->config_price_ship()) . ' VNĐ'; ?> </td>
-                                </tr>
+                                
 
                                 <?php
                                 if ($this->session->userdata('coupon_price')) {
@@ -195,9 +191,9 @@ if (!$this->session->userdata('cart')) {
                                     <td class="text-center">
                                         <p style="font-size: 15px; color: red;">
                                             <?php if (isset($price_coupon_money)) {
-                                                $money_pay = ($money + $this->Mconfig->config_price_ship()) - $price_coupon_money;
+                                                $money_pay = $money - $price_coupon_money;
                                             } else {
-                                                $money_pay = $money + $this->Mconfig->config_price_ship();
+                                                $money_pay = $money ;
                                             }
                                             echo number_format($money_pay) . ' VNĐ'; ?>
                                         </p>
@@ -211,8 +207,6 @@ if (!$this->session->userdata('cart')) {
                 $paypalUrl = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
                 $paypalId = 'kvs3944-facilitator@gmail.com';
                 ?>
-
-                <!-- <div class="container" style='margin-left: 26%;'> -->
                 <div>
 
                     <div class="text-center">
@@ -228,9 +222,9 @@ if (!$this->session->userdata('cart')) {
                             <input type="hidden" name="no_shipping" value="1">
                             <input type="hidden" name="currency_code" value="USD">
                             <input type="hidden" name="cancel_return" value="http://localhost/DO_AN_HTTT_2/info-order">
-                            <input type="hidden" name="return" value="http://localhost/DO_AN_HTTT_2/thankyou">
+                            <input type="hidden" name="return" value="http://localhost/DO_AN_HTTT_2/">
                             <div class="btn-checkout frame-100-1 overflow-hidden border-pri text-center" >
-                            <button style="width: 300px" class="bg-pri border-pri col-fff" href="#">Thanh toán với Paypal</button>
+                            <button style="width: 300px" class="bg-pri border-pri col-fff" onclick="onRemoveProduct(<?php echo $row['id']; ?>)">Thanh toán với Paypal</button>
                             </div>
                         </div>
                     </form>
@@ -245,54 +239,7 @@ if (!$this->session->userdata('cart')) {
     </div>
     </div>
 </section>
-
-<!-- <div>
-    <?php
-    $paypalUrl = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
-    $paypalId = 'kvs3944-facilitator@gmail.com';
-    ?>
-
-    <div class="container">
-        <div>
-
-            <form action="<?php echo $paypalUrl; ?>" method="post" name="frmPayPal1">
-                <div>
-                    <input type="hidden" name="business" value="<?php echo $paypalId; ?>">
-                    <input type="hidden" name="cmd" value="_xclick">
-                    <input type="hidden" name="item_name" value="Thanh toan cho ShopBK">
-                    <input type="hidden" name="item_number" value="1">
-                    <input type="hidden" name="amount" value="1750">
-                    <input type="hidden" name="no_shipping" value="1">
-                    <input type="hidden" name="currency_code" value="USD">
-                    <input type="hidden" name="cancel_return" value="http://localhost/DO_AN_HTTT_2/info-order">
-                    <input type="hidden" name="return" value="http://localhost/DO_AN_HTTT_2/thankyou">
-                    <div class="btn-checkout frame-100-1 overflow-hidden border-pri" style="float: right;">
-                        <button style="width: 300px" class="bg-pri border-pri col-fff" href="#">Thanh toán với Paypal</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div> -->
-
-
-
-
-
 <script>
-//     function checkAllField(){
-//         var ddl = document.getElementById("district");
-//  var selectedValue = ddl.options[ddl.selectedIndex].value;
-//     if (selectedValue == "--- Chọn quận huyện ---")
-//    {
-//     alert("Vui lòng chọn quận/huyệnalign-items-start");
-//     return false;
-//    }
-// //    else{
-// //        return true;
-// //    }
-//     }
-
     function renderDistrict() {
         var provinceid = $("#province").val();
         var strurl = "<?php echo base_url(); ?>" + 'giohang/district';
@@ -337,8 +284,15 @@ if (!$this->session->userdata('cart')) {
             }
         });
     }
+    function onRemoveProduct(id){
+			var strurl="<?php echo base_url();?>"+'/sanpham/remove';
+			jQuery.ajax({
+				url: strurl,
+				type: 'POST',
+				dataType: 'json',
+				data: {id: id},
+				
+			});
+		}
 </script>
 
-<!-- error: (error) => {
-                     console.log(JSON.stringify(error));
-   } -->

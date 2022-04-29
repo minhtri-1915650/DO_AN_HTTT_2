@@ -58,7 +58,7 @@
 														$price = $row['price'] * $row['count'];
 														echo number_format($price);
 														$total += $price;
-														$price_ship= $order['price_ship'];;
+														
 														$coupon = $order['coupon'];
 														?>₫
 													</td>
@@ -75,13 +75,9 @@
 											</tr>';
 											}
 											?>
+											
 											<tr>
-												<td colspan="6" class="text-right" style="border: none; font-size: 0.9em;"><i>Phí vận chuyển: </i>
-													<?php echo number_format($price_ship); ?>₫
-												</td>
-											</tr>
-											<tr>
-												<td colspan="6" class="text-right" style="border: none; color: red; font-size: 1.3em;">Thành tiền: <?php echo number_format($total+$price_ship-$coupon);?>₫</td>
+												<td colspan="6" class="text-right" style="border: none; color: red; font-size: 1.3em;">Thành tiền: <?php echo number_format($total-$coupon);?>₫</td>
 											</tr>
 											
 											<tr>

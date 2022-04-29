@@ -75,10 +75,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             ?> VNĐ
                                         </td>
                                     </tr>
-                                    <tr style="background: #fafafa">
-                                        <td colspan="3">Vận chuyển</td>
-                                        <td class="text-center"><?php echo number_format($get['price_ship']).' VNĐ'; ?></td>
-                                    </tr>
+                                    
                                     <?php 
                                     if($get['coupon'] != 0){
                                         echo '<tr style="background: #fafafa">
@@ -89,7 +86,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     ?>
                                     <tr style="background: #fafafa">
                                         <td colspan="3" class="font-weight-600">Thành tiền<br/><span style="font-style: italic;">(Tổng số tiền thanh toán)</span></td>
-                                        <td class="text-center" style="font-weight: 600; font-size: 17px;color: red;"><?php echo number_format($get['money']).' VNĐ'; ?></td>
+                                        <td class="text-center" style="font-weight: 600; font-size: 17px;color: red;"><?php echo number_format($total2-$get['coupon']).' VNĐ'; ?></td>
                                     </tr>
                                 </tbody>
                             </table>

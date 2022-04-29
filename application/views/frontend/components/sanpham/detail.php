@@ -55,34 +55,7 @@
 								}
 								?>
 							</div>
-							<div class="fk-boxs" id="km-all" data-comt="False">
-								<div id="km-detail">
-									<p class="fk-tit">Khuyến mại đặc biệt (SL có hạn)</p>
-									<div class="fk-main">
-										<div class="fk-sales">
-											</ul>
-											<ul>
-												<li>Tặng PMH Phụ Kiện 2,000,000đ (khi phiếu mua hàng trên 100,000,000 đ)</li>
-											</ul>
-											
-											<ul>
-												<li>Giảm thêm 900,000đ khi mua combo Tivi + Tủ lạnh
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div style="margin-top: 20px;">
-								<b>Tình trạng</b>
-								<br>
-								<span>Nguyên hộp. Đầy đủ phụ kiện từ nhà sản xuất.</span>
-							</div>
-							<!-- <div style="margin-top: 20px;">
-								<b>Bảo hành</b>
-								<br>
-								<span>Bảo hành 12 tháng tại trung tâm bảo hành Chính hãng. 1 đổi 1 trong 30 ngày nếu có lỗi nhà sản xuất.
-							</div> -->
+							
 						</div>
 					</div>
 					<div class="product-v-desc col-md-10 col-12 col-xs-12">

@@ -89,9 +89,7 @@
 											<td>Tổng tiền</td>
 											<td><strong><?php echo (number_format($total)).' VNĐ'; ?></strong></td>
 										</tr>
-										<tr>
-											<td colspan="2"><h5>Mua hàng trực tiếp tại cửa hàng giảm giá 5%</h5></td>
-										</tr>
+										
 										<tr>
 											<td colspan="2"><h5>Nếu đặt online Bạn hãy đồng ý với điều khoản sử dụng & hướng dẫn hoàn trả.</h5></td>
 										</tr>
