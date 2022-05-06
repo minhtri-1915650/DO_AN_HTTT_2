@@ -26,7 +26,8 @@
 
   
    <script src="public/js/loader.js"></script>
-   <script src="public/ckeditor/ckeditor.js"></script>
+   <!-- <script src="public/ckeditor/ckeditor.js"></script> -->
+   <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
    <style>
     .content-header h1, th, label{
       color: #333;

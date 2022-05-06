@@ -8,11 +8,11 @@
                 </a>
             </li>
             <li class="header">QUẢN LÝ CỬA HÀNG</li>
-            <!-- <li class="treeview">
+            <li class="treeview">
                 <a href="<?php echo base_url() ?>admin/content">
                     <i class="glyphicon glyphicon-list"></i><span>Tin tức</span>
                 </a>
-            </li> -->
+            </li>
             <li class="treeview">
                 <a href="<?php echo base_url()?>admin/product">
                     <i class="fa fa-leaf"></i><span>Sản phẩm</span>
